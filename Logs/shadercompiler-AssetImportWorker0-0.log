@@ -1,20 +1,4 @@
-Base path: 'C:/Program Files/Unity 2020.3.25f1/Editor/6000.3.10f1/Editor/Data', plugins path 'C:/Program Files/Unity 2020.3.25f1/Editor/6000.3.10f1/Editor/Data/PlaybackEngines', jobs: y
-Cmd: initializeCompiler
-
-Cmd: initializeCompiler
-
-Cmd: initializeCompiler
-
-Cmd: initializeCompiler
-
-Cmd: initializeCompiler
-
-Cmd: initializeCompiler
-
-Cmd: initializeCompiler
-
-Cmd: initializeCompiler
-
+Base path: 'C:/Program Files/Unity/Hub/Editor/6000.3.10f1/Editor/Data', plugins path 'C:/Program Files/Unity/Hub/Editor/6000.3.10f1/Editor/Data/PlaybackEngines', jobs: y
 Cmd: initializeCompiler
 
 Cmd: initializeCompiler
