@@ -728,9 +728,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97fc74fadc68ef5498cb5988c61daeaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  <duskTimeLength>k__BackingField: 120
-  <dawnTimeLength>k__BackingField: 120
-  <dayTimeLength>k__BackingField: 120
+  <duskRoundTime>k__BackingField: 2
+  <dawnRoundTime>k__BackingField: 5
+  <dayRoundTime>k__BackingField: 1
+  gameState: 0
 --- !u!4 &1536490770
 Transform:
   m_ObjectHideFlags: 0
