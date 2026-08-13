@@ -8,7 +8,7 @@ public class WanderState : NPCState
 
     public override void OnStateEnter()
     {
-        Debug.Log("wander enter");
+        //Debug.Log("wander enter");
     }
 
     public override void OnStateExit()
@@ -18,12 +18,14 @@ public class WanderState : NPCState
 
     public override void OnStateRun()
     {
-        if(npc.GetAgent().remainingDistance <= npc.GetAgent().stoppingDistance)
+        if(!npc.GetAgent().pathPending &&
+            npc.GetAgent().remainingDistance <= npc.GetAgent().stoppingDistance ||
+            !npc.GetAgent().hasPath)
         {
-            //if(TryGetRandomPoint(npc.transform.position, npc.wanderRadius, out Vector3 newTarget))
-            //{
-
-            //}
+           if (npc.TryGetRandomPoint())
+            {
+                npc.GetAgent().SetDestination(npc.newTarget);
+            }
         }
     }
 }

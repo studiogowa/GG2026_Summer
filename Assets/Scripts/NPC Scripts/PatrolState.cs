@@ -30,6 +30,6 @@ public class PatrolState : NPCState
             npc.GetAgent().SetDestination(npc.GetPath()[waypointIndex].position);
         }
 
-        Debug.Log("Patrol running");
+        //Debug.Log("Patrol running");
     }
 }

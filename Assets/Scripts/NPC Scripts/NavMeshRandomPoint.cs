@@ -10,11 +10,14 @@ public class NavMeshRandomPoint : MonoBehaviour
         Vector3 randomTarget = new Vector3(
             npcPosition.x + randomPoint.x,
             npcPosition.y + randomPoint.y,
-            npcPosition.z
-         );
+            npcPosition.z - 0.08f
+        );
 
-        NavMeshHit hit;
-        if(NavMesh.SamplePosition(randomTarget, out hit, radius, NavMesh.AllAreas))
+        if (NavMesh.SamplePosition(
+            randomTarget,
+            out NavMeshHit hit,
+            radius,
+            NavMesh.AllAreas))
         {
             destination = hit.position;
             return true;
