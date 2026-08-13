@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
@@ -43,9 +44,8 @@ public class PlayerController : MonoBehaviour
 
         // Left mouse button to remove focus
         if (Mouse.current.leftButton.wasPressedThisFrame)
-        {
             RemoveFocus();
-        }
+        
     }
 
     void SetFocus(Interactable newFocus)
@@ -60,6 +60,9 @@ public class PlayerController : MonoBehaviour
     }
     void RemoveFocus()
     {
+        if (focus == null)
+            return;
+
         focus.OnDefocused();
         focus = null;
     }
