@@ -3,11 +3,11 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     public float radius = 3f; // how close a player needs to get to interact with an object
-    public Transform interactionTransform;
+    public Transform interactionTransform; // where a player needs to be to interact with an object
 
-    bool isFocus = false; // whether or not the object is currently being focused
-    Transform player; // reference to the player transform
-    bool hasInteracted = false; // whether or not the object has already been interacted with
+    bool isFocus = false;
+    Transform player;
+    bool hasInteracted = false;
 
     public virtual void Interact() // meant to be overridden
     {
@@ -41,7 +41,10 @@ public class Interactable : MonoBehaviour
         hasInteracted = false;
     }
 
-    void OnDrawGizmosSelected () { // visualizing the radius in the editor
+    void OnDrawGizmosSelected () // visualizing the radius in the editor
+    { 
+        if (interactionTransform == null)
+            interactionTransform = transform;
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(interactionTransform.position, radius);
     }
