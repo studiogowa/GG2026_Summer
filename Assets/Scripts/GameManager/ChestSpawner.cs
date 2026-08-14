@@ -18,7 +18,7 @@ public class ChestSpawner : GameManagerComponent
         if (chestCollection == null)
         {
             Debug.LogWarning("No chestCollection has been set!");
-            chestCollection = new GameObject("DEFAULT COLLECTION");
+            chestCollection = new GameObject("DEFAULT CHEST COLLECTION");
             chestCollection.transform.parent = this.transform;
         }
     }
@@ -63,7 +63,7 @@ public class ChestSpawner : GameManagerComponent
         // Choose spawn locations
         Vector3[] spawnPoints = new Vector3[chestSpawnPointCollection.transform.childCount];
         for (int i = 0; i < chestSpawnPointCollection.transform.childCount; i++) spawnPoints[i] = chestSpawnPointCollection.transform.GetChild(i).transform.position;
-        ShuffleArray(spawnPoints);
+        ArrayHelpers.ShuffleArray(spawnPoints);
 
         // Spawn chests
         for (int i = 0; i < chestSpawnCount; i ++)
@@ -71,17 +71,6 @@ public class ChestSpawner : GameManagerComponent
             GameObject chest = new GameObject("Chest");
             chest.transform.parent = chestCollection.transform;
             chest.transform.position = spawnPoints[i];
-        }
-    }
-    void ShuffleArray(Vector3[] array)
-    {
-        for (int i = 0; i < array.Length - 1; i++)
-        {
-            int randomIndex = Random.Range(i, array.Length);
-
-            Vector3 temp = array[i];
-            array[i] = array[randomIndex];
-            array[randomIndex] = temp;
         }
     }
 }

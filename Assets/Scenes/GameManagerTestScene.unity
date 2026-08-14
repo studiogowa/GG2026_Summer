@@ -672,6 +672,37 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &553815351
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 553815352}
+  m_Layer: 0
+  m_Name: ResourceCollection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &553815352
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553815351}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1536490770}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &619161482
 GameObject:
   m_ObjectHideFlags: 0
@@ -1749,6 +1780,7 @@ Transform:
   m_Children:
   - {fileID: 328793051}
   - {fileID: 857786214}
+  - {fileID: 553815352}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1536490771
@@ -1763,12 +1795,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa022a7abc5d2e54ba5b6ad01b8e6f2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  lootSpawnRects:
+  resourceSpawnRects:
   - serializedVersion: 2
-    x: 0
-    y: 0
-    width: 2
-    height: 2
+    x: 4.71
+    y: -3.24
+    width: 1.78
+    height: 1.89
+  - serializedVersion: 2
+    x: -7.1
+    y: 1.98
+    width: 1.78
+    height: 1.89
+  - serializedVersion: 2
+    x: 0.58
+    y: 1.98
+    width: 1.78
+    height: 1.89
+  - serializedVersion: 2
+    x: 0.58
+    y: -4.12
+    width: 1.78
+    height: 1.89
+  resourceCollection: {fileID: 553815351}
+  resourceSpawnCount: 1
 --- !u!114 &1536490772
 MonoBehaviour:
   m_ObjectHideFlags: 0
