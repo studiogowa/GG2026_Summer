@@ -31,7 +31,8 @@ public class GameManager : MonoBehaviour
     {   // Remove static reference
         if (GameManager.instance != null && GameManager.instance == this) GameManager.instance = null;
     }
-    private void Start()
+
+    public void StartGame()
     {
         StartDuskRound();
     }
@@ -47,7 +48,6 @@ public class GameManager : MonoBehaviour
         Debug.Log("Dusk Round Starts!");
         trackRoundProgressCoroutine = StartCoroutine(TrackRoundProgress());
     }
-
     private void StartDawnRound()
     {
         gameState = GameState.Dawn;
@@ -59,7 +59,6 @@ public class GameManager : MonoBehaviour
         Debug.Log("Dawn Round Starts!");
         trackRoundProgressCoroutine = StartCoroutine(TrackRoundProgress());
     }
-
     private void StartDayRound()
     {
         gameState = GameState.Day;
@@ -70,6 +69,14 @@ public class GameManager : MonoBehaviour
         gameEvents.duskStarts?.Invoke();
         Debug.Log("Day Round Starts!");
         trackRoundProgressCoroutine = StartCoroutine(TrackRoundProgress());
+    }
+    private void DayEnd()
+    {
+        gameState = GameState.DayEnd;
+
+        gameEvents.dayEnds?.Invoke();
+
+        Debug.Log("Day has ended and the Performance Review begins!");
     }
     private Coroutine trackRoundProgressCoroutine;
     private IEnumerator TrackRoundProgress()
@@ -86,6 +93,9 @@ public class GameManager : MonoBehaviour
     {
         switch (gameState)
         {
+            case GameState.PreDusk:
+                StartDuskRound();
+                break;
             case GameState.Dusk:
                 StartDawnRound();
                 break;
@@ -93,10 +103,10 @@ public class GameManager : MonoBehaviour
                 StartDayRound();
                 break;
             case GameState.Day:
-                StartDuskRound();
+                DayEnd();
                 break;
         }
     }
 }
 
-public enum GameState { Dusk, Dawn, Day }
+public enum GameState { PreDusk, Dusk, Dawn, Day, DayEnd }

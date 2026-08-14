@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 public class GameUI : MonoBehaviour
 {
-    [SerializeField] private Text gamestateText;
-    [SerializeField] private Text timerText;
-
+    [SerializeField] private TextMeshProUGUI gamestateText;
+    [SerializeField] private TextMeshProUGUI timerText;
+    private bool trackTime = false;
     private void OnEnable()
     {
         SubscribeFunctions();
@@ -28,6 +29,10 @@ public class GameUI : MonoBehaviour
         GameManager.instance.gameEvents.duskStarts += UpdateGameState;
         GameManager.instance.gameEvents.dawnStarts += UpdateGameState;
         GameManager.instance.gameEvents.dayStarts += UpdateGameState;
+        GameManager.instance.gameEvents.dayEnds += UpdateGameState;
+
+        GameManager.instance.gameEvents.duskStarts += StartTrackingTime;
+        GameManager.instance.gameEvents.dayEnds += StopTrackingTime;
     }
     private void UnsubscribeFunctions()
     {
@@ -35,15 +40,28 @@ public class GameUI : MonoBehaviour
         GameManager.instance.gameEvents.duskStarts -= UpdateGameState;
         GameManager.instance.gameEvents.dawnStarts -= UpdateGameState;
         GameManager.instance.gameEvents.dayStarts -= UpdateGameState;
+        GameManager.instance.gameEvents.dayEnds += UpdateGameState;
+
+        GameManager.instance.gameEvents.duskStarts -= StartTrackingTime;
+        GameManager.instance.gameEvents.dayEnds -= StopTrackingTime;
     }
     private void UpdateGameState()
     {
         if (GameManager.instance == null) return;
-        gamestateText.text = GameManager.instance.gameState.ToString();
+        gamestateText.text = $"{GameManager.instance.gameState}";
+    }
+    private void StartTrackingTime()
+    {
+        trackTime = true;
+    }
+    private void StopTrackingTime()
+    {
+        trackTime = false;
+        timerText.text = "ROUND TIME";
     }
     private void UpdateRoundTime()
     {
-        if (GameManager.instance == null) return;
-        timerText.text = GameManager.instance.gameTimeRemaining.ToString();
+        if (!trackTime || GameManager.instance == null) return;
+        timerText.text = $"{Mathf.FloorToInt(GameManager.instance.gameTimeRemaining)}";
     }
 }
