@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
         gameStartTime = Time.time;
         gameEndTime = gameStartTime + dayRoundTime;
 
-        gameEvents.duskStarts?.Invoke();
+        gameEvents.dayStarts?.Invoke();
         Debug.Log("Day Round Starts!");
         trackRoundProgressCoroutine = StartCoroutine(TrackRoundProgress());
     }

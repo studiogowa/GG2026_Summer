@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class GameManagerComponent : MonoBehaviour
 {
     protected GameManager gameManager;
-    protected void Awake()
+    protected virtual void Awake()
     {
         if (!TryGetComponent<GameManager>(out gameManager))
         {
