@@ -27,7 +27,7 @@ public class Inventory : MonoBehaviour
 
     public List<Item> items = new List<Item>();
 
-    public bool Add(Item item)
+    public bool Add(Item item, int amount)
     {
         if (!item.isDefaultItem)
         {
@@ -37,7 +37,20 @@ public class Inventory : MonoBehaviour
                 return false;
             }
 
-            items.Add(item);
+            Item copyItem = Instantiate(item);
+            copyItem.amount = amount;
+            
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (items[i].name == item.name && item.isStackable)
+                {
+                    items[i].amount += amount;
+                    onItemChangedCallback.Invoke();
+                    return true;
+                }
+            }
+
+            items.Add(copyItem);
 
             if (onItemChangedCallback != null)
                 onItemChangedCallback.Invoke();
@@ -49,6 +62,14 @@ public class Inventory : MonoBehaviour
     public void Remove(Item item)
     {
         items.Remove(item);
+        
+        if (onItemChangedCallback != null)
+            onItemChangedCallback.Invoke();
+    }
+
+    public void Clear()
+    {
+        items.Clear();
         
         if (onItemChangedCallback != null)
             onItemChangedCallback.Invoke();

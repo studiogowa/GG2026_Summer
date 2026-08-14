@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
             if (hit != null)
             {
                 Interactable interactable = hit.GetComponent<Interactable>();
-                if (interactable != null)
+                if (interactable != null && Vector3.Distance(transform.position, interactable.interactionTransform.position) <= interactable.radius)
                 {
                     SetFocus(interactable);
                 }
