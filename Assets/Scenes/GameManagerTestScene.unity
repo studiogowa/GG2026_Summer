@@ -672,37 +672,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!1 &553815351
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 553815352}
-  m_Layer: 0
-  m_Name: ResourceCollection
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &553815352
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 553815351}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1536490770}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &619161482
 GameObject:
   m_ObjectHideFlags: 0
@@ -1389,37 +1358,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 328793051}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &857786213
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 857786214}
-  m_Layer: 0
-  m_Name: ChestCollection
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &857786214
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 857786213}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1536490770}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &943720671
 GameObject:
   m_ObjectHideFlags: 0
@@ -1765,6 +1703,9 @@ MonoBehaviour:
   <dawnRoundTime>k__BackingField: 5
   <dayRoundTime>k__BackingField: 2
   gameState: 0
+  resourceGenerator: {fileID: 0}
+  chestSpawner: {fileID: 0}
+  explorerSpawner: {fileID: 0}
 --- !u!4 &1536490770
 Transform:
   m_ObjectHideFlags: 0
@@ -1779,8 +1720,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 328793051}
-  - {fileID: 857786214}
-  - {fileID: 553815352}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1536490771
@@ -1816,8 +1755,7 @@ MonoBehaviour:
     y: -4.12
     width: 1.78
     height: 1.89
-  resourceCollection: {fileID: 553815351}
-  resourceSpawnCount: 1
+  resourceSpawnCount: 4
 --- !u!114 &1536490772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1843,7 +1781,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   chestSpawnPointCollection: {fileID: 328793050}
-  chestCollection: {fileID: 857786213}
   chestSpawnCount: 2
 --- !u!1 &1629072959
 GameObject:

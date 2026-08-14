@@ -3,7 +3,7 @@ using UnityEngine;
 public class ChestSpawner : GameManagerComponent
 {
     [SerializeField] private GameObject chestSpawnPointCollection;
-    [SerializeField] private GameObject chestCollection;
+    public GameObject chestCollection { get; private set; }
     [SerializeField, Range(1, 12)] private int chestSpawnCount = 6;
 
     protected override void Awake()
@@ -17,8 +17,7 @@ public class ChestSpawner : GameManagerComponent
         }
         if (chestCollection == null)
         {
-            Debug.LogWarning("No chestCollection has been set!");
-            chestCollection = new GameObject("DEFAULT CHEST COLLECTION");
+            chestCollection = new GameObject("CHEST COLLECTION");
             chestCollection.transform.parent = this.transform;
         }
     }

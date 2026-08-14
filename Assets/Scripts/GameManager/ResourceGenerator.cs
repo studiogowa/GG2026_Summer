@@ -3,7 +3,7 @@ using System.Collections.Generic;
 public class ResourceGenerator : GameManagerComponent
 {
     [SerializeField] private List<Rect> resourceSpawnRects;
-    [SerializeField] private GameObject resourceCollection;
+    public GameObject resourceCollection { get; private set; }
 
     [SerializeField, Range(1, 20)] private int resourceSpawnCount;
     protected override void Awake()
@@ -11,8 +11,7 @@ public class ResourceGenerator : GameManagerComponent
         base.Awake();
         if (resourceCollection == null)
         {
-            Debug.LogWarning("No resourcesCollection has been set!");
-            resourceCollection = new GameObject("DEFAULT RESOURCE COLLECTION");
+            resourceCollection = new GameObject("RESOURCE COLLECTION");
             resourceCollection.transform.parent = this.transform;
         }
     }
@@ -57,6 +56,7 @@ public class ResourceGenerator : GameManagerComponent
         Vector3[] spawnPoints = new Vector3[resourceSpawnRects.Count];
         for (int i = 0; i < resourceSpawnRects.Count; i++)
         {
+            // Pick a point within the spawn Rect
             Vector3 spawnPoint = new Vector3(
                 Random.Range(resourceSpawnRects[i].xMin, resourceSpawnRects[i].xMax),
                 Random.Range(resourceSpawnRects[i].yMin, resourceSpawnRects[i].yMax),

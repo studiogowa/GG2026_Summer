@@ -18,6 +18,11 @@ public class GameManager : MonoBehaviour
 
     public GameEventsStruct gameEvents;
     public static GameManager instance;
+
+    [HideInInspector] public ResourceGenerator resourceGenerator;
+    [HideInInspector] public ChestSpawner chestSpawner;
+    [HideInInspector] public ExplorerSpawner explorerSpawner;
+    [HideInInspector] public MapManager mapManager;
     private void Awake()
     {   // Establish static reference
         if (GameManager.instance != null && GameManager.instance != this)
@@ -26,6 +31,11 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
         else GameManager.instance = this;
+
+        if (!TryGetComponent<ResourceGenerator>(out resourceGenerator)) Debug.LogError("Game Manager is missing a Resource Generator Component!");
+        if (!TryGetComponent<ChestSpawner>(out chestSpawner)) Debug.LogError("Game Manager is missing a Chest Spawner Component!");
+        if (!TryGetComponent<ExplorerSpawner>(out explorerSpawner)) Debug.LogError("Game Manager is missing a Explorer Spawner Component!");
+        if (!TryGetComponent<MapManager>(out mapManager)) Debug.LogError("Game Manager is missing a Map Manager Component!");
     }
     private void OnDestroy()
     {   // Remove static reference
@@ -93,7 +103,7 @@ public class GameManager : MonoBehaviour
     {
         switch (gameState)
         {
-            case GameState.PreDusk:
+            case GameState.PreGame:
                 StartDuskRound();
                 break;
             case GameState.Dusk:
@@ -109,4 +119,4 @@ public class GameManager : MonoBehaviour
     }
 }
 
-public enum GameState { PreDusk, Dusk, Dawn, Day, DayEnd }
+public enum GameState { PreGame, Dusk, Dawn, Day, DayEnd }
