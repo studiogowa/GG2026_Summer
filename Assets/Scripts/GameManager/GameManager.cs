@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public float gameStartTime { get; private set; } = 0.0f;
     public float gameEndTime { get; private set; } = 0.0f;
     public float gameRoundTime { get { return Time.time - gameStartTime; } }
-    public float gameTimeRemaining { get { return gameEndTime - gameStartTime; } }
+    public float gameTimeRemaining { get { return gameEndTime - Time.time; } }
 
     public GameEventsStruct gameEvents;
     public static GameManager instance;
