@@ -3,7 +3,8 @@ using UnityEngine;
 public class ChestSpawner : GameManagerComponent
 {
     [SerializeField] private GameObject chestSpawnPointCollection;
-    [SerializeField, Range(0, 12)] private int chestSpawnCount = 6;
+    [SerializeField] private GameObject chestCollection;
+    [SerializeField, Range(1, 12)] private int chestSpawnCount = 6;
 
     protected override void Awake()
     {
@@ -14,14 +15,33 @@ public class ChestSpawner : GameManagerComponent
             chestSpawnPointCollection = new GameObject("DEFAULT CHEST SPAWN POINT COLLECTION");
             chestSpawnPointCollection.transform.parent = this.transform;
         }
+        if (chestCollection == null)
+        {
+            Debug.LogWarning("No chestCollection has been set!");
+            chestCollection = new GameObject("DEFAULT COLLECTION");
+            chestCollection.transform.parent = this.transform;
+        }
     }
     private void OnEnable()
     {
-        gameManager.gameEvents.duskStarts += GenerateChests;
+        gameManager.gameEvents.duskStarts += SetupChests;
     }
     private void OnDisable()
     {
-        gameManager.gameEvents.duskStarts -= GenerateChests;
+        gameManager.gameEvents.duskStarts -= SetupChests;
+    }
+    private void SetupChests()
+    {
+        ClearChests();
+        GenerateChests();
+    }
+    // Destroys every chest under chestCollection
+    private void ClearChests()
+    {
+        for (int i = chestCollection.transform.childCount - 1; i >= 0; i --)
+        {
+            Destroy(chestCollection.transform.GetChild(i).gameObject);
+        }
     }
     /// <summary>
     /// Spawn chests and assigns their value level
@@ -49,6 +69,7 @@ public class ChestSpawner : GameManagerComponent
         for (int i = 0; i < chestSpawnCount; i ++)
         {
             GameObject chest = new GameObject("Chest");
+            chest.transform.parent = chestCollection.transform;
             chest.transform.position = spawnPoints[i];
         }
     }
