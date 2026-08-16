@@ -2,13 +2,36 @@ using UnityEngine;
 
 public class DungeonManager : GameManagerComponent
 {
-    [SerializeField] private GameObject gameMap;
-    [field: SerializeField] public Dungeon dungeon { get; private set; }
+    [SerializeField] private GameObject dungeonGameObject;
+    private Dungeon dungeon;
     protected override void Awake()
     {
         base.Awake();
         //gameMap = Instantiate(gameMap, gameManager.transform);
-        if (!gameMap.TryGetComponent<Dungeon>(out Dungeon _dungeon)) Debug.LogError("Dungeon Map DOES NOT have a Dungeon script component!");
-        dungeon = _dungeon;
+        if (!dungeonGameObject.TryGetComponent<Dungeon>(out dungeon)) Debug.LogError("Dungeon Map DOES NOT have a Dungeon script component!");
+    }
+
+    public int chestSpawnPointCount { get { return dungeon.chests.chestSpawnPointCount; } }
+    /// <summary>
+    /// Randomly get [chestCount] spawn coordinates for chests in this Dungeon
+    /// </summary>
+    /// <param name="chestCount">Number of coordinates to get</param>
+    /// <returns>Returns an Array of Vector 3 Coordinates</returns>
+    public Vector3[] GetChestSpawns(int chestCount)
+    {
+        if (dungeon == null) return new Vector3[0];
+        return dungeon.chests.GetSpawnPoints(chestCount);
+    }
+
+    public int resourceSpawnPointCount { get { return dungeon.resources.resourceSpawnRectCount; } }
+    /// <summary>
+    /// Randomly get [resourceCount] spawn coordinates for resource nodes in this Dungeon
+    /// </summary>
+    /// <param name="resourceCount">Number of coordinates to get</param>
+    /// <returns>Returns an Array of Vector 3 Coordinates</returns>
+    public Vector3[] GetResourceSpawns(int resourceCount)
+    {
+        if (dungeon == null) return new Vector3[0];
+        return dungeon.resources.GetSpawnPoints(resourceCount);
     }
 }

@@ -39,20 +39,20 @@ public class ResourceGenerator : GameManagerComponent
     /// </summary>
     private void GenerateResources()
     {
-        if (gameManager.dungeonManager.dungeon.resources.resourceSpawnRectsCount <= 0)
+        if (gameManager.dungeonManager.resourceSpawnPointCount <= 0)
         {
             Debug.LogWarning("No Resource Spawn Points were set! No Resources will spawn!");
             return;
         }
         // Clamp resource spawn count if too many resources will spawn
-        if (resourceSpawnCount > gameManager.dungeonManager.dungeon.resources.resourceSpawnRectsCount)
+        if (resourceSpawnCount > gameManager.dungeonManager.resourceSpawnPointCount)
         {
             Debug.LogWarning("More Resources were going to be spawned than there are spawn points! " +
-                $"Limiting spawn count to {gameManager.dungeonManager.dungeon.resources.resourceSpawnRectsCount}!");
-            resourceSpawnCount = gameManager.dungeonManager.dungeon.resources.resourceSpawnRectsCount;
+                $"Limiting spawn count to {gameManager.dungeonManager.resourceSpawnPointCount}!");
+            resourceSpawnCount = gameManager.dungeonManager.resourceSpawnPointCount;
         }
         // Choose spawn locations
-        Vector3[] spawnPoints = gameManager.dungeonManager.dungeon.resources.GetSpawnPoints(resourceSpawnCount);
+        Vector3[] spawnPoints = gameManager.dungeonManager.GetResourceSpawns(resourceSpawnCount);
 
         // Spawn Resources
         foreach (Vector3 spawnCoords in spawnPoints)

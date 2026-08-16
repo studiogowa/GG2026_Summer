@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 public class DungeonResources : DungeonComponent
 {
-    public int resourceSpawnRectsCount { get { return resourceSpawnRects.Count; } }
+    public int resourceSpawnRectCount { get { return resourceSpawnRects.Count; } }
     [field: SerializeField] public List<Rect> resourceSpawnRects { get; private set; }
 
     /// <summary>

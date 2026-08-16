@@ -42,20 +42,20 @@ public class ChestSpawner : GameManagerComponent
     /// </summary>
     private void GenerateChests()
     {
-        if (gameManager.dungeonManager.dungeon.chests.chestSpawnPointCount <= 0)
+        if (gameManager.dungeonManager.chestSpawnPointCount <= 0)
         {
             Debug.LogWarning("No Chests Spawn Points were set! No Chests will spawn!");
             return;
         }
         // Clamp chest spawn count if too many chests will spawn
-        if (chestSpawnCount > gameManager.dungeonManager.dungeon.chests.chestSpawnPointCount)
+        if (chestSpawnCount > gameManager.dungeonManager.chestSpawnPointCount)
         {
             Debug.LogWarning("More chests were going to be spawned than there are spawn points! " +
-                $"Limiting spawn count to {gameManager.dungeonManager.dungeon.chests.chestSpawnPointCount}!");
-            chestSpawnCount = gameManager.dungeonManager.dungeon.chests.chestSpawnPointCount;
+                $"Limiting spawn count to {gameManager.dungeonManager.chestSpawnPointCount}!");
+            chestSpawnCount = gameManager.dungeonManager.chestSpawnPointCount;
         }
         // Get spawn locations
-        Vector3[] spawnPoints = gameManager.dungeonManager.dungeon.chests.GetSpawnPoints(chestSpawnCount);
+        Vector3[] spawnPoints = gameManager.dungeonManager.GetChestSpawns(chestSpawnCount);
 
         // Spawn chests
         foreach (Vector3 spawnCoords in spawnPoints)
