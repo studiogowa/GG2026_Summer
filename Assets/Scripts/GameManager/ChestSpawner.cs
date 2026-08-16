@@ -2,19 +2,12 @@ using UnityEngine;
 
 public class ChestSpawner : GameManagerComponent
 {
-    [SerializeField] private GameObject chestSpawnPointCollection;
     public GameObject chestCollection { get; private set; }
     [SerializeField, Range(1, 12)] private int chestSpawnCount = 6;
 
     protected override void Awake()
     {
         base.Awake();
-        if (chestSpawnPointCollection == null)
-        {
-            Debug.LogWarning("No ChestSpawnPointCollection has been set!");
-            chestSpawnPointCollection = new GameObject("DEFAULT CHEST SPAWN POINT COLLECTION");
-            chestSpawnPointCollection.transform.parent = this.transform;
-        }
         if (chestCollection == null)
         {
             chestCollection = new GameObject("CHEST COLLECTION");
@@ -34,7 +27,9 @@ public class ChestSpawner : GameManagerComponent
         ClearChests();
         GenerateChests();
     }
-    // Destroys every chest under chestCollection
+    /// <summary>
+    /// Destroys every chest under chestCollection
+    /// </summary>
     private void ClearChests()
     {
         for (int i = chestCollection.transform.childCount - 1; i >= 0; i --)
@@ -47,29 +42,27 @@ public class ChestSpawner : GameManagerComponent
     /// </summary>
     private void GenerateChests()
     {
-        if (chestSpawnPointCollection.transform.childCount <= 0)
+        if (gameManager.dungeonManager.dungeon.chests.chestSpawnPointCount <= 0)
         {
             Debug.LogWarning("No Chests Spawn Points were set! No Chests will spawn!");
             return;
         }
         // Clamp chest spawn count if too many chests will spawn
-        if (chestSpawnCount > chestSpawnPointCollection.transform.childCount)
+        if (chestSpawnCount > gameManager.dungeonManager.dungeon.chests.chestSpawnPointCount)
         {
             Debug.LogWarning("More chests were going to be spawned than there are spawn points! " +
-                $"Limiting spawn count to {chestSpawnPointCollection.transform.childCount}!");
-            chestSpawnCount = chestSpawnPointCollection.transform.childCount;
+                $"Limiting spawn count to {gameManager.dungeonManager.dungeon.chests.chestSpawnPointCount}!");
+            chestSpawnCount = gameManager.dungeonManager.dungeon.chests.chestSpawnPointCount;
         }
-        // Choose spawn locations
-        Vector3[] spawnPoints = new Vector3[chestSpawnPointCollection.transform.childCount];
-        for (int i = 0; i < chestSpawnPointCollection.transform.childCount; i++) spawnPoints[i] = chestSpawnPointCollection.transform.GetChild(i).transform.position;
-        ArrayHelpers.ShuffleArray(spawnPoints);
+        // Get spawn locations
+        Vector3[] spawnPoints = gameManager.dungeonManager.dungeon.chests.GetSpawnPoints(chestSpawnCount);
 
         // Spawn chests
-        for (int i = 0; i < chestSpawnCount; i ++)
+        foreach (Vector3 spawnCoords in spawnPoints)
         {
             GameObject chest = new GameObject("Chest");
             chest.transform.parent = chestCollection.transform;
-            chest.transform.position = spawnPoints[i];
+            chest.transform.position = spawnCoords;
         }
     }
 }

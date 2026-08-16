@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public ResourceGenerator resourceGenerator;
     [HideInInspector] public ChestSpawner chestSpawner;
     [HideInInspector] public ExplorerSpawner explorerSpawner;
-    [HideInInspector] public MapManager mapManager;
+    [HideInInspector] public DungeonManager dungeonManager;
     private void Awake()
     {   // Establish static reference
         if (GameManager.instance != null && GameManager.instance != this)
@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
         if (!TryGetComponent<ResourceGenerator>(out resourceGenerator)) Debug.LogError("Game Manager is missing a Resource Generator Component!");
         if (!TryGetComponent<ChestSpawner>(out chestSpawner)) Debug.LogError("Game Manager is missing a Chest Spawner Component!");
         if (!TryGetComponent<ExplorerSpawner>(out explorerSpawner)) Debug.LogError("Game Manager is missing a Explorer Spawner Component!");
-        if (!TryGetComponent<MapManager>(out mapManager)) Debug.LogError("Game Manager is missing a Map Manager Component!");
+        if (!TryGetComponent<DungeonManager>(out dungeonManager)) Debug.LogError("Game Manager is missing a Dungeon Manager Component!");
     }
     private void OnDestroy()
     {   // Remove static reference

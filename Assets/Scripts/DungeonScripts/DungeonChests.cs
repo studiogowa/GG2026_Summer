@@ -9,13 +9,16 @@ public class DungeonChests : DungeonComponent
         if (this.transform.childCount <= 0) Debug.LogWarning("This Dungeon DOES NOT have any Chest Spawn Points!");
     }
     /// <summary>
-    /// Gets the coordinates for every chest spawn point in this dungeon
+    /// Randomly gets [spawnCount] chest spawn coordinates in this dungeon
     /// </summary>
-    /// <returns>Returns an Array of coordinates for this dungeon's chest spawn points</returns>
-    public Vector3[] GetSpawnPoints()
+    /// <param name="spawnCount">Number of spawn points to return</param>
+    /// <returns>Returns an array of Vector3 coordinates</returns>
+    public Vector3[] GetSpawnPoints(int spawnCount)
     {
         Vector3[] ret = new Vector3[this.transform.childCount];
         for (int i = 0; i < this.transform.childCount; i++) ret[i] = this.transform.GetChild(i).position;
-        return ret;
+        ArrayHelpers.ShuffleArray(ret);
+
+        return ret[0..spawnCount];
     }
 }
