@@ -6,11 +6,11 @@ public class InventoryUI : MonoBehaviour
     public Transform itemsParent;
     public GameObject inventoryUI;
 
-    private InputAction inventoryToggleAction;
-    Inventory inventory;
-    InventorySlot[] slots;
+    protected InputAction inventoryToggleAction;
+    protected Inventory inventory;
+    protected InventorySlot[] slots;
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         inventoryToggleAction = InputSystem.actions.FindAction("Inventory");
 
@@ -21,7 +21,7 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         if (inventoryToggleAction != null)
         {
@@ -31,21 +31,42 @@ public class InventoryUI : MonoBehaviour
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected virtual void Start()
     {
-        inventory = Inventory.instance;
-        inventory.onItemChangedCallback += UpdateUI;
+        if (Inventory.instance != null)
+        {
+            inventory = Inventory.instance;
+            inventory.onItemChangedCallback += UpdateUI;
+        }
 
-        slots = itemsParent.GetComponentsInChildren<InventorySlot>();
+        if (itemsParent != null)
+        {
+            slots = itemsParent.GetComponentsInChildren<InventorySlot>();
+        }
+        else
+        {
+            slots = null;
+        }
+
+        if (inventoryUI != null)
+        {
+            inventoryUI.SetActive(false);
+        }
     }
 
-    private void OnInventoryToggle(InputAction.CallbackContext context)
+    protected virtual void OnInventoryToggle(InputAction.CallbackContext context)
     {
+        if (inventoryUI == null)
+            return;
+
         inventoryUI.SetActive(!inventoryUI.activeSelf);
     }
 
-    void UpdateUI()
+    protected virtual void UpdateUI()
     {
+        if (inventory == null || slots == null)
+            return;
+
         for (int i = 0; i < slots.Length; i++)
         {
             if (i < inventory.items.Count)

@@ -4,30 +4,26 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    #region Singleton
-    
+    public static Inventory instance;
+    public int space = 20;
+    public List<Item> items = new List<Item>();
+
     public delegate void OnItemChanged();
     public OnItemChanged onItemChangedCallback;
 
-    public static Inventory instance;
-    void Awake()
+    private void Awake()
     {
-        if (instance != null)
+        if (instance == null)
         {
-            Debug.LogWarning("More than one instance of Inventory found!");
-            return;
+            instance = this;
         }
-
-        instance = this;
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
     }
 
-    #endregion
-
-    public int space = 20;
-
-    public List<Item> items = new List<Item>();
-
-    public bool Add(Item item, int amount)
+    public virtual bool Add(Item item, int amount)
     {
         if (!item.isDefaultItem)
         {
@@ -59,7 +55,7 @@ public class Inventory : MonoBehaviour
         return true;
     }
 
-    public void Remove(Item item)
+    public virtual void Remove(Item item)
     {
         items.Remove(item);
         
@@ -67,7 +63,7 @@ public class Inventory : MonoBehaviour
             onItemChangedCallback.Invoke();
     }
 
-    public void Clear()
+    public virtual void Clear()
     {
         items.Clear();
         

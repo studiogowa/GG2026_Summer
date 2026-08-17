@@ -7,9 +7,9 @@ public class InventorySlot : MonoBehaviour
     public Image icon;
     public Button removeButton;
     public TextMeshProUGUI amount;
-    Item item;
+    protected Item item;
 
-    private void Start()
+    public void Start()
     {
         if (amount != null)
             amount.enabled = false;
