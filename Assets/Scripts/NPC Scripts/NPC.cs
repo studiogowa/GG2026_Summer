@@ -15,10 +15,12 @@ public class NPC : MonoBehaviour
     [SerializeField] private float wanderRadius;
     [SerializeField] private float rotationSpeed;
     public Vector3 nextTarget { get; private set; }
+    private Vector3 currentDirection;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //NavMesh Setup
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
@@ -31,6 +33,10 @@ public class NPC : MonoBehaviour
             1f,
             NavMesh.AllAreas
         );
+
+        //FOV Setup
+        fieldOfView.SetRotationSpeed(rotationSpeed);
+
 
         //Debug.Log($"NPC position: {transform.position}");
         //Debug.Log($"Nearest NavMesh: {hit.position}");

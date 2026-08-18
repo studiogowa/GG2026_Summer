@@ -17,8 +17,9 @@ public class FieldOfView : MonoBehaviour
     [SerializeField] private LayerMask obstructionLayer;
 
     [Header("Vision Cone")]
-    Vector3 origin;
+    [SerializeField] private float rotationSpeed;
     private Vector3 aimDirection;
+    //private Vector3 currAimDirection;
     private float startingAngle;
     private Mesh mesh;
     Vector3[] vertices;
@@ -40,10 +41,11 @@ public class FieldOfView : MonoBehaviour
         mesh.name = "Vision Cone";
         GetComponent<MeshFilter>().mesh = mesh;
 
+        //Set FOV variables
+        aimDirection = transform.up;
         SetAimDirection(transform.up);
         StartVisionCone();
 
-        //DrawField();
         StartCoroutine(FOVCheck());
     }
 
@@ -86,17 +88,16 @@ public class FieldOfView : MonoBehaviour
         if (Physics2D.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionLayer)) return;
 
         canSeePlayer = true;
-        Debug.Log("see player");
+        //Debug.Log("see player");
     }
 
-    public void SetOrigin(Vector3 position)
-    {
-        origin = position;
-    }
 
-    public void SetAimDirection(Vector3 aimDirection)
+    public void SetAimDirection(Vector3 nextDirection)
     {
-        this.aimDirection = aimDirection;
+        aimDirection = Vector3.RotateTowards(
+            aimDirection, nextDirection.normalized,
+            rotationSpeed * Mathf.Deg2Rad * Time.deltaTime, 0f);
+
         startingAngle = GetAnglefromVector(aimDirection) - fov / 2f;
     }
     private void StartVisionCone()
@@ -104,9 +105,6 @@ public class FieldOfView : MonoBehaviour
         vertices = new Vector3[rayCount + 1 + 1];
         uv = new Vector2[vertices.Length];
         triangles = new int[rayCount * 3];
-        origin = transform.position;
-
-
 
         angleIncrease = fov / rayCount;
         vertexIndex = 1;
@@ -125,6 +123,7 @@ public class FieldOfView : MonoBehaviour
         {
             Vector2 direction = GetVectorFromAngle(angle);
 
+            //If hit obstruction -> calculate distance to wall
             RaycastHit2D hitObstruction = Physics2D.Raycast(
                 transform.position, 
                 direction, radius, obstructionLayer);
@@ -138,6 +137,7 @@ public class FieldOfView : MonoBehaviour
                 distance = hitObstruction.distance;
             }
 
+            //Draw triangle depending on distance
             vertices[vertexIndex] = direction * distance;
 
             if (i > 0)
@@ -153,6 +153,7 @@ public class FieldOfView : MonoBehaviour
             angle += angleIncrease;
         }
 
+        //Draw the mesh
         mesh.Clear();
         mesh.vertices = vertices;
         mesh.uv = uv;
@@ -182,6 +183,11 @@ public class FieldOfView : MonoBehaviour
         angleInDegrees += eulerY;
 
         return new Vector2(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
+    }
+
+    public void SetRotationSpeed(float speed)
+    {
+        rotationSpeed = speed;
     }
 
     private void OnDrawGizmos()
