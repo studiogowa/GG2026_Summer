@@ -24,7 +24,7 @@ public class WanderState : NPCState
         {
            if (npc.TryGetRandomPoint())
             {
-                npc.GetAgent().SetDestination(npc.newTarget);
+                npc.GetAgent().SetDestination(npc.nextTarget);
             }
         }
     }

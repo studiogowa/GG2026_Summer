@@ -3,6 +3,7 @@ using UnityEngine.AI;
 
 public class NPC : MonoBehaviour
 {
+    [SerializeField] FieldOfView fieldOfView;
     [SerializeField] Transform target;
     [SerializeField] NavMeshRandomPoint randomPointGenerator;
     [SerializeField] private Transform[] patrolPathPoints;
@@ -12,7 +13,8 @@ public class NPC : MonoBehaviour
     public NPCState currentState;
 
     [SerializeField] private float wanderRadius;
-    public Vector3 newTarget { get; private set; }
+    [SerializeField] private float rotationSpeed;
+    public Vector3 nextTarget { get; private set; }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,9 +32,9 @@ public class NPC : MonoBehaviour
             NavMesh.AllAreas
         );
 
-        Debug.Log($"NPC position: {transform.position}");
-        Debug.Log($"Nearest NavMesh: {hit.position}");
-        Debug.Log($"Distance: {Vector3.Distance(transform.position, hit.position)}");
+        //Debug.Log($"NPC position: {transform.position}");
+        //Debug.Log($"Nearest NavMesh: {hit.position}");
+        //Debug.Log($"Distance: {Vector3.Distance(transform.position, hit.position)}");
 
         //ChangeState(new PatrolState(this));
         ChangeState(new WanderState(this));
@@ -42,15 +44,18 @@ public class NPC : MonoBehaviour
     void Update()
     {
         currentState.OnStateRun();
-        //if (transform.position.z != 0)
-        //{
-        //    Debug.Log($"NPC Z CHANGED TO: {transform.position.z}");
-        //}
+        RotateFOV();
     }
 
     private void LateUpdate()
     {
         transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
+    }
+
+    private void RotateFOV()
+    {
+        Vector3 aimDir = (nextTarget - transform.position).normalized;
+        fieldOfView.SetAimDirection(aimDir);
     }
 
     public void ChangeState(NPCState state)
@@ -64,23 +69,24 @@ public class NPC : MonoBehaviour
         currentState.OnStateEnter();
     }
 
-    public NavMeshAgent GetAgent()
-    {
-        return agent;
-    }
 
     public bool TryGetRandomPoint()
     {
         if (randomPointGenerator.TryGetRandomPoint(transform.position, wanderRadius, out Vector3 newTarget))
         {
-            this.newTarget = newTarget;
+            nextTarget = new Vector3(newTarget.x, newTarget.y, 0f);
             return true;
         }
 
         return false;
     }
+    public NavMeshAgent GetAgent()
+    {
+        return agent;
+    }
     public Transform[] GetPath()
     {
         return patrolPathPoints;
     }
+
 }
