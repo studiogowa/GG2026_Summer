@@ -39,4 +39,9 @@ public class DungeonManager : GameManagerComponent
         if (dungeon == null) return new Vector3[0];
         return dungeon.resources.GetSpawnPoints(resourceCount);
     }
+
+    public bool IsInExtractionArea(Collider2D collider)
+    {
+        return dungeon.extraction.IsInExtractionArea(collider);
+    }
 }

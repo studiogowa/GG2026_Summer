@@ -91,6 +91,9 @@ public class GameManager : MonoBehaviour
 
         gameEvents.dayEnds?.Invoke();
 
+        if (dungeonManager.IsInExtractionArea(player.GetComponent<Collider2D>())) Debug.Log("PLAYER IS IN EXTRACTION");
+        else Debug.Log("PLAYER IS NOT IN EXTRACTION");
+
         Debug.Log("Day has ended and the Performance Review begins!");
     }
     private Coroutine trackRoundProgressCoroutine;
