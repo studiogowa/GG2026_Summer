@@ -5,6 +5,25 @@ public class DungeonResources : DungeonComponent
     public int resourceSpawnRectCount { get { return resourceSpawnRects.Count; } }
     [field: SerializeField] public List<Rect> resourceSpawnRects { get; private set; }
 
+    protected override void Awake()
+    {
+        base.Awake();
+
+        if (this.transform.childCount <= 0) Debug.LogError("This Dungeon DOES NOT have any Resource Spawning Zones!");
+        CompileSpawnRects();
+    }
+    /// <summary>
+    /// Iterates through all children of this GameObject for AreaRect components and records them to resourceSpawnRects
+    /// </summary>
+    private void CompileSpawnRects()
+    {
+        resourceSpawnRects = new List<Rect>();
+        foreach (Transform childTransform in this.transform)
+        {
+            if (childTransform.TryGetComponent<AreaRect>(out AreaRect currAreaRect)) resourceSpawnRects.Add(currAreaRect.areaRect);
+            else Debug.LogWarning($"{childTransform.name} DOES NOT have an AreaRect component! Skipping!");
+        }
+    }
     /// <summary>
     /// Randomly gets [spawnCount] resource node spawn coordinates in this Dungeon
     /// </summary>
@@ -30,7 +49,7 @@ public class DungeonResources : DungeonComponent
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.yellow;
+        Gizmos.color = Color.red;
 
         foreach (Rect currRect in resourceSpawnRects)
         {
