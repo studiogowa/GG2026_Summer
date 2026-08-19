@@ -21,5 +21,6 @@ public class ChaseState : NPCState
     public override void OnStateRun()
     {
         npc.GetAgent().SetDestination(target.position);
+        npc.UpdateTarget(target.position);
     }
 }

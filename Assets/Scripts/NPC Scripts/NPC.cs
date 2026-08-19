@@ -3,19 +3,21 @@ using UnityEngine.AI;
 
 public class NPC : MonoBehaviour
 {
-    [SerializeField] FieldOfView fieldOfView;
-    [SerializeField] Transform target;
-    [SerializeField] NavMeshRandomPoint randomPointGenerator;
-    [SerializeField] private Transform[] patrolPathPoints;
-    [SerializeField] private int waypointIndex;
-    private NavMeshAgent agent;
+    [SerializeField] protected NPCDefaultStates defaultState;
+    [SerializeField] protected FieldOfView fieldOfView;
+    [SerializeField] protected GameObject playerRef;
+    [SerializeField] protected Transform target;
+    [SerializeField] protected NavMeshRandomPoint randomPointGenerator;
+    [SerializeField] protected Transform[] patrolPathPoints;
+    [SerializeField] protected int waypointIndex;
+    protected NavMeshAgent agent;
 
     public NPCState currentState;
 
-    [SerializeField] private float wanderRadius;
-    [SerializeField] private float rotationSpeed;
+    [SerializeField] protected float wanderRadius;
+    [SerializeField] protected float rotationSpeed;
     public Vector3 nextTarget { get; private set; }
-    private Vector3 currentDirection;
+    protected Vector3 currentDirection;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -36,7 +38,11 @@ public class NPC : MonoBehaviour
 
         //FOV Setup
         fieldOfView.SetRotationSpeed(rotationSpeed);
+        fieldOfView.onPlayerInRange += StartChase;
+        fieldOfView.onPlayerLost += EndChase;
 
+        //Chase Player Setup
+        playerRef = GameObject.FindGameObjectWithTag("Player");
 
         //Debug.Log($"NPC position: {transform.position}");
         //Debug.Log($"Nearest NavMesh: {hit.position}");
@@ -64,6 +70,22 @@ public class NPC : MonoBehaviour
         fieldOfView.SetAimDirection(aimDir);
     }
 
+    private void StartChase()
+    {
+        ChangeState(new ChaseState(this, playerRef.transform));
+    }
+
+    private void EndChase()
+    {
+        ReturnToDefaultState();
+    }
+
+    public void UpdateTarget(Vector3 playerLocation)
+    {
+        nextTarget = playerLocation;
+    }
+
+
     public void ChangeState(NPCState state)
     {
         if(currentState != null)
@@ -73,6 +95,20 @@ public class NPC : MonoBehaviour
 
         currentState = state;
         currentState.OnStateEnter();
+    }
+
+    public void ReturnToDefaultState()
+    {
+        switch (defaultState)
+        {
+            case NPCDefaultStates.patrol:
+                ChangeState(new  PatrolState(this)); 
+                break;
+
+            case NPCDefaultStates.wander:
+                ChangeState(new WanderState(this));
+                break;
+        }
     }
 
 
@@ -96,3 +132,10 @@ public class NPC : MonoBehaviour
     }
 
 }
+
+public enum NPCDefaultStates
+{
+    patrol,
+    wander
+}
+

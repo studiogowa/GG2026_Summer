@@ -11,8 +11,9 @@ public class FieldOfView : MonoBehaviour
     [SerializeField] private int rayCount = 30;
 
 
-    [SerializeField] GameObject playerRef;
+    [SerializeField] GameObject playerRef; //Testing
     [SerializeField] private bool canSeePlayer;
+    [SerializeField] private bool prevCanSeePlayer;
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private LayerMask obstructionLayer;
 
@@ -29,6 +30,9 @@ public class FieldOfView : MonoBehaviour
     int vertexIndex;
     int triangleIndex;
 
+    public Action onPlayerInRange;
+    public Action onPlayerLost;
+
     private void Awake()
     {
 
@@ -36,7 +40,7 @@ public class FieldOfView : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        playerRef = GameObject.FindGameObjectWithTag("Player");
+        playerRef = GameObject.FindGameObjectWithTag("Player"); //Testing
         mesh = new Mesh();
         mesh.name = "Vision Cone";
         GetComponent<MeshFilter>().mesh = mesh;
@@ -73,14 +77,22 @@ public class FieldOfView : MonoBehaviour
         Collider2D[] rangeCheck = Physics2D.OverlapCircleAll(transform.position, radius, playerLayer);
 
         //Nothing in range -> return
-        if (rangeCheck.Length == 0) return;
-
+        if (rangeCheck.Length == 0)
+        {
+            UpdatePlayerStatus();
+            return;
+        }
 
         Transform target = rangeCheck[0].transform;
         Vector2 directionToTarget = (target.position - transform.position).normalized;
 
         // out of range -> return
-        if (Vector2.Angle(aimDirection, directionToTarget) > fov / 2) return;
+        if (Vector2.Angle(aimDirection, directionToTarget) > fov / 2)
+        {
+            UpdatePlayerStatus();
+            return;
+        }
+            
 
         float distanceToTarget = Vector2.Distance(transform.position, target.position);
 
@@ -88,9 +100,23 @@ public class FieldOfView : MonoBehaviour
         if (Physics2D.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionLayer)) return;
 
         canSeePlayer = true;
+        UpdatePlayerStatus();
         //Debug.Log("see player");
     }
 
+    private void UpdatePlayerStatus()
+    {
+        // player just entered when previous can't see but now see
+        if (canSeePlayer && !prevCanSeePlayer)
+        {
+            onPlayerInRange.Invoke();
+        } // player just exited when now can't see but previous can see
+        else if(!canSeePlayer && prevCanSeePlayer)
+        {
+            onPlayerLost.Invoke();
+        }
+        prevCanSeePlayer = canSeePlayer;
+    }
 
     public void SetAimDirection(Vector3 nextDirection)
     {

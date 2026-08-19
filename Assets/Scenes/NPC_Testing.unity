@@ -172,12 +172,14 @@ MonoBehaviour:
   rayCount: 30
   playerRef: {fileID: 0}
   canSeePlayer: 0
+  prevCanSeePlayer: 0
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
   obstructionLayer:
     serializedVersion: 2
     m_Bits: 64
+  rotationSpeed: 0
 --- !u!23 &273199124
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7611,7 +7613,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -7635,7 +7637,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f416c3d781db1e74296cd897f1e03b10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPC
+  defaultState: 1
   fieldOfView: {fileID: 273199123}
+  playerRef: {fileID: 0}
   target: {fileID: 898484837}
   randomPointGenerator: {fileID: 928683692}
   patrolPathPoints:
@@ -7644,7 +7648,7 @@ MonoBehaviour:
   - {fileID: 1017767936}
   waypointIndex: 0
   wanderRadius: 3
-  rotationSpeed: 3
+  rotationSpeed: 180
 --- !u!4 &2096300368
 Transform:
   m_ObjectHideFlags: 0
