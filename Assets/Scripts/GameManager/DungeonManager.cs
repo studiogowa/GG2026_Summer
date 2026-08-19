@@ -11,6 +11,11 @@ public class DungeonManager : GameManagerComponent
         if (!dungeonGameObject.TryGetComponent<Dungeon>(out dungeon)) Debug.LogError("Dungeon Map DOES NOT have a Dungeon script component!");
     }
 
+    public Vector3 GetPlayerSpawn()
+    {
+        return dungeon.playerSpawn.GetPlayerSpawn();
+    }
+
     public int chestSpawnPointCount { get { return dungeon.chests.chestSpawnPointCount; } }
     /// <summary>
     /// Randomly get [chestCount] spawn coordinates for chests in this Dungeon

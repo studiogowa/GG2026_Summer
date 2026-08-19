@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private GameObject player;
+
     [Header("Game Progression Variables")]
     [field: SerializeField, Range(0.0f, 360.0f)] public float duskRoundTime { get; private set; } = 120.0f;
     [field: SerializeField, Range(0.0f, 360.0f)] public float dawnRoundTime { get; private set; } = 120.0f;
@@ -55,8 +57,11 @@ public class GameManager : MonoBehaviour
         gameEndTime = gameStartTime + duskRoundTime;
 
         gameEvents.duskStarts?.Invoke();
-        Debug.Log("Dusk Round Starts!");
         trackRoundProgressCoroutine = StartCoroutine(TrackRoundProgress());
+
+        player.transform.position = dungeonManager.GetPlayerSpawn();
+
+        Debug.Log("Dusk Round Starts!");
     }
     private void StartDawnRound()
     {
