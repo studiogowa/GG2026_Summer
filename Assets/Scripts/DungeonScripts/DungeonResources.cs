@@ -3,14 +3,13 @@ using System.Collections.Generic;
 public class DungeonResources : DungeonComponent
 {
     public int resourceSpawnRectCount { get { return resourceSpawnRects.Count; } }
-    [field: SerializeField] public List<Rect> resourceSpawnRects { get; private set; }
+    private List<Rect> resourceSpawnRects;
 
     protected override void Awake()
     {
         base.Awake();
-
+        resourceSpawnRects = new List<Rect>();
         if (this.transform.childCount <= 0) Debug.LogError("This Dungeon DOES NOT have any Resource Spawning Zones!");
-        CompileSpawnRects();
     }
     /// <summary>
     /// Iterates through all children of this GameObject for AreaRect components and records them to resourceSpawnRects
@@ -31,6 +30,8 @@ public class DungeonResources : DungeonComponent
     /// <returns>Returns an array of Vector3 coordinates</returns>
     public Vector3[] GetSpawnPoints(int spawnCount)
     {
+        CompileSpawnRects();
+
         Vector3[] ret = new Vector3[spawnCount];
         for (int i = 0; i < resourceSpawnRects.Count; i++)
         {
@@ -47,16 +48,16 @@ public class DungeonResources : DungeonComponent
         return ret[0..spawnCount];
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.red;
 
-        foreach (Rect currRect in resourceSpawnRects)
-        {
-            Vector3 center = new Vector3(currRect.center.x, currRect.center.y, 0.0f);
-            Vector3 size = new Vector3(currRect.width, currRect.height, 0.01f);
+    //    foreach (Rect currRect in resourceSpawnRects)
+    //    {
+    //        Vector3 center = new Vector3(currRect.center.x, currRect.center.y, 0.0f);
+    //        Vector3 size = new Vector3(currRect.width, currRect.height, 0.01f);
 
-            Gizmos.DrawWireCube(center, size);
-        }
-    }
+    //        Gizmos.DrawWireCube(center, size);
+    //    }
+    //}
 }

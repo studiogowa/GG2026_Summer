@@ -40,8 +40,8 @@ public class DungeonManager : GameManagerComponent
         return dungeon.resources.GetSpawnPoints(resourceCount);
     }
 
-    public bool IsInExtractionArea(Collider2D collider)
+    public bool IsInExtractionArea(Vector2 point)
     {
-        return dungeon.extraction.IsInExtractionArea(collider);
+        return dungeon.extraction.IsInExtractionArea(point);
     }
 }
