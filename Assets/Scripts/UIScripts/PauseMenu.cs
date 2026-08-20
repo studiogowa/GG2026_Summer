@@ -2,10 +2,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PauseMenu : GameUIComponent
 {
-    [SerializeField] private GameObject pauseMenu;
-    private void Start()
+    private Animator animator;
+    protected override void Awake()
     {
-        pauseMenu.SetActive(false);
+        base.Awake();
+        if (!TryGetComponent<Animator>(out animator)) Debug.LogError($"{this.name} DOES NOT have an animator component!");
     }
     private void Update()
     {
@@ -23,15 +24,15 @@ public class PauseMenu : GameUIComponent
         if (isPaused) return;
         isPaused = true;
         Time.timeScale = 0.0f;
-        ui.hud.hud.SetActive(false);
-        pauseMenu.SetActive(true);
+        ui.hud.SetChildrenActive(false);
+        animator.SetTrigger("Open");
     }
     private void UnpauseGame()
     {
         if (!isPaused) return;
         isPaused = false;
         Time.timeScale = 1.0f;
-        ui.hud.hud.SetActive(true);
-        pauseMenu.SetActive(false);
+        ui.hud.SetChildrenActive(true);
+        animator.SetTrigger("Close");
     }
 }
