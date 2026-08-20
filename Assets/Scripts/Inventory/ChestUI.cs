@@ -42,5 +42,7 @@ public class ChestUI : InventoryUI
 
         inventory = null;
         inventoryUI.SetActive(false);
+
+        Debug.Log("Closed UI");
     }
 }

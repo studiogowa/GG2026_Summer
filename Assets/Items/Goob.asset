@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c9f9aaba2d4e774c875d6daf12ac017, type: 3}
+  m_Name: Goob
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  name: Goob
+  icon: {fileID: -1323105111429834079, guid: 041877ba99a98f04ca90b39f673f00e7, type: 3}
+  amount: 1
+  isStackable: 0
+  isDefaultItem: 0
