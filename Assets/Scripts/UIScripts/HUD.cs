@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 public class HUD : GameUIComponent
 {
+    [field: SerializeField] public GameObject hud { get; private set; }
     [SerializeField] private TextMeshProUGUI gamestateText;
     [SerializeField] private TextMeshProUGUI timerText;
 
@@ -16,6 +17,7 @@ public class HUD : GameUIComponent
     }
     private void Start()
     {
+        gameObject.SetActive(true);
         SubscribeFunctions();
     }
     private void Update()
