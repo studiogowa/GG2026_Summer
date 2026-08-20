@@ -7,7 +7,7 @@ public class DungeonExtraction : DungeonComponent
     {
         base.Awake();
         extractionAreaRects = new List<Rect>();
-        if (extractionAreaRects.Count <= 0) Debug.LogError("This Dungeon DOES NOT have ANY Extraction Area Colliders!");
+        if (transform.childCount <= 0) Debug.LogError("This Dungeon DOES NOT have ANY Extraction Area Colliders!");
     }
     /// <summary>
     /// Iterates through all children of this GameObject for AreaRect components and records them to extractionAreaRects
