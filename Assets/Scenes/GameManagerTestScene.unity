@@ -5254,7 +5254,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 352012768}
@@ -5308,7 +5308,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 4051282167011403495, guid: 55af1824a092fb7409da777837ae8766, type: 3}
   m_Color: {r: 0.06666667, g: 0.6901961, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5438,7 +5438,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb3478321a8ee33429871aeda51dca2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  <resourceSpawnRects>k__BackingField: []
 --- !u!1 &1053674988
 GameObject:
   m_ObjectHideFlags: 0
