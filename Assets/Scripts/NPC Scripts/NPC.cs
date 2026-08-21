@@ -66,7 +66,8 @@ public class NPC : MonoBehaviour
 
     private void RotateFOV()
     {
-        Vector3 aimDir = (nextTarget - transform.position).normalized;
+        //Vector3 aimDir = (nextTarget - transform.position).normalized;
+        Vector3 aimDir = agent.velocity.normalized;
         fieldOfView.SetAimDirection(aimDir);
     }
 

@@ -13,7 +13,7 @@ public class WanderState : NPCState
 
     public override void OnStateExit()
     {
-        Debug.Log("wander exit");
+        //Debug.Log("wander exit");
     }
 
     public override void OnStateRun()
