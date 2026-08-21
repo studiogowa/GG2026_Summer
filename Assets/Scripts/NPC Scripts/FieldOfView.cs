@@ -17,6 +17,8 @@ public class FieldOfView : MonoBehaviour
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private LayerMask obstructionLayer;
 
+    private float attackRange;
+
     [Header("Vision Cone")]
     [SerializeField] private float rotationSpeed;
     private Vector3 aimDirection;
@@ -45,7 +47,7 @@ public class FieldOfView : MonoBehaviour
         mesh.name = "Vision Cone";
         GetComponent<MeshFilter>().mesh = mesh;
 
-        //Set FOV variables
+        //Set FOV / Check field variables
         aimDirection = transform.up;
         SetAimDirection(transform.up);
         StartVisionCone();
@@ -98,6 +100,12 @@ public class FieldOfView : MonoBehaviour
 
         // if hit obstruction -> return
         if (Physics2D.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionLayer)) return;
+
+        // if in attack range -> attack
+        if (distanceToTarget <= attackRange)
+        {
+            Debug.Log("Attack!");
+        }
 
         canSeePlayer = true;
         UpdatePlayerStatus();
@@ -214,6 +222,11 @@ public class FieldOfView : MonoBehaviour
     public void SetRotationSpeed(float speed)
     {
         rotationSpeed = speed;
+    }
+
+    public void SetAttackRange(float range)
+    {
+        attackRange = range;
     }
 
     private void OnDrawGizmos()

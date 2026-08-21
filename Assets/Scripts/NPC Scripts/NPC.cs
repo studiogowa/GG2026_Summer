@@ -3,21 +3,27 @@ using UnityEngine.AI;
 
 public class NPC : MonoBehaviour
 {
+    [Header("NPC Stats")]
     [SerializeField] protected NPCDefaultStates defaultState;
+    [SerializeField] protected Transform[] patrolPathPoints;
+    [SerializeField] protected float attackRange = 2f;
+
+    [Header("FOV Variables")]
     [SerializeField] protected FieldOfView fieldOfView;
     [SerializeField] protected GameObject playerRef;
     [SerializeField] protected Transform target;
-    [SerializeField] protected NavMeshRandomPoint randomPointGenerator;
-    [SerializeField] protected Transform[] patrolPathPoints;
-    [SerializeField] protected int waypointIndex;
+
+    [Header("NavMesh Variables")]
     protected NavMeshAgent agent;
-
-    public NPCState currentState;
-
     [SerializeField] protected float wanderRadius;
     [SerializeField] protected float rotationSpeed;
     public Vector3 nextTarget { get; private set; }
     protected Vector3 currentDirection;
+
+    [Header("State Machine Variables")]
+    public NPCState currentState;
+    [SerializeField] protected NavMeshRandomPoint randomPointGenerator;
+    [SerializeField] protected int waypointIndex;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -40,6 +46,7 @@ public class NPC : MonoBehaviour
         fieldOfView.SetRotationSpeed(rotationSpeed);
         fieldOfView.onPlayerInRange += StartChase;
         fieldOfView.onPlayerLost += EndChase;
+        fieldOfView.SetAttackRange(attackRange);
 
         //Chase Player Setup
         playerRef = GameObject.FindGameObjectWithTag("Player");
@@ -57,6 +64,7 @@ public class NPC : MonoBehaviour
     {
         currentState.OnStateRun();
         RotateFOV();
+        UpdateAnimation();
     }
 
     private void LateUpdate()
@@ -69,6 +77,11 @@ public class NPC : MonoBehaviour
         //Vector3 aimDir = (nextTarget - transform.position).normalized;
         Vector3 aimDir = agent.velocity.normalized;
         fieldOfView.SetAimDirection(aimDir);
+    }
+
+    private void UpdateAnimation()
+    {
+
     }
 
     private void StartChase()

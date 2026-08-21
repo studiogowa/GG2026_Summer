@@ -7638,17 +7638,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPC
   defaultState: 1
-  fieldOfView: {fileID: 273199123}
-  playerRef: {fileID: 0}
-  target: {fileID: 898484837}
-  randomPointGenerator: {fileID: 928683692}
   patrolPathPoints:
   - {fileID: 1691178887}
   - {fileID: 321233520}
   - {fileID: 1017767936}
-  waypointIndex: 0
+  attackRange: 3
+  fieldOfView: {fileID: 273199123}
+  playerRef: {fileID: 0}
+  target: {fileID: 898484837}
   wanderRadius: 3
   rotationSpeed: 180
+  randomPointGenerator: {fileID: 928683692}
+  waypointIndex: 0
 --- !u!4 &2096300368
 Transform:
   m_ObjectHideFlags: 0
