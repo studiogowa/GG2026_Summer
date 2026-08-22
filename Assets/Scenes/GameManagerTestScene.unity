@@ -2800,8 +2800,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1328385932}
-  - {fileID: 1669238703}
   - {fileID: 932605372}
+  - {fileID: 1669238703}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -6030,6 +6030,7 @@ GameObject:
   m_Component:
   - component: {fileID: 932605372}
   - component: {fileID: 932605373}
+  - component: {fileID: 932605374}
   m_Layer: 5
   m_Name: PerformanceReviewMenu
   m_TagString: Untagged
@@ -6070,6 +6071,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeea08d1ba1ab5f46b3877ad7dc7951a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!95 &932605374
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932605371}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dd011e7c85fbf8944b9faf88d59400fc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &943215253
 GameObject:
   m_ObjectHideFlags: 0
