@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{3ffbfe0c-7860-4d1e-b325-ebb33d264704}">
 		<property name="name">
-			<value>New Event</value>
+			<value>EnemyMovement</value>
 		</property>
 		<property name="outputFormat">
 			<value>0</value>
@@ -28,6 +28,9 @@
 		<relationship name="timeline">
 			<destination>{490fbf56-5b61-4268-a615-3508e2054859}</destination>
 		</relationship>
+		<relationship name="banks">
+			<destination>{f56479f2-9b15-42a0-b30d-e2d170a4768a}</destination>
+		</relationship>
 	</object>
 	<object class="EventMixer" id="{14fb0ca8-1ee3-4744-8830-5468cdc2a538}">
 		<relationship name="masterBus">
@@ -47,7 +50,7 @@
 			<destination>{28daf8f5-f281-410f-b3a7-510470b2575e}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{8be8c5b2-c25d-40c2-871f-9a70d7e1f6b2}</destination>
+			<destination>{f5251541-ea53-430c-9608-ff043298c576}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{5eb567aa-2c85-4e04-998e-10f7e4f6e675}" />
