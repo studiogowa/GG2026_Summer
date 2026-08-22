@@ -37,15 +37,24 @@ public class PlayerController : MonoBehaviour
                 Interactable interactable = hit.GetComponent<Interactable>();
                 if (interactable != null && Vector3.Distance(transform.position, interactable.interactionTransform.position) <= interactable.radius)
                 {
-                    SetFocus(interactable);
-                }
-            }
-        }
+                    interactable.Interact();
+
+                    // Only focus if the chest successfully opened
+                    if (interactable.hasInteracted)
+                    {
+                        SetFocus(interactable);
+                    }
+                    else
+                    {
+                        RemoveFocus();
+                    }
+                 }
+            }   
 
         // Left mouse button to remove focus
-        if (Mouse.current.leftButton.wasPressedThisFrame)
-            RemoveFocus();
-        
+        //if (Mouse.current.leftButton.wasPressedThisFrame)
+        //    RemoveFocus();
+        }    
     }
 
     void SetFocus(Interactable newFocus)
@@ -58,6 +67,7 @@ public class PlayerController : MonoBehaviour
         }
         newFocus.OnFocused(transform);
     }
+
     void RemoveFocus()
     {
         if (focus == null)
@@ -72,4 +82,5 @@ public class PlayerController : MonoBehaviour
         Vector2 movementInput = moveAction.ReadValue<Vector2>();
         playerRigidbody.linearVelocity = movementInput.normalized * movementSpeed;
     }
+
 }

@@ -7,38 +7,40 @@ public class Interactable : MonoBehaviour
 
     bool isFocus = false;
     Transform player;
-    bool hasInteracted = false;
+    public bool hasInteracted = false;
 
     public virtual void Interact() // meant to be overridden
     {
         Debug.Log("Interacting with " + transform.name);
     }
 
+/*
     void Update()
     {
         if (isFocus && !hasInteracted)
         {
             float distance = Vector3.Distance(player.position, interactionTransform.position);
-            if (distance <= radius)
+            if (distance > radius)
             {
-                Interact();
-                hasInteracted = true;
+                isFocus = false;
+                hasInteracted = false;
             }
         }
     }
+    */
 
     public void OnFocused(Transform playerTransform)
     {
         isFocus = true;
         player = playerTransform;
-        hasInteracted = false;
+        //hasInteracted = false;
     }
 
     public void OnDefocused()
     {
         isFocus = false;
         player = null;
-        hasInteracted = false;
+        //hasInteracted = false;
     }
 
     void OnDrawGizmosSelected () // visualizing the radius in the editor
