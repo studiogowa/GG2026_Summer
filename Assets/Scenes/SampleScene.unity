@@ -4294,6 +4294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   itemsParent: {fileID: 2038956985}
   inventoryUI: {fileID: 1214752382}
+  inventory: {fileID: 352012770}
 --- !u!1001 &1361853007
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5577,6 +5578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ChestUI
   itemsParent: {fileID: 977464542}
   inventoryUI: {fileID: 252535605}
+  inventory: {fileID: 600881408}
 --- !u!114 &1777532703
 MonoBehaviour:
   m_ObjectHideFlags: 0

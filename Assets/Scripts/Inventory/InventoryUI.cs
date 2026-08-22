@@ -5,9 +5,9 @@ public class InventoryUI : MonoBehaviour
 {
     public Transform itemsParent;
     public GameObject inventoryUI;
+    public Inventory inventory;
 
     protected InputAction inventoryToggleAction;
-    protected Inventory inventory;
     protected InventorySlot[] slots;
 
     protected virtual void OnEnable()
@@ -33,10 +33,13 @@ public class InventoryUI : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
     {
-        if (Inventory.instance != null)
+        if (inventory == null)
         {
-            inventory = Inventory.instance;
+            inventory = GetComponent<Inventory>();
+        } else 
+        {
             inventory.onItemChangedCallback += UpdateUI;
+            UpdateUI();
         }
 
         if (itemsParent != null)
@@ -71,7 +74,7 @@ public class InventoryUI : MonoBehaviour
         {
             if (i < inventory.items.Count)
             {
-                slots[i].AddItem(inventory.items[i]);
+                slots[i].AddItem(inventory.items[i], inventory);
                 if (slots[i].amount != null)
                 {
                     if (inventory.items[i].amount > 1)

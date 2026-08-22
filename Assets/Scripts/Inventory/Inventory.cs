@@ -4,24 +4,11 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public static Inventory instance;
     public int space = 20;
     public List<Item> items = new List<Item>();
 
     public delegate void OnItemChanged();
     public OnItemChanged onItemChangedCallback;
-
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else if (instance != this)
-        {
-            Destroy(gameObject);
-        }
-    }
 
     public virtual bool Add(Item item, int amount)
     {
@@ -38,10 +25,13 @@ public class Inventory : MonoBehaviour
             
             for (int i = 0; i < items.Count; i++)
             {
-                if (items[i].name == item.name && item.isStackable)
+                if (items[i] != null && items[i].name == item.name && item.isStackable)
                 {
                     items[i].amount += amount;
-                    onItemChangedCallback.Invoke();
+                    
+                    if (onItemChangedCallback != null)
+                        onItemChangedCallback.Invoke();
+                        
                     return true;
                 }
             }

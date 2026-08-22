@@ -8,6 +8,7 @@ public class InventorySlot : MonoBehaviour
     public Button removeButton;
     public TextMeshProUGUI amount;
     protected Item item;
+    private Inventory inventory;
 
     public void Start()
     {
@@ -15,9 +16,10 @@ public class InventorySlot : MonoBehaviour
             amount.enabled = false;
     }
 
-    public void AddItem(Item newItem)
+    public void AddItem(Item newItem, Inventory sourceInventory)
     {
         item = newItem;
+        inventory = sourceInventory;
 
         icon.sprite = item.icon;
         icon.enabled = true;
@@ -33,6 +35,7 @@ public class InventorySlot : MonoBehaviour
     public void ClearSlot()
     {
         item = null;
+        inventory = null;
 
         icon.sprite = null;
         icon.enabled = false;
@@ -44,7 +47,8 @@ public class InventorySlot : MonoBehaviour
 
     public void OnRemoveButton()
     {
-        Inventory.instance.Remove(item);
+        if (inventory != null && item != null)
+            inventory.Remove(item);
     }
 
     public void UseItem()
