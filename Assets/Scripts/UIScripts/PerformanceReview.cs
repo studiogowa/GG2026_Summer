@@ -30,7 +30,9 @@ public class PerformanceReview : GameUIComponent
         if (menuOpened) return;
         menuOpened = true;
         animator.SetTrigger("Open");
-        StartCoroutine(CalculatePerformance());
+
+        if (calcualtePerformanceCoroutine != null) StopCoroutine(calcualtePerformanceCoroutine);
+        calcualtePerformanceCoroutine = StartCoroutine(CalculatePerformance());
     }
     private void CloseMenu()
     {
@@ -39,18 +41,22 @@ public class PerformanceReview : GameUIComponent
         animator.SetTrigger("Close");
     }
 
-    [SerializeField, Range(0.0f, 2.0f)] private float initialPause = 1.0f;
-    [SerializeField, Range(0.0f, 2.0f)] private float valueDisplayPause = 1.0f;
+    [Header("Timing Variables for Performance Review")]
+    [SerializeField, Range(0.0f, 2.0f)] private float initialPause = 0.5f;
+    [SerializeField, Range(0.0f, 2.0f)] private float titleDisplayPause = 0.4f;
+    [SerializeField, Range(0.0f, 2.0f)] private float valueDisplayPause = 0.2f;
     [SerializeField, Range(0.0f, 2.0f)] private float chestCountTime = 1.0f;
     [SerializeField, Range(0.0f, 2.0f)] private float chestQualityTime = 1.0f;
-    [SerializeField, Range(0.0f, 2.0f)] private float finalRatingTime = 1.0f;
+    [SerializeField, Range(0.0f, 2.0f)] private float finalRatingTime = 1.5f;
+    [SerializeField, Range(0.0f, 2.0f)] private float finalRatingPause = 1.5f;
+    private Coroutine calcualtePerformanceCoroutine;
     private IEnumerator CalculatePerformance()
     {
         TextSetAllActive(false);
         yield return new WaitForSeconds(initialPause);
         // Display Title
         titleText.gameObject.SetActive(true);
-        yield return new WaitForSeconds(valueDisplayPause * 2.0f);
+        yield return new WaitForSeconds(titleDisplayPause);
 
         // Count Chests Filled
         float timeStart = Time.time;
@@ -60,7 +66,7 @@ public class PerformanceReview : GameUIComponent
             chestsFilledText.text = $"Chests Filled: {Random.Range(0, GameManager.instance.chestSpawner.chestsSpawned)}/ {GameManager.instance.chestSpawner.chestsSpawned}";
             yield return null;
         }
-        chestsFilledText.text = $"Chests Filled: ?/ {GameManager.instance.chestSpawner.chestsSpawned}";
+        chestsFilledText.text = $"Chests Filled: ?/ {GetChestsFilledCount()}";
         yield return new WaitForSeconds(valueDisplayPause);
 
         // Determine Chest Quality
@@ -71,21 +77,20 @@ public class PerformanceReview : GameUIComponent
             chestQualityRatingText.text = $"Chest Quality: {Random.Range(50.0f, 100.0f):0}/ 100%";
             yield return null;
         }
-        chestQualityRatingText.text = $"Chest Quality: {Random.Range(50.0f, 100.0f):0}/ 100%";
+        chestQualityRatingText.text = $"Chest Quality: {CalculateChestQuality():0}/ 100%";
         yield return new WaitForSeconds(valueDisplayPause);
 
         // Determine Overall Rating
-        timeStart = Time.time;
         finalRatingText.gameObject.SetActive(true);
         string resultsText = "RESULTS";
         finalRatingText.text = "";
         for (int i = 0; i < resultsText.Length; i ++)
         {
-            finalRatingText.text += resultsText[i];
-            yield return new WaitForSeconds(finalRatingTime / (resultsText.Length - 1));
+            if (i != 0) yield return new WaitForSeconds(finalRatingTime / (resultsText.Length - 1));
+            finalRatingText.text += resultsText[i];  
         }
 
-        yield return new WaitForSeconds(valueDisplayPause);
+        yield return new WaitForSeconds(finalRatingPause);
         finalRatingText.text = "Okay I guess";
     }
     private void TextSetAllActive(bool isActive)
@@ -95,5 +100,26 @@ public class PerformanceReview : GameUIComponent
         chestQualityRatingText.gameObject.SetActive(isActive);
         thirdThingText.gameObject.SetActive(isActive);
         finalRatingText.gameObject.SetActive(isActive);
+    }
+
+    public int GetChestsFilledCount()
+    {
+        int count = 0;
+        foreach (Transform currTransform in GameManager.instance.chestSpawner.chestCollection.transform)
+        {
+            if (currTransform) count++;
+        }
+
+        return count;
+    }
+    public float CalculateChestQuality()
+    {
+        float quality = 0;
+        foreach (Transform currTransform in GameManager.instance.chestSpawner.chestCollection.transform)
+        {
+            if (currTransform) quality = Random.Range(50.0f, 100.0f);
+        }
+
+        return quality;
     }
 }

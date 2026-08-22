@@ -6076,11 +6076,13 @@ MonoBehaviour:
   chestQualityRatingText: {fileID: 2137415325}
   thirdThingText: {fileID: 2077235157}
   finalRatingText: {fileID: 1398024259}
-  initialPause: 0.5
+  initialPause: 1
+  titleDisplayPause: 0.6
   valueDisplayPause: 0.2
-  chestCountTime: 1
-  chestQualityTime: 1
+  chestCountTime: 0.8
+  chestQualityTime: 0.8
   finalRatingTime: 1.5
+  finalRatingPause: 1.2
 --- !u!95 &932605374
 Animator:
   serializedVersion: 7
