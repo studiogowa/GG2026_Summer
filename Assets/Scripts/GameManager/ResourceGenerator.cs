@@ -4,7 +4,7 @@ public class ResourceGenerator : GameManagerComponent
 {
     public GameObject resourceCollection { get; private set; }
 
-    [SerializeField, Range(1, 20)] private int resourceSpawnCount;
+    [field: SerializeField, Range(1, 20)] public int resourceSpawnCount { get; private set; } = 6;
     protected override void Awake()
     {
         base.Awake();

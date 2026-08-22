@@ -6071,6 +6071,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeea08d1ba1ab5f46b3877ad7dc7951a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  titleText: {fileID: 2070472470}
+  chestsFilledText: {fileID: 1914252919}
+  chestQualityRatingText: {fileID: 2137415325}
+  thirdThingText: {fileID: 2077235157}
+  finalRatingText: {fileID: 1398024259}
+  initialPause: 0.5
+  valueDisplayPause: 0.2
+  chestCountTime: 1
+  chestQualityTime: 1
+  finalRatingTime: 1.5
 --- !u!95 &932605374
 Animator:
   serializedVersion: 7
@@ -7151,7 +7161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa022a7abc5d2e54ba5b6ad01b8e6f2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  resourceSpawnCount: 4
+  <resourceSpawnCount>k__BackingField: 6
 --- !u!114 &1536490772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7176,7 +7186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf80941de3494da4aa2ddb392dffa8de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  chestSpawnCount: 2
+  <chestSpawnCount>k__BackingField: 2
 --- !u!114 &1536490774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9748,7 +9758,7 @@ GameObject:
   - component: {fileID: 2137415326}
   - component: {fileID: 2137415325}
   m_Layer: 5
-  m_Name: ChestsQualityCounter
+  m_Name: ChestsQualityRating
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -3,7 +3,8 @@ using UnityEngine;
 public class ChestSpawner : GameManagerComponent
 {
     public GameObject chestCollection { get; private set; }
-    [SerializeField, Range(1, 12)] private int chestSpawnCount = 6;
+    public int chestsSpawned { get { return chestCollection.transform.childCount; } }
+    [field: SerializeField, Range(1, 12)] public int chestSpawnCount { get; private set; } = 6;
 
     protected override void Awake()
     {
