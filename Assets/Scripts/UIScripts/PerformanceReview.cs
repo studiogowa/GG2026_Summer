@@ -1,6 +1,7 @@
 using UnityEngine;
-using System.Collections;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using System.Collections;
 using TMPro;
 public class PerformanceReview : GameUIComponent
 {
@@ -10,10 +11,34 @@ public class PerformanceReview : GameUIComponent
     [SerializeField] private TextMeshProUGUI chestQualityRatingText;
     [SerializeField] private TextMeshProUGUI thirdThingText;
     [SerializeField] private TextMeshProUGUI finalRatingText;
+
+    [SerializeField] private Button continueButton;
     protected override void Awake()
     {
         base.Awake();
         if (!TryGetComponent<Animator>(out animator)) Debug.LogError($"{this.name} DOES NOT have an animator component!");
+    }
+    private void OnDisable()
+    {
+        UnsubscribeFunctions();
+    }
+    private void SubscribeFunctions()
+    {
+        if (GameManager.instance == null) return;
+        GameManager.instance.gameEvents.dayStarts += CloseMenu;
+        GameManager.instance.gameEvents.dayEnds += OpenMenu;
+        continueButton.onClick.AddListener(GameManager.instance.StartGame);
+    }
+    private void UnsubscribeFunctions()
+    {
+        if (GameManager.instance == null) return;
+        GameManager.instance.gameEvents.dayStarts -= CloseMenu;
+        GameManager.instance.gameEvents.dayEnds -= OpenMenu;
+        continueButton.onClick.RemoveAllListeners();
+    }
+    private void Start()
+    {
+        SubscribeFunctions();
     }
     private void Update()
     {
@@ -29,6 +54,7 @@ public class PerformanceReview : GameUIComponent
     {
         if (menuOpened) return;
         menuOpened = true;
+        SubscribeFunctions();
         animator.SetTrigger("Open");
 
         if (calcualtePerformanceCoroutine != null) StopCoroutine(calcualtePerformanceCoroutine);
@@ -38,6 +64,7 @@ public class PerformanceReview : GameUIComponent
     {
         if (!menuOpened) return;
         menuOpened = false;
+        UnsubscribeFunctions();
         animator.SetTrigger("Close");
     }
 
@@ -49,10 +76,11 @@ public class PerformanceReview : GameUIComponent
     [SerializeField, Range(0.0f, 2.0f)] private float chestQualityTime = 1.0f;
     [SerializeField, Range(0.0f, 2.0f)] private float finalRatingTime = 1.5f;
     [SerializeField, Range(0.0f, 2.0f)] private float finalRatingPause = 1.5f;
+    [SerializeField, Range(0.0f, 2.0f)] private float continueButtonRevealDelay = 2.0f;
     private Coroutine calcualtePerformanceCoroutine;
     private IEnumerator CalculatePerformance()
     {
-        TextSetAllActive(false);
+        ComponentsSetAllActive(false);
         yield return new WaitForSeconds(initialPause);
         // Display Title
         titleText.gameObject.SetActive(true);
@@ -92,14 +120,19 @@ public class PerformanceReview : GameUIComponent
 
         yield return new WaitForSeconds(finalRatingPause);
         finalRatingText.text = "Okay I guess";
+
+        yield return new WaitForSeconds(continueButtonRevealDelay);
+        continueButton.gameObject.SetActive(true);
     }
-    private void TextSetAllActive(bool isActive)
+    private void ComponentsSetAllActive(bool isActive)
     {
         titleText.gameObject.SetActive(isActive);
         chestsFilledText.gameObject.SetActive(isActive);
         chestQualityRatingText.gameObject.SetActive(isActive);
         thirdThingText.gameObject.SetActive(isActive);
         finalRatingText.gameObject.SetActive(isActive);
+
+        continueButton.gameObject.SetActive(isActive);
     }
 
     public int GetChestsFilledCount()
