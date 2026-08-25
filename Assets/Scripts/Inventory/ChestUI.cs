@@ -11,7 +11,11 @@ public class ChestUI : InventoryUI
     }
 
     protected override void OnEnable() {}
-    protected override void OnDisable() {}
+    protected override void OnDisable()
+    {
+        if (inventory != null)
+            inventory.onItemChangedCallback -= UpdateUI;
+    }
 
     protected override void Start()
     {

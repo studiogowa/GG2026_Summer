@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ChestInventory : Inventory
 {
+    /*
     public static ChestInventory instance;
     void Awake()
     {
@@ -15,4 +16,5 @@ public class ChestInventory : Inventory
 
         instance = this;
     }
+    */
 }

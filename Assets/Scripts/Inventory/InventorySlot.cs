@@ -51,6 +51,28 @@ public class InventorySlot : MonoBehaviour
             inventory.Remove(item);
     }
 
+    public void OnSlotPressed()
+    {
+        if (item == null)
+            return;
+        
+        if (ChestUI.instance != null && ChestUI.instance.inventoryUI.activeInHierarchy)
+        {
+            ChestInventory openChest = ChestUI.instance.inventory as ChestInventory;
+
+            if (openChest != null)
+            {
+                Debug.Log("Transferring " + item.name);
+                TransferItem(openChest);
+            }
+        }
+        else
+        {
+            Debug.Log("Using " + item.name);
+            UseItem();
+        }
+    }
+
     public void UseItem()
     {
         Debug.Log("UseItem called");
@@ -62,6 +84,30 @@ public class InventorySlot : MonoBehaviour
         else
         {
             Debug.Log("Item is null!");
+        }
+    }
+
+    private void TransferItem(ChestInventory chest)
+    {
+        Inventory destInventory = null;
+
+        if (inventory is PlayerInventory)
+        {
+            destInventory = chest;
+        }
+        else
+        {
+            destInventory = PlayerInventory.instance;
+        }
+
+        if (destInventory != null)
+        {
+            bool hasAdded = destInventory.Add(item, item.amount);
+
+            if (hasAdded)
+            {
+                inventory.Remove(item);
+            }
         }
     }
 }

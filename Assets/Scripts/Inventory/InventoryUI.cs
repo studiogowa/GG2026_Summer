@@ -36,7 +36,8 @@ public class InventoryUI : MonoBehaviour
         if (inventory == null)
         {
             inventory = GetComponent<Inventory>();
-        } else 
+        } 
+        else 
         {
             inventory.onItemChangedCallback += UpdateUI;
             UpdateUI();

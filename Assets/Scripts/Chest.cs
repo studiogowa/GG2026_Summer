@@ -17,22 +17,29 @@ public class Chest : Interactable
 
     public override void Interact()
     {
-        //base.Interact();
-
-        if (hasInteracted)
+        if (ChestUI.instance != null && ChestUI.instance.inventory == chestInventory)
         {
-            Debug.Log("Closing chest");
-            hasInteracted = false;
-            ChestUI.instance.CloseChestUI();
-
-            moveAction.Enable();
-        } else
+            CloseChest();
+        } 
+        else
         {
-            Debug.Log("Opening chest");
-            hasInteracted = true;
-            ChestUI.instance.OpenChestUI(chestInventory);
-
-            moveAction.Disable();
+            OpenChest();
         }
+    }
+
+    private void OpenChest()
+    {
+        hasInteracted = true;
+        ChestUI.instance.OpenChestUI(chestInventory);
+
+        moveAction.Disable();
+    }
+
+    private void CloseChest()
+    {
+        hasInteracted = false;
+        ChestUI.instance.CloseChestUI();
+
+        moveAction.Enable();        
     }
 }
