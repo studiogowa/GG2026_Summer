@@ -42,7 +42,7 @@ public class PerformanceReview : GameUIComponent
     }
     private void Update()
     {
-        if (Keyboard.current.digit1Key.wasPressedThisFrame) ToggleMenu();
+        if (Keyboard.current.tabKey.wasPressedThisFrame) ToggleMenu();
     }
     private bool menuOpened = false;
     private void ToggleMenu()
@@ -83,6 +83,11 @@ public class PerformanceReview : GameUIComponent
         ComponentsSetAllActive(false);
         yield return new WaitForSeconds(initialPause);
         // Display Title
+
+        // 
+        //  PUT TITLE PRINTING SOUND EFFECT HERE
+        //
+
         titleText.gameObject.SetActive(true);
         yield return new WaitForSeconds(titleDisplayPause);
 
@@ -92,6 +97,11 @@ public class PerformanceReview : GameUIComponent
         while (Time.time < timeStart + chestCountTime)
         {
             chestsFilledText.text = $"Chests Filled: {Random.Range(0, GameManager.instance.chestSpawner.chestsSpawned)}/ {GameManager.instance.chestSpawner.chestsSpawned}";
+            
+            // 
+            //  PUT CALCULATION SOUND EFFECT HERE
+            //
+
             yield return null;
         }
         chestsFilledText.text = $"Chests Filled: ?/ {GetChestsFilledCount()}";
@@ -103,6 +113,11 @@ public class PerformanceReview : GameUIComponent
         while (Time.time < timeStart + chestQualityTime)
         {
             chestQualityRatingText.text = $"Chest Quality: {Random.Range(50.0f, 100.0f):0}/ 100%";
+
+            // 
+            //  PUT CALCULATION SOUND EFFECT HERE
+            //
+
             yield return null;
         }
         chestQualityRatingText.text = $"Chest Quality: {CalculateChestQuality():0}/ 100%";
@@ -115,11 +130,20 @@ public class PerformanceReview : GameUIComponent
         for (int i = 0; i < resultsText.Length; i ++)
         {
             if (i != 0) yield return new WaitForSeconds(finalRatingTime / (resultsText.Length - 1));
-            finalRatingText.text += resultsText[i];  
+            finalRatingText.text += resultsText[i];
+
+            // 
+            //  PUT TEXT TYPING SOUND EFFECT HERE
+            //  The word "RESULTS" is printing 1 character at a time in this loop
+            //
         }
 
         yield return new WaitForSeconds(finalRatingPause);
         finalRatingText.text = "Okay I guess";
+
+        // 
+        //  PUT RESULT DISPLAYING SOUND EFFECT HERE
+        //
 
         yield return new WaitForSeconds(continueButtonRevealDelay);
         continueButton.gameObject.SetActive(true);

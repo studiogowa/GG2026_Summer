@@ -24,6 +24,11 @@ public class PauseMenu : GameUIComponent
     private void PauseGame()
     {
         if (isPaused) return;
+
+        // 
+        //  PUT PAUSING SOUND EFFECT HERE
+        //
+
         isPaused = true;
         Time.timeScale = 0.0f;
         ui.hud.SetChildrenActive(false);
@@ -32,6 +37,11 @@ public class PauseMenu : GameUIComponent
     private void UnpauseGame()
     {
         if (!isPaused) return;
+
+        // 
+        //  PUT UNPAUSING SOUND EFFECT HERE
+        //
+
         isPaused = false;
         Time.timeScale = 1.0f;
         ui.hud.SetChildrenActive(true);
