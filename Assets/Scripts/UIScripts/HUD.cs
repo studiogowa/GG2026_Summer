@@ -27,23 +27,35 @@ public class HUD : GameUIComponent
     private void SubscribeFunctions()
     {
         if (GameManager.instance == null) return;
+        GameManager.instance.gameEvents.preGameStarts += UpdateGameState;
         GameManager.instance.gameEvents.duskStarts += UpdateGameState;
         GameManager.instance.gameEvents.dawnStarts += UpdateGameState;
         GameManager.instance.gameEvents.dayStarts += UpdateGameState;
         GameManager.instance.gameEvents.dayEnds += UpdateGameState;
 
         GameManager.instance.gameEvents.duskStarts += StartTrackingTime;
+        GameManager.instance.gameEvents.dawnStarts += StartTrackingTime;
+        GameManager.instance.gameEvents.dayStarts += StartTrackingTime;
+
+        GameManager.instance.gameEvents.duskEnds += StopTrackingTime;
+        GameManager.instance.gameEvents.dawnEnds += StopTrackingTime;
         GameManager.instance.gameEvents.dayEnds += StopTrackingTime;
     }
     private void UnsubscribeFunctions()
     {
         if (GameManager.instance == null) return;
+        GameManager.instance.gameEvents.preGameStarts -= UpdateGameState;
         GameManager.instance.gameEvents.duskStarts -= UpdateGameState;
         GameManager.instance.gameEvents.dawnStarts -= UpdateGameState;
         GameManager.instance.gameEvents.dayStarts -= UpdateGameState;
-        GameManager.instance.gameEvents.dayEnds += UpdateGameState;
+        GameManager.instance.gameEvents.dayEnds -= UpdateGameState;
 
         GameManager.instance.gameEvents.duskStarts -= StartTrackingTime;
+        GameManager.instance.gameEvents.dawnStarts -= StartTrackingTime;
+        GameManager.instance.gameEvents.dayStarts -= StartTrackingTime;
+
+        GameManager.instance.gameEvents.duskEnds -= StopTrackingTime;
+        GameManager.instance.gameEvents.dawnEnds -= StopTrackingTime;
         GameManager.instance.gameEvents.dayEnds -= StopTrackingTime;
     }
     private void UpdateGameState()

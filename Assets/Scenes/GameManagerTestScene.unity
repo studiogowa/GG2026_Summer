@@ -7380,6 +7380,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1536490770}
   - component: {fileID: 1536490769}
+  - component: {fileID: 1536490775}
   - component: {fileID: 1536490771}
   - component: {fileID: 1536490773}
   - component: {fileID: 1536490772}
@@ -7404,10 +7405,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   player: {fileID: 352012764}
+  <preGameTime>k__BackingField: 5
   <duskRoundTime>k__BackingField: 2
+  <preDawnTime>k__BackingField: 3
   <dawnRoundTime>k__BackingField: 5
+  <preDayTime>k__BackingField: 3
   <dayRoundTime>k__BackingField: 2
+  <dayEndPause>k__BackingField: 3
   gameState: 0
+  playerManager: {fileID: 0}
   resourceGenerator: {fileID: 0}
   chestSpawner: {fileID: 0}
   explorerSpawner: {fileID: 0}
@@ -7478,6 +7484,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   dungeonGameObject: {fileID: 127940003}
+--- !u!114 &1536490775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536490768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 707a0fdc620ca90468aefca301d5f427, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &1620672380
 GameObject:
   m_ObjectHideFlags: 0

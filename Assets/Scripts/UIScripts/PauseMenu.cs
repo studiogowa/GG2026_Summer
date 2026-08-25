@@ -16,6 +16,8 @@ public class PauseMenu : GameUIComponent
     private bool isPaused = false;
     private void TogglePause()
     {
+        // Don't pause if it's a specific round
+        if (GameManager.instance.gameState == GameState.PreGame || GameManager.instance.gameState == GameState.DayEnd) return;
         if (!isPaused) PauseGame();
         else UnpauseGame();
     }

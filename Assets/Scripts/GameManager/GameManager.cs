@@ -4,12 +4,16 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
+    public GameObject player;
 
     [Header("Game Progression Variables")]
+    [field: SerializeField, Range(0.0f, 30.0f)] public float preGameTime { get; private set; } = 5.0f;
     [field: SerializeField, Range(0.0f, 360.0f)] public float duskRoundTime { get; private set; } = 120.0f;
+    [field: SerializeField, Range(0.0f, 30.0f)] public float preDawnTime { get; private set; } = 5.0f;
     [field: SerializeField, Range(0.0f, 360.0f)] public float dawnRoundTime { get; private set; } = 120.0f;
+    [field: SerializeField, Range(0.0f, 30.0f)] public float preDayTime { get; private set; } = 5.0f;
     [field: SerializeField, Range(0.0f, 360.0f)] public float dayRoundTime { get; private set; } = 120.0f;
+    [field: SerializeField, Range(0.0f, 30.0f)] public float dayEndPause { get; private set; } = 5.0f;
 
     [field: SerializeField] public GameState gameState = GameState.Dusk;
 
@@ -21,6 +25,7 @@ public class GameManager : MonoBehaviour
     public GameEventsStruct gameEvents;
     public static GameManager instance;
 
+    [HideInInspector] public PlayerManager playerManager;
     [HideInInspector] public ResourceGenerator resourceGenerator;
     [HideInInspector] public ChestSpawner chestSpawner;
     [HideInInspector] public ExplorerSpawner explorerSpawner;
@@ -34,6 +39,7 @@ public class GameManager : MonoBehaviour
         }
         else GameManager.instance = this;
 
+        if (!TryGetComponent<PlayerManager>(out playerManager)) Debug.LogError("Game Manager is missing a Player Manager Component!");
         if (!TryGetComponent<ResourceGenerator>(out resourceGenerator)) Debug.LogError("Game Manager is missing a Resource Generator Component!");
         if (!TryGetComponent<ChestSpawner>(out chestSpawner)) Debug.LogError("Game Manager is missing a Chest Spawner Component!");
         if (!TryGetComponent<ExplorerSpawner>(out explorerSpawner)) Debug.LogError("Game Manager is missing a Explorer Spawner Component!");
@@ -46,9 +52,19 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        StartDuskRound();
+        StopAllCoroutines();
+        StartPreGameSetup();
     }
+    private void StartPreGameSetup()
+    {
+        gameState = GameState.PreGame;
 
+        gameStartTime = Time.time;
+        gameEndTime = gameStartTime + duskRoundTime;
+
+        gameEvents.preGameStarts?.Invoke();
+        trackRoundProgressCoroutine = StartCoroutine(TrackRoundProgress());
+    }
     private void StartDuskRound()
     {
         gameState = GameState.Dusk;
@@ -58,10 +74,6 @@ public class GameManager : MonoBehaviour
 
         gameEvents.duskStarts?.Invoke();
         trackRoundProgressCoroutine = StartCoroutine(TrackRoundProgress());
-
-        player.transform.position = dungeonManager.GetPlayerSpawn();
-
-        Debug.Log("Dusk Round Starts!");
     }
     private void StartDawnRound()
     {
@@ -71,7 +83,6 @@ public class GameManager : MonoBehaviour
         gameEndTime = gameStartTime + dawnRoundTime;
 
         gameEvents.dawnStarts?.Invoke();
-        Debug.Log("Dawn Round Starts!");
         trackRoundProgressCoroutine = StartCoroutine(TrackRoundProgress());
     }
     private void StartDayRound()
@@ -82,19 +93,16 @@ public class GameManager : MonoBehaviour
         gameEndTime = gameStartTime + dayRoundTime;
 
         gameEvents.dayStarts?.Invoke();
-        Debug.Log("Day Round Starts!");
         trackRoundProgressCoroutine = StartCoroutine(TrackRoundProgress());
     }
     private void DayEnd()
     {
         gameState = GameState.DayEnd;
 
-        gameEvents.dayEnds?.Invoke();
-
         if (dungeonManager.IsInExtractionArea(player.transform.position)) Debug.Log("PLAYER IS IN EXTRACTION");
         else Debug.Log("PLAYER IS NOT IN EXTRACTION");
 
-        Debug.Log("Day has ended and the Performance Review begins!");
+        gameEvents.dayEnds?.Invoke();
     }
     private Coroutine trackRoundProgressCoroutine;
     private IEnumerator TrackRoundProgress()
@@ -105,9 +113,9 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         // Round Ends
-        EndRound();
+        StartCoroutine(EndRound());
     }
-    private void EndRound()
+    private IEnumerator EndRound()
     {
         switch (gameState)
         {
@@ -115,15 +123,23 @@ public class GameManager : MonoBehaviour
                 StartDuskRound();
                 break;
             case GameState.Dusk:
+                gameEvents.duskEnds?.Invoke();
+                yield return new WaitForSeconds(preDawnTime);
                 StartDawnRound();
                 break;
             case GameState.Dawn:
+                gameEvents.dawnEnds?.Invoke();
+                yield return new WaitForSeconds(preDayTime);
                 StartDayRound();
                 break;
             case GameState.Day:
                 DayEnd();
+                yield return new WaitForSeconds(dayEndPause);
+                gameEvents.performanceReviewStarts?.Invoke();
                 break;
         }
+
+        yield break;
     }
 }
 

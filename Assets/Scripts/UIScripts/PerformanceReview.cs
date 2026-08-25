@@ -25,15 +25,15 @@ public class PerformanceReview : GameUIComponent
     private void SubscribeFunctions()
     {
         if (GameManager.instance == null) return;
-        GameManager.instance.gameEvents.dayStarts += CloseMenu;
-        GameManager.instance.gameEvents.dayEnds += OpenMenu;
+        GameManager.instance.gameEvents.preGameStarts += CloseMenu;
+        GameManager.instance.gameEvents.performanceReviewStarts += OpenMenu;
         continueButton.onClick.AddListener(GameManager.instance.StartGame);
     }
     private void UnsubscribeFunctions()
     {
         if (GameManager.instance == null) return;
-        GameManager.instance.gameEvents.dayStarts -= CloseMenu;
-        GameManager.instance.gameEvents.dayEnds -= OpenMenu;
+        GameManager.instance.gameEvents.preGameStarts -= CloseMenu;
+        GameManager.instance.gameEvents.performanceReviewStarts -= OpenMenu;
         continueButton.onClick.RemoveAllListeners();
     }
     private void Start()
