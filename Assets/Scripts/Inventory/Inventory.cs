@@ -53,6 +53,29 @@ public class Inventory : MonoBehaviour
             onItemChangedCallback.Invoke();
     }
 
+    public virtual void Drop(Item item)
+    {
+        GameObject player = GameObject.FindWithTag("Player");
+
+        if (player != null & item.prefab != null)
+        {
+            Debug.Log("Dropping item?");
+            Vector3 dropPos = player.transform.position + player.transform.forward * 1.5f;
+            Instantiate(item.prefab, dropPos, Quaternion.identity);
+        }
+
+        item.amount -= 1;
+
+        if (item.amount <= 0)
+        {
+            Remove(item);
+        }
+        else
+        {
+            onItemChangedCallback?.Invoke();
+        }
+    }
+
     public virtual void Clear()
     {
         items.Clear();

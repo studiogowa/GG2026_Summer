@@ -48,7 +48,7 @@ public class InventorySlot : MonoBehaviour
     public void OnRemoveButton()
     {
         if (inventory != null && item != null)
-            inventory.Remove(item);
+            inventory.Drop(item);
     }
 
     public void OnSlotPressed()
@@ -64,6 +64,16 @@ public class InventorySlot : MonoBehaviour
             {
                 Debug.Log("Transferring " + item.name);
                 TransferItem(openChest);
+            }
+        } 
+        else if (LootUI.instance != null && LootUI.instance.inventoryUI.activeInHierarchy)
+        {
+            LootInventory openLoot = LootUI.instance.inventory as LootInventory;
+
+            if (openLoot != null)
+            {
+                Debug.Log("Transferring " + item.name);
+                TransferItem(openLoot);
             }
         }
         else
@@ -87,26 +97,35 @@ public class InventorySlot : MonoBehaviour
         }
     }
 
-    private void TransferItem(ChestInventory chest)
+    private void TransferItem(Inventory target)
     {
         Inventory destInventory = null;
 
         if (inventory is PlayerInventory)
         {
-            destInventory = chest;
+            destInventory = target;
         }
         else
         {
             destInventory = PlayerInventory.instance;
         }
 
-        if (destInventory != null)
+        if (destInventory != null && item != null)
         {
-            bool hasAdded = destInventory.Add(item, item.amount);
+            bool hasAdded = destInventory.Add(item, 1);
 
             if (hasAdded)
             {
-                inventory.Remove(item);
+                item.amount -= 1;
+
+                if (item.amount <= 0)
+                {
+                    inventory.Remove(item);
+                }
+                else
+                {
+                    inventory.onItemChangedCallback?.Invoke();
+                }
             }
         }
     }

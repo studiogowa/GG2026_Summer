@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ChestUI : InventoryUI
+public class LootUI : InventoryUI
 {
-    public static ChestUI instance;
+    public static LootUI instance;
+    public InventoryUI playerUI;
 
     private void Awake()
     {
@@ -23,21 +24,26 @@ public class ChestUI : InventoryUI
         inventoryUI.SetActive(false);
     }
 
-    public void OpenChestUI(Inventory chestInventory)
+    public void OpenLootUI(Inventory lootInventory)
     {
         if (inventory != null)
         {
             inventory.onItemChangedCallback -= UpdateUI;
         }
 
-        inventory = chestInventory;
+        inventory = lootInventory;
         inventory.onItemChangedCallback += UpdateUI;
 
         inventoryUI.SetActive(true);
         UpdateUI();
+        
+        if (playerUI != null)
+        {
+            playerUI.inventoryUI.SetActive(true);
+        }
     }
 
-    public void CloseChestUI()
+    public void CloseLootUI()
     {
         if (inventory != null)
         {
@@ -47,6 +53,9 @@ public class ChestUI : InventoryUI
         inventory = null;
         inventoryUI.SetActive(false);
 
-        Debug.Log("Closed UI");
+        if (playerUI != null)
+        {
+            playerUI.inventoryUI.SetActive(false);
+        }
     }
 }

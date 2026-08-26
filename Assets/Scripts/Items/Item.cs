@@ -8,6 +8,7 @@ public class Item : ScriptableObject
     public int amount;
     public bool isStackable = false;
     public bool isDefaultItem = false;
+    public GameObject prefab;
 
     public virtual void Use()
     {
