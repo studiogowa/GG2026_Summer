@@ -1255,6 +1255,41 @@ MonoBehaviour:
   thirdThingText: {fileID: 4577004421840502326}
   finalRatingText: {fileID: 1302018645664065805}
   continueButton: {fileID: 2419944882551488445}
+  ShowPerfReviewSFX:
+    Guid:
+      Data1: -2011199380
+      Data2: 1136817178
+      Data3: 1826126751
+      Data4: -1797405411
+    Path: event:/UI/PerfReviewAppear
+  ChestCountSFX:
+    Guid:
+      Data1: -2005154223
+      Data2: 1298308184
+      Data3: -502385024
+      Data4: -958475752
+    Path: event:/UI/ChestCalc
+  ChestQualitySFX:
+    Guid:
+      Data1: 1505279246
+      Data2: 1167315661
+      Data3: 1825335691
+      Data4: -61040652
+    Path: event:/UI/QualityCalc
+  TypingSFX:
+    Guid:
+      Data1: 317963268
+      Data2: 1331113144
+      Data3: 599678648
+      Data4: 1791630651
+    Path: event:/UI/TypingClicks
+  StampSFX:
+    Guid:
+      Data1: 784192580
+      Data2: 1112659961
+      Data3: 1639206536
+      Data4: 506821584
+    Path: event:/UI/ResultStamp
   initialPause: 1
   titleDisplayPause: 0.6
   valueDisplayPause: 0.2

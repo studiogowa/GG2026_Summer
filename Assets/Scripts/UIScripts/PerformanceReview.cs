@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using System.Collections;
 using TMPro;
+using FMODUnity;
 public class PerformanceReview : GameUIComponent
 {
     private Animator animator;
@@ -13,6 +14,14 @@ public class PerformanceReview : GameUIComponent
     [SerializeField] private TextMeshProUGUI finalRatingText;
 
     [SerializeField] private Button continueButton;
+
+    [Header("Audio")]
+    [SerializeField] private EventReference ShowPerfReviewSFX;
+    [SerializeField] private EventReference ChestCountSFX;
+    [SerializeField] private EventReference ChestQualitySFX;
+    [SerializeField] private EventReference TypingSFX;
+    [SerializeField] private EventReference StampSFX;
+
     protected override void Awake()
     {
         base.Awake();
@@ -47,6 +56,7 @@ public class PerformanceReview : GameUIComponent
     private bool menuOpened = false;
     private void ToggleMenu()
     {
+        RuntimeManager.PlayOneShot(ShowPerfReviewSFX);
         if (!menuOpened) OpenMenu();
         else CloseMenu();
     }
@@ -82,26 +92,17 @@ public class PerformanceReview : GameUIComponent
     {
         ComponentsSetAllActive(false);
         yield return new WaitForSeconds(initialPause);
-        // Display Title
-
-        // 
-        //  PUT TITLE PRINTING SOUND EFFECT HERE
-        //
-
+        RuntimeManager.PlayOneShot(TypingSFX);
         titleText.gameObject.SetActive(true);
         yield return new WaitForSeconds(titleDisplayPause);
 
         // Count Chests Filled
         float timeStart = Time.time;
         chestsFilledText.gameObject.SetActive(true);
+        RuntimeManager.PlayOneShot(ChestCountSFX);
         while (Time.time < timeStart + chestCountTime)
         {
             chestsFilledText.text = $"Chests Filled: {Random.Range(0, GameManager.instance.chestSpawner.chestsSpawned)}/ {GameManager.instance.chestSpawner.chestsSpawned}";
-            
-            // 
-            //  PUT CALCULATION SOUND EFFECT HERE
-            //
-
             yield return null;
         }
         chestsFilledText.text = $"Chests Filled: ?/ {GetChestsFilledCount()}";
@@ -110,14 +111,10 @@ public class PerformanceReview : GameUIComponent
         // Determine Chest Quality
         timeStart = Time.time;
         chestQualityRatingText.gameObject.SetActive(true);
+        RuntimeManager.PlayOneShot(ChestQualitySFX);
         while (Time.time < timeStart + chestQualityTime)
         {
             chestQualityRatingText.text = $"Chest Quality: {Random.Range(50.0f, 100.0f):0}/ 100%";
-
-            // 
-            //  PUT CALCULATION SOUND EFFECT HERE
-            //
-
             yield return null;
         }
         chestQualityRatingText.text = $"Chest Quality: {CalculateChestQuality():0}/ 100%";
@@ -125,26 +122,19 @@ public class PerformanceReview : GameUIComponent
 
         // Determine Overall Rating
         finalRatingText.gameObject.SetActive(true);
+        RuntimeManager.PlayOneShot(TypingSFX);
         string resultsText = "RESULTS";
         finalRatingText.text = "";
         for (int i = 0; i < resultsText.Length; i ++)
         {
             if (i != 0) yield return new WaitForSeconds(finalRatingTime / (resultsText.Length - 1));
             finalRatingText.text += resultsText[i];
-
-            // 
-            //  PUT TEXT TYPING SOUND EFFECT HERE
-            //  The word "RESULTS" is printing 1 character at a time in this loop
-            //
+            RuntimeManager.PlayOneShot(TypingSFX);
         }
 
         yield return new WaitForSeconds(finalRatingPause);
         finalRatingText.text = "Okay I guess";
-
-        // 
-        //  PUT RESULT DISPLAYING SOUND EFFECT HERE
-        //
-
+        RuntimeManager.PlayOneShot(StampSFX);
         yield return new WaitForSeconds(continueButtonRevealDelay);
         continueButton.gameObject.SetActive(true);
     }
