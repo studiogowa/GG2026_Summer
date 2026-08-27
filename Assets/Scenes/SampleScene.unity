@@ -8718,7 +8718,7 @@ MonoBehaviour:
       Data2: 1142329879
       Data3: -115209539
       Data4: 49012793
-    Path: event:/Amb
+    Path: event:/SFX/Amb
   Event: 
   EventPlayTrigger: 1
   EventStopTrigger: 2
