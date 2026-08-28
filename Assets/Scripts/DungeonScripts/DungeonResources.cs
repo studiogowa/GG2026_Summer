@@ -8,7 +8,7 @@ public class DungeonResources : DungeonComponent
     protected override void Awake()
     {
         base.Awake();
-        resourceSpawnRects = new List<Rect>();
+        CompileSpawnRects();
         if (this.transform.childCount <= 0) Debug.LogError("This Dungeon DOES NOT have any Resource Spawning Zones!");
     }
     /// <summary>

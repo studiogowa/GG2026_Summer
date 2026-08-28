@@ -87,6 +87,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa022a7abc5d2e54ba5b6ad01b8e6f2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  bodyPrefab: {fileID: 6563828711841948660, guid: 4514d0f4b56726747ba4135d3e08fe80, type: 3}
+  bodyItemPool: {fileID: 11400000, guid: 54f05ae4d5f9f4241b858486bf307a43, type: 2}
   <resourceSpawnCount>k__BackingField: 6
 --- !u!114 &2149146473358403106
 MonoBehaviour:

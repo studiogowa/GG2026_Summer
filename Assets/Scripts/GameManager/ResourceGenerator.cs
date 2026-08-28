@@ -1,13 +1,17 @@
 using UnityEngine;
-using System.Collections.Generic;
+using System.Linq;
 public class ResourceGenerator : GameManagerComponent
 {
+    [SerializeField] private GameObject bodyPrefab;
+    [SerializeField] private ItemPool bodyItemPool;
     public GameObject resourceCollection { get; private set; }
 
     [field: SerializeField, Range(1, 20)] public int resourceSpawnCount { get; private set; } = 6;
     protected override void Awake()
     {
         base.Awake();
+        if (bodyPrefab == null) Debug.LogError("Reference the Body Prefab for Resource Generator!");
+        if (bodyItemPool == null) Debug.LogError("Include an Item pool for Lootable Bodies for Resource Generator!");
         if (resourceCollection == null)
         {
             resourceCollection = new GameObject("RESOURCE COLLECTION");
@@ -57,9 +61,49 @@ public class ResourceGenerator : GameManagerComponent
         // Spawn Resources
         foreach (Vector3 spawnCoords in spawnPoints)
         {
-            GameObject chest = new GameObject("Resource");
-            chest.transform.parent = resourceCollection.transform;
-            chest.transform.position = spawnCoords;
+            GameObject body = Instantiate(bodyPrefab);
+            body.transform.parent = resourceCollection.transform;
+            body.transform.position = spawnCoords;
+
+            if (!body.TryGetComponent<LootInventory>(out LootInventory inventory)) Debug.LogWarning($"Spawned {body.name} DOES NOT have a LootInventory Component!");
+            else
+            {
+                ItemPoolItem[] itemArray = ChooseItem(bodyItemPool, 5);
+                foreach (ItemPoolItem item in itemArray) inventory.Add(item.item, Random.Range(item.stackableMinAmount, item.stackableMaxAmount));
+            }
         }
+    }
+    /// <summary>
+    /// Chooses itemCount different items from itemPool to spawn in a Body<br></br>
+    /// Duplicates become allowed when itemCount exceeds the number of items in itemPool!
+    /// </summary>
+    /// <param name="itemPool">The item pool to pick from</param>
+    /// <param name="itemCount">The number of items to pick from a spawn pool</param>
+    /// <returns>Returns an Array of [itemCount] ItemPoolItem elements</returns>
+    private ItemPoolItem[] ChooseItem(ItemPool itemPool, int itemCount)
+    {
+        if (itemPool.itemPoolItems.Count <= 0)
+        {
+            Debug.LogError("Given item pool HAS NO ITEMS!");
+            return new ItemPoolItem[0];
+        }
+
+        ItemPoolItem[] itemArray = new ItemPoolItem[itemCount];
+        int[] indices = new int[0];
+
+        // Create an array [0, 1 ... itemPoolItems.Count - 1]
+        // Continue to grow this array by concatenating it to itself itemCount is GREATER than the itemPool item count
+        while (indices.Length < itemCount)
+        {
+            int[] tempIndices = new int[itemPool.itemPoolItems.Count];
+            for (int i = 0; i < itemPool.itemPoolItems.Count; i++) tempIndices[i] = i;
+            indices = indices.Concat(tempIndices).ToArray();
+        }
+        
+        // Shuffle the indices, then use the first itemCount numbers as a selection of random indices for itemPool items
+        ArrayHelpers.ShuffleArray<int>(indices);
+        for (int i = 0; i < itemCount; i++) itemArray[i] = itemPool.itemPoolItems[indices[i]];
+
+        return itemArray;
     }
 }
