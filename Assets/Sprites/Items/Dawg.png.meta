@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c8d99436d2ad2fa4a902f4288e155a31
+guid: 974bc3972ebf33346b784b9ea84970c3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6403348867786874424
-    second: Grape_0
+      213: 8584303646342281188
+    second: Dawg_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Grape_0
+      name: Dawg_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 8
-        width: 93
-        height: 110
+        x: 0
+        y: 0
+        width: 320
+        height: 196
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8c1e9a2912cb227a0800000000000000
-      internalID: -6403348867786874424
+      spriteID: 4e7725c4fa2912770800000000000000
+      internalID: 8584303646342281188
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Grape_0: -6403348867786874424
+      Dawg_0: 8584303646342281188
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

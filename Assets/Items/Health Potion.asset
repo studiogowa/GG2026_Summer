@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c9f9aaba2d4e774c875d6daf12ac017, type: 3}
-  m_Name: Apple
+  m_Name: Health Potion
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  name: Apple
-  icon: {fileID: 7293598183456022363, guid: 19c503e6ee949ac44b503b4e0da42c4e, type: 3}
+  name: Health Potion
+  icon: {fileID: 4540878775339986810, guid: f4882e96599b08c4d8080015ab878393, type: 3}
   amount: 1
   isStackable: 0
   isDefaultItem: 0
-  prefab: {fileID: 7224751352733848414, guid: e9014eb57863d34429f48fa108c5b482, type: 3}
+  prefab: {fileID: 5923591575856138997, guid: b667ecb887d3fcd4e9d8dd915f68a7cd, type: 3}

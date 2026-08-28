@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c9f9aaba2d4e774c875d6daf12ac017, type: 3}
-  m_Name: Apple
+  m_Name: Pink Flask
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  name: Apple
-  icon: {fileID: 7293598183456022363, guid: 19c503e6ee949ac44b503b4e0da42c4e, type: 3}
+  name: Pink Flask
+  icon: {fileID: 9222073581432789594, guid: 00d9eb0bdc1ff6349b2d267f910518c8, type: 3}
   amount: 1
   isStackable: 0
   isDefaultItem: 0
-  prefab: {fileID: 7224751352733848414, guid: e9014eb57863d34429f48fa108c5b482, type: 3}
+  prefab: {fileID: 5923591575856138997, guid: 7665d2dd6be1bee4fa1a9776838dd16d, type: 3}
