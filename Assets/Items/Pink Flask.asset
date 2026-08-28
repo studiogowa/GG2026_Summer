@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Pink Flask
   m_EditorClassIdentifier: Assembly-CSharp::Item
   name: Pink Flask
+  description: 
   icon: {fileID: 9222073581432789594, guid: 00d9eb0bdc1ff6349b2d267f910518c8, type: 3}
   amount: 1
-  isStackable: 0
+  value: 0
+  isStackable: 1
   isDefaultItem: 0
   prefab: {fileID: 5923591575856138997, guid: 7665d2dd6be1bee4fa1a9776838dd16d, type: 3}

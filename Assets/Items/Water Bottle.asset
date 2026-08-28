@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Water Bottle
   m_EditorClassIdentifier: Assembly-CSharp::Item
   name: Water Bottle
+  description: 
   icon: {fileID: 2361282008703137996, guid: e8574ae949a9c104abd6f976da230fbb, type: 3}
   amount: 1
-  isStackable: 0
+  value: 0
+  isStackable: 1
   isDefaultItem: 0
   prefab: {fileID: 5923591575856138997, guid: 31283f9470547c64aadaa1189edd62a7, type: 3}

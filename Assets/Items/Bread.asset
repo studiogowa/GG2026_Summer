@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Bread
   m_EditorClassIdentifier: Assembly-CSharp::Item
   name: Bread
+  description: 
   icon: {fileID: -1660761858345613354, guid: 5f5d1c72c4bbecc4fa99672fc9e5bdfc, type: 3}
   amount: 1
-  isStackable: 0
+  value: 0
+  isStackable: 1
   isDefaultItem: 0
   prefab: {fileID: 5923591575856138997, guid: d32c08688cdc7be4583530ea12b4e40f, type: 3}

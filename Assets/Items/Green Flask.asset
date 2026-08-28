@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Green Flask
   m_EditorClassIdentifier: Assembly-CSharp::Item
   name: Green Flask
+  description: 
   icon: {fileID: -7664899062357950547, guid: cd19da5042f675644a8e1104be1918a9, type: 3}
   amount: 1
-  isStackable: 0
+  value: 0
+  isStackable: 1
   isDefaultItem: 0
   prefab: {fileID: 5923591575856138997, guid: 8b455bbb56e27b943be43b8fab7dfd43, type: 3}

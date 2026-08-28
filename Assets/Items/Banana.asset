@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Banana
   m_EditorClassIdentifier: Assembly-CSharp::Item
   name: Banana
+  description: 
   icon: {fileID: 7381965769198725172, guid: 1bab7d8fe6022884a90ba976eea8b158, type: 3}
   amount: 1
-  isStackable: 0
+  value: 0
+  isStackable: 1
   isDefaultItem: 0
   prefab: {fileID: 5923591575856138997, guid: eb19c7c1350bd2b43ade98bde6a17c67, type: 3}

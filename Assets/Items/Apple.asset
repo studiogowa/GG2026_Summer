@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Apple
   m_EditorClassIdentifier: Assembly-CSharp::Item
   name: Apple
+  description: 
   icon: {fileID: 7293598183456022363, guid: 19c503e6ee949ac44b503b4e0da42c4e, type: 3}
   amount: 1
-  isStackable: 0
+  value: 0
+  isStackable: 1
   isDefaultItem: 0
   prefab: {fileID: 7224751352733848414, guid: e9014eb57863d34429f48fa108c5b482, type: 3}
