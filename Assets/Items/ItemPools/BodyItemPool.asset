@@ -29,10 +29,13 @@ MonoBehaviour:
     stackableMinAmount: 0
     stackableMaxAmount: 1
   - item: {fileID: 11400000, guid: f2c3f282d8ab4a749a806c6fbf4e293d, type: 2}
-    stackableMinAmount: 0
+    stackableMinAmount: 1
+    stackableMaxAmount: 1
+  - item: {fileID: 11400000, guid: b1a96aa307eaf1f4caab3d0a49a74c6c, type: 2}
+    stackableMinAmount: 1
     stackableMaxAmount: 1
   - item: {fileID: 11400000, guid: f413b03f4a8d010428a4af0df0664ddd, type: 2}
-    stackableMinAmount: 0
+    stackableMinAmount: 1
     stackableMaxAmount: 5
   - item: {fileID: 11400000, guid: 9bd20867ea937cd4c9821ca91ae13ae6, type: 2}
     stackableMinAmount: 1
