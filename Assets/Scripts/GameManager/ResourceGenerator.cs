@@ -4,6 +4,8 @@ public class ResourceGenerator : GameManagerComponent
 {
     [SerializeField] private GameObject bodyPrefab;
     [SerializeField] private ItemPool bodyItemPool;
+    [SerializeField, Range(1, 5)] private int bodyItemCountMin = 1;
+    [SerializeField, Range(1, 5)] private int bodyItemCountMax = 1;
     public GameObject resourceCollection { get; private set; }
 
     [field: SerializeField, Range(1, 20)] public int resourceSpawnCount { get; private set; } = 6;
@@ -68,8 +70,8 @@ public class ResourceGenerator : GameManagerComponent
             if (!body.TryGetComponent<LootInventory>(out LootInventory inventory)) Debug.LogWarning($"Spawned {body.name} DOES NOT have a LootInventory Component!");
             else
             {
-                ItemPoolItem[] itemArray = ChooseItem(bodyItemPool, 5);
-                foreach (ItemPoolItem item in itemArray) inventory.Add(item.item, Random.Range(item.stackableMinAmount, item.stackableMaxAmount));
+                ItemPoolItem[] itemArray = ChooseItem(bodyItemPool, Random.Range(bodyItemCountMin, bodyItemCountMax+1));
+                foreach (ItemPoolItem item in itemArray) inventory.Add(item.item, Random.Range(item.stackableMinAmount, item.stackableMaxAmount+1));
             }
         }
     }
