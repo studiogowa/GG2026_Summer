@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ChestSpawner : GameManagerComponent
 {
+    [SerializeField] private GameObject chestPrefab;
     public GameObject chestCollection { get; private set; }
     public int chestsSpawned { get { return chestCollection.transform.childCount; } }
     [field: SerializeField, Range(1, 12)] public int chestSpawnCount { get; private set; } = 6;
@@ -9,6 +10,7 @@ public class ChestSpawner : GameManagerComponent
     protected override void Awake()
     {
         base.Awake();
+        if (chestPrefab == null) Debug.LogError("Reference the Chest Prefab to the ChestSpawner Component!");
         if (chestCollection == null)
         {
             chestCollection = new GameObject("CHEST COLLECTION");
@@ -61,7 +63,7 @@ public class ChestSpawner : GameManagerComponent
         // Spawn chests
         foreach (Vector3 spawnCoords in spawnPoints)
         {
-            GameObject chest = new GameObject("Chest");
+            GameObject chest = Instantiate(chestPrefab);
             chest.transform.parent = chestCollection.transform;
             chest.transform.position = spawnCoords;
         }
