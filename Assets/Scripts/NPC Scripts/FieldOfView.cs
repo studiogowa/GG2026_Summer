@@ -34,7 +34,7 @@ public class FieldOfView : MonoBehaviour
 
     public Action onPlayerInRange;
     public Action onPlayerLost;
-
+    public Action onPlayerAttackable;
     private void Awake()
     {
 
@@ -105,6 +105,7 @@ public class FieldOfView : MonoBehaviour
         if (distanceToTarget <= attackRange)
         {
             Debug.Log("Attack!");
+            onPlayerAttackable.Invoke();
         }
 
         canSeePlayer = true;

@@ -47,6 +47,7 @@ public class NPC : MonoBehaviour
         fieldOfView.onPlayerInRange += StartChase;
         fieldOfView.onPlayerLost += EndChase;
         fieldOfView.SetAttackRange(attackRange);
+        fieldOfView.onPlayerAttackable += EnterAttack;
 
         //Chase Player Setup
         playerRef = GameObject.FindGameObjectWithTag("Player");
@@ -82,6 +83,11 @@ public class NPC : MonoBehaviour
     private void UpdateAnimation()
     {
 
+    }
+
+    private void EnterAttack()
+    {
+        //ChangeState(new Attack)
     }
 
     private void StartChase()
