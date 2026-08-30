@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c9f9aaba2d4e774c875d6daf12ac017, type: 3}
+  m_Script: {fileID: 11500000, guid: b4f5584dcd555cf4a99bb9a202209099, type: 3}
   m_Name: Green Flask
-  m_EditorClassIdentifier: Assembly-CSharp::Item
+  m_EditorClassIdentifier: Assembly-CSharp::SpeedPotion
   name: Green Flask
   description: 
   icon: {fileID: -7664899062357950547, guid: cd19da5042f675644a8e1104be1918a9, type: 3}
@@ -19,4 +19,6 @@ MonoBehaviour:
   value: 0
   isStackable: 1
   isDefaultItem: 0
-  prefab: {fileID: 5923591575856138997, guid: 8b455bbb56e27b943be43b8fab7dfd43, type: 3}
+  prefab: {fileID: 2557721817367356906, guid: 093d429f843abc4468c5ef21513dfb2a, type: 3}
+  speedBoost: 2
+  duration: 3.5
