@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 29cb9957c982ec14aaab64d61671bf68
+guid: c88f1f6f6df8252459c2125c19531334
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -608499055924800476
-    second: minimap_icon_chest_0
+      213: 457165633867313804
+    second: minimap_icon_exit_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: minimap_icon_chest_0
+      name: minimap_icon_exit_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 11
-        width: 256
-        height: 242
+        x: 5
+        y: 2
+        width: 246
+        height: 253
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4241175255d2e87f0800000000000000
-      internalID: -608499055924800476
+      spriteID: c827d2ac8bd285600800000000000000
+      internalID: 457165633867313804
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      minimap_icon_chest_0: -608499055924800476
+      minimap_icon_exit_0: 457165633867313804
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
