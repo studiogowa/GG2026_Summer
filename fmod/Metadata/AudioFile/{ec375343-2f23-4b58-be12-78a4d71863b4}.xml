@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{ec375343-2f23-4b58-be12-78a4d71863b4}">
+		<property name="assetPath">
+			<value>ChestOpen2.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>1.3904375</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{36c722dd-3b21-47bf-af19-8f8460ee62b0}</destination>
+		</relationship>
+	</object>
+</objects>

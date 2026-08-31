@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{ebb31f61-8bc4-4657-a534-a0d7163477a9}">
+		<property name="assetPath">
+			<value>typewriter spacebar 7 1.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>192</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.14314583333333333</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{36c722dd-3b21-47bf-af19-8f8460ee62b0}</destination>
+		</relationship>
+	</object>
+</objects>

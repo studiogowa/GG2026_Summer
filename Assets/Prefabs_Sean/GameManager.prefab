@@ -1,0 +1,133 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6026567985035445583
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2908630827782018896}
+  - component: {fileID: 1012160356486802184}
+  - component: {fileID: 935602274668897175}
+  - component: {fileID: 82916144550330444}
+  - component: {fileID: 2149146473358403106}
+  - component: {fileID: 523195440910688511}
+  - component: {fileID: 4948255547315645493}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2908630827782018896
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6026567985035445583}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1012160356486802184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6026567985035445583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97fc74fadc68ef5498cb5988c61daeaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  player: {fileID: 0}
+  <preGameTime>k__BackingField: 5
+  <duskRoundTime>k__BackingField: 2
+  <preDawnTime>k__BackingField: 3
+  <dawnRoundTime>k__BackingField: 5
+  <preDayTime>k__BackingField: 3
+  <dayRoundTime>k__BackingField: 2
+  <dayEndPause>k__BackingField: 3
+  gameState: 0
+  playerManager: {fileID: 0}
+  resourceGenerator: {fileID: 0}
+  chestSpawner: {fileID: 0}
+  explorerSpawner: {fileID: 0}
+  dungeonManager: {fileID: 0}
+--- !u!114 &935602274668897175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6026567985035445583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 707a0fdc620ca90468aefca301d5f427, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+--- !u!114 &82916144550330444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6026567985035445583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa022a7abc5d2e54ba5b6ad01b8e6f2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  bodyPrefab: {fileID: 6563828711841948660, guid: 4514d0f4b56726747ba4135d3e08fe80, type: 3}
+  bodyItemPool: {fileID: 11400000, guid: 54f05ae4d5f9f4241b858486bf307a43, type: 2}
+  bodyItemCountMin: 1
+  bodyItemCountMax: 3
+  <resourceSpawnCount>k__BackingField: 6
+--- !u!114 &2149146473358403106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6026567985035445583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf80941de3494da4aa2ddb392dffa8de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  chestPrefab: {fileID: 1214321361374289206, guid: f6aa0ed69c21b534f82e82af4dd7e335, type: 3}
+  <chestSpawnCount>k__BackingField: 2
+--- !u!114 &523195440910688511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6026567985035445583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd3e61abb51ca9742adc963991518617, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+--- !u!114 &4948255547315645493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6026567985035445583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 368cf42a300d5b84fade0cd27cac1862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  dungeonGameObject: {fileID: 0}

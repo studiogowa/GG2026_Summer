@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{9c623f6c-ccd5-4211-90d8-2cdc75e7954d}">
+		<property name="assetPath">
+			<value>SFX_ChestCalc.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.80618749999999995</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{36c722dd-3b21-47bf-af19-8f8460ee62b0}</destination>
+		</relationship>
+	</object>
+</objects>

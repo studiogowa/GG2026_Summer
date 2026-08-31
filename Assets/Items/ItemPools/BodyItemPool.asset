@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4cf5d0496c322c4ebdcabbfdff62c75, type: 3}
+  m_Name: BodyItemPool
+  m_EditorClassIdentifier: Assembly-CSharp::ItemPool
+  itemPoolItems:
+  - item: {fileID: 11400000, guid: c04905406579361469da5cfa293f2ab5, type: 2}
+    stackableMinAmount: 1
+    stackableMaxAmount: 1
+  - item: {fileID: 11400000, guid: a1e6e0b2c8fc36e42a76ea648fd496a9, type: 2}
+    stackableMinAmount: 1
+    stackableMaxAmount: 1
+  - item: {fileID: 11400000, guid: 882f7f9d0611a064aadccd01c1d29476, type: 2}
+    stackableMinAmount: 0
+    stackableMaxAmount: 1
+  - item: {fileID: 11400000, guid: 182c94469f128ea44b7405413be0273b, type: 2}
+    stackableMinAmount: 0
+    stackableMaxAmount: 1
+  - item: {fileID: 11400000, guid: ec94d2d6d02e8eb45860b1c96f87e1e1, type: 2}
+    stackableMinAmount: 0
+    stackableMaxAmount: 1
+  - item: {fileID: 11400000, guid: f2c3f282d8ab4a749a806c6fbf4e293d, type: 2}
+    stackableMinAmount: 1
+    stackableMaxAmount: 1
+  - item: {fileID: 11400000, guid: b1a96aa307eaf1f4caab3d0a49a74c6c, type: 2}
+    stackableMinAmount: 1
+    stackableMaxAmount: 1
+  - item: {fileID: 11400000, guid: f413b03f4a8d010428a4af0df0664ddd, type: 2}
+    stackableMinAmount: 1
+    stackableMaxAmount: 5
+  - item: {fileID: 11400000, guid: 9bd20867ea937cd4c9821ca91ae13ae6, type: 2}
+    stackableMinAmount: 1
+    stackableMaxAmount: 1
+  - item: {fileID: 11400000, guid: bca3ff7a5647d6546a0654b3a4b85c22, type: 2}
+    stackableMinAmount: 1
+    stackableMaxAmount: 1
+  - item: {fileID: 11400000, guid: 8b025f889144c954b85317acd3bcb2f1, type: 2}
+    stackableMinAmount: 1
+    stackableMaxAmount: 1
+  - item: {fileID: 11400000, guid: c86b71dd944af1c4080525b03d6c09bd, type: 2}
+    stackableMinAmount: 1
+    stackableMaxAmount: 1
+  - item: {fileID: 11400000, guid: 24a4e316a5465fa47ab844f19397a049, type: 2}
+    stackableMinAmount: 1
+    stackableMaxAmount: 1
+  - item: {fileID: 11400000, guid: f5a670d7dfbe7b34ba642619b62eb617, type: 2}
+    stackableMinAmount: 1
+    stackableMaxAmount: 1
+  - item: {fileID: 11400000, guid: 6b44c25fe01f08e46b65cbe835ed10f6, type: 2}
+    stackableMinAmount: 1
+    stackableMaxAmount: 1
+  - item: {fileID: 11400000, guid: 3b2c83cc3a36b47449ec8f2deeca924f, type: 2}
+    stackableMinAmount: 1
+    stackableMaxAmount: 1
+  - item: {fileID: 11400000, guid: 23c4ddc0b5b02ba40be26951f472dd08, type: 2}
+    stackableMinAmount: 1
+    stackableMaxAmount: 1
