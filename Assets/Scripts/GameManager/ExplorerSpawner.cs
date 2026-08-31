@@ -2,6 +2,19 @@ using UnityEngine;
 
 public class ExplorerSpawner : GameManagerComponent
 {
+    private GameObject explorerCollection;
+    protected override void Awake()
+    {
+        base.Awake();
+        if (explorerCollection == null) Debug.LogError("Reference the Explorer Prefab to the ExplorerSpawner Component!");
+        if (explorerCollection == null)
+        {
+            explorerCollection = new GameObject("EXPLORER COLLECTION");
+            explorerCollection.transform.parent = this.transform;
+        }
+    }
+    [SerializeField] private GameObject explorerPrefab;
+    [field: SerializeField, Range(1, 12)] public int explorerSpawnCount { get; private set; } = 6;
     protected void OnEnable()
     {
         gameManager.gameEvents.dawnStarts += SpawnExplorers;
@@ -15,6 +28,14 @@ public class ExplorerSpawner : GameManagerComponent
     /// </summary>
     private void SpawnExplorers()
     {
+        Vector3[] offscreenSpawnPoints = gameManager.dungeonManager.GetExplorerSpawns();
 
+        for (int i = 0; i < explorerSpawnCount; i ++)
+        {
+            Vector3 spawnPoint = offscreenSpawnPoints[Random.Range(0, offscreenSpawnPoints.Length)];
+            GameObject currExplorer = new GameObject("EXPLORER PLACEHOLDER");
+            currExplorer.transform.position = spawnPoint;
+            currExplorer.transform.parent = explorerCollection.transform;
+        }
     }
 }
