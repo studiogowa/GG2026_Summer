@@ -9,14 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c9f9aaba2d4e774c875d6daf12ac017, type: 3}
-  m_Name: Health Potion
-  m_EditorClassIdentifier: Assembly-CSharp::Item
-  name: Health Potion
+  m_Script: {fileID: 11500000, guid: 819235eed9d817d46bd002ca16200760, type: 3}
+  m_Name: Red Flask
+  m_EditorClassIdentifier: Assembly-CSharp::HealthPotion
+  name: Red Flask
   description: 
   icon: {fileID: 4540878775339986810, guid: f4882e96599b08c4d8080015ab878393, type: 3}
   amount: 1
   value: 0
   isStackable: 1
   isDefaultItem: 0
-  prefab: {fileID: 5923591575856138997, guid: b667ecb887d3fcd4e9d8dd915f68a7cd, type: 3}
+  prefab: {fileID: 2557721817367356906, guid: 3e9949132ba7da04a973c3119ff081c0, type: 3}
+  healAmount: 10

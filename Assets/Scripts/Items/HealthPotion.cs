@@ -1,10 +1,10 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Speed Potion", menuName = "Inventory/Potions/Speed Potion")]
-public class SpeedPotion : Item
+[CreateAssetMenu(fileName = "Health Potion", menuName = "Inventory/Potions/Health Potion")]
+
+public class HealthPotion : Item
 {
-    public float speedBoost;
-    public float duration;
+    public float healAmount;
     private GameObject player;
 
     private void Awake()
@@ -17,7 +17,7 @@ public class SpeedPotion : Item
     {
         if (player.TryGetComponent<PlayerStats>(out PlayerStats stats))
         {
-            stats.StartCoroutine(stats.TempSpeedChange(speedBoost, duration));
+            stats.Heal(healAmount);
         }
     }
 }
