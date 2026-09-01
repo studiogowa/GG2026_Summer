@@ -50,10 +50,6 @@ public class PlayerController : MonoBehaviour
                     }
                  }
             }   
-
-        // Left mouse button to remove focus
-        //if (Mouse.current.leftButton.wasPressedThisFrame)
-        //    RemoveFocus();
         }    
     }
 

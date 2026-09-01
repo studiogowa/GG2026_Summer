@@ -7,9 +7,12 @@ public class PlayerStats : MonoBehaviour
     public float maxHealth;
     public float currentHealth;
 
+    public HealthBar healthBar;
+
     void Awake()
     {
         currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     public IEnumerator TempSpeedChange(float multiplier, float duration)
@@ -24,11 +27,13 @@ public class PlayerStats : MonoBehaviour
     public void Heal(float amount)
     {
         currentHealth = Mathf.Clamp((currentHealth + amount), 0.0f, maxHealth);
+        healthBar.SetHealth(currentHealth);
     }
 
     public void TakeDamage(float amount)
     {
         currentHealth -= amount;
+        healthBar.SetHealth(currentHealth);
 
         if (currentHealth <= 0)
         {
