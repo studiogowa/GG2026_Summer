@@ -33,16 +33,6 @@ public class InventoryUI : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
     {
-        if (inventory == null)
-        {
-            inventory = GetComponent<Inventory>();
-        } 
-        else 
-        {
-            inventory.onItemChangedCallback += UpdateUI;
-            UpdateUI();
-        }
-
         if (itemsParent != null)
         {
             slots = itemsParent.GetComponentsInChildren<InventorySlot>();
@@ -55,6 +45,20 @@ public class InventoryUI : MonoBehaviour
         if (inventoryUI != null)
         {
             inventoryUI.SetActive(false);
+        }
+
+        if (inventory == null && GetType() == typeof(InventoryUI))
+        {
+            GameObject player = GameObject.FindWithTag("Player");
+
+            if (player != null)
+                inventory = player.GetComponent<Inventory>();
+        } 
+
+        if (inventory != null) 
+        {
+            inventory.onItemChangedCallback += UpdateUI;
+            UpdateUI();
         }
     }
 
@@ -69,27 +73,55 @@ public class InventoryUI : MonoBehaviour
     protected virtual void UpdateUI()
     {
         if (inventory == null || slots == null)
+        {
+            ClearAllSlots();
             return;
+        }
+    
+        Debug.Log($"[InventoryUI Debug] Slots array size: {slots.Length} | Allowed Space count: {inventory.space}");
 
         for (int i = 0; i < slots.Length; i++)
         {
-            if (i < inventory.items.Count)
+            if (i < inventory.space)
             {
-                slots[i].AddItem(inventory.items[i], inventory);
-                if (slots[i].amount != null)
+                slots[i].gameObject.SetActive(true);
+
+                if (i < inventory.items.Count)
                 {
-                    if (inventory.items[i].amount > 1)
+                    slots[i].AddItem(inventory.items[i], inventory);
+
+                    if (slots[i].amount != null)
                     {
-                        slots[i].amount.enabled = true;
-                        slots[i].amount.text = inventory.items[i].amount.ToString("n0");
+                        if (inventory.items[i].amount > 1)
+                        {
+                            slots[i].amount.enabled = true;
+                            slots[i].amount.text = inventory.items[i].amount.ToString("n0");
+                        }
+                        else
+                        {
+                            slots[i].amount.enabled = false;
+                        }
                     }
-                    else
-                    {
-                        slots[i].amount.enabled = false;
-                    }
+                }
+                else
+                {
+                    slots[i].ClearSlot();
                 }
             }
             else
+            {
+                slots[i].gameObject.SetActive(false);
+            }
+        }
+    }
+
+    protected void ClearAllSlots()
+    {
+        if (slots == null) return;
+
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i] != null)
             {
                 slots[i].ClearSlot();
             }
