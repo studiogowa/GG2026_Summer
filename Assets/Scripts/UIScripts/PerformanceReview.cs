@@ -88,6 +88,10 @@ public class PerformanceReview : GameUIComponent
     [SerializeField, Range(0.0f, 2.0f)] private float finalRatingPause = 1.5f;
     [SerializeField, Range(0.0f, 2.0f)] private float continueButtonRevealDelay = 2.0f;
     private Coroutine calcualtePerformanceCoroutine;
+
+    [Header("Chest Quality Strategy")]
+    [Tooltip("0 for item amount quality, 1 for value quality")]
+    [SerializeField, Range(0, 1)] private int strategy = 0;
     private IEnumerator CalculatePerformance()
     {
         ComponentsSetAllActive(false);
@@ -117,7 +121,7 @@ public class PerformanceReview : GameUIComponent
             chestQualityRatingText.text = $"Chest Quality: {Random.Range(0.0f, 100.0f):0}/ 100%";
             yield return null;
         }
-        chestQualityRatingText.text = $"Chest Quality: {Mathf.RoundToInt(CalculateChestQuality())}/ 100%";
+        chestQualityRatingText.text = $"Chest Quality: {Mathf.RoundToInt(CalculateChestQuality(strategy))}/ 100%";
         yield return new WaitForSeconds(valueDisplayPause);
 
         // Determine Overall Rating
@@ -166,14 +170,14 @@ public class PerformanceReview : GameUIComponent
     /// Calculates the mean average of the chest quality of all chests
     /// </summary>
     /// <returns>A percentage representing overall chest quality</returns>
-    public float CalculateChestQuality()
+    public float CalculateChestQuality(int strategy)
     {
         float qualitySum = 0;
         foreach (Transform currTransform in GameManager.instance.chestSpawner.chestCollection.transform)
         {
             if (currTransform.TryGetComponent<ChestInventory>(out ChestInventory currChestInventory))
             {
-                qualitySum += currChestInventory.CalculateChestQuality();
+                qualitySum += currChestInventory.CalculateChestQuality(strategy);
             }
         }
 
