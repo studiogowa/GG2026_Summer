@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 819235eed9d817d46bd002ca16200760, type: 3}
+  m_Name: Red Flask
+  m_EditorClassIdentifier: Assembly-CSharp::HealthPotion
+  name: Red Flask
+  description: 
+  icon: {fileID: 4540878775339986810, guid: f4882e96599b08c4d8080015ab878393, type: 3}
+  amount: 1
+  value: 0
+  isStackable: 1
+  isDefaultItem: 0
+  prefab: {fileID: 2557721817367356906, guid: 3e9949132ba7da04a973c3119ff081c0, type: 3}
+  healAmount: 10

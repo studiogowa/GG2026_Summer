@@ -89,8 +89,27 @@ public class InventorySlot : MonoBehaviour
         if (item != null)
         {
             Debug.Log("Item is: " + item.name);
-            item.Use();
-        }
+            bool used = item.Use();
+
+            if (used)
+            {
+                item.amount -= 1;
+
+                if (item.amount <= 0)
+                {
+                    inventory.Remove(item);
+                }
+                else
+                {
+                    inventory.onItemChangedCallback?.Invoke();
+                }
+            }
+            else
+            {
+                return;
+            }
+
+    }
         else
         {
             Debug.Log("Item is null!");

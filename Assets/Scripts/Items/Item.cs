@@ -12,10 +12,10 @@ public class Item : ScriptableObject
     public bool isDefaultItem = false;
     public GameObject prefab;
 
-    public virtual void Use()
+    public virtual bool Use()
     {
         // Use the item
-        
         Debug.Log("Using " + name);
+        return true;
     }
 }
