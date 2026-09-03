@@ -19,14 +19,29 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: a1e6e0b2c8fc36e42a76ea648fd496a9, type: 2}
     stackableMinAmount: 1
     stackableMaxAmount: 1
+  - item: {fileID: 11400000, guid: b02026a1e98b05a4d884d9cd6033e9d9, type: 2}
+    stackableMinAmount: 1
+    stackableMaxAmount: 1
   - item: {fileID: 11400000, guid: 882f7f9d0611a064aadccd01c1d29476, type: 2}
     stackableMinAmount: 0
     stackableMaxAmount: 1
-  - item: {fileID: 11400000, guid: 182c94469f128ea44b7405413be0273b, type: 2}
+  - item: {fileID: 11400000, guid: e5455411dc289634d930df1c351a7175, type: 2}
     stackableMinAmount: 0
     stackableMaxAmount: 1
+  - item: {fileID: 11400000, guid: 86618b2552ad9594aa26d2b0850c4f73, type: 2}
+    stackableMinAmount: 1
+    stackableMaxAmount: 1
+  - item: {fileID: 11400000, guid: 182c94469f128ea44b7405413be0273b, type: 2}
+    stackableMinAmount: 1
+    stackableMaxAmount: 1
+  - item: {fileID: 11400000, guid: ab288975e805824488149d0af214b673, type: 2}
+    stackableMinAmount: 1
+    stackableMaxAmount: 5
   - item: {fileID: 11400000, guid: ec94d2d6d02e8eb45860b1c96f87e1e1, type: 2}
-    stackableMinAmount: 0
+    stackableMinAmount: 1
+    stackableMaxAmount: 1
+  - item: {fileID: 11400000, guid: ddbe8859d21ac814a9e82059b007a9da, type: 2}
+    stackableMinAmount: 1
     stackableMaxAmount: 1
   - item: {fileID: 11400000, guid: f2c3f282d8ab4a749a806c6fbf4e293d, type: 2}
     stackableMinAmount: 1
@@ -36,26 +51,56 @@ MonoBehaviour:
     stackableMaxAmount: 1
   - item: {fileID: 11400000, guid: f413b03f4a8d010428a4af0df0664ddd, type: 2}
     stackableMinAmount: 1
-    stackableMaxAmount: 5
+    stackableMaxAmount: 1
+  - item: {fileID: 11400000, guid: 4f0d0bd5a2be1674290bc10e9908cc07, type: 2}
+    stackableMinAmount: 1
+    stackableMaxAmount: 1
   - item: {fileID: 11400000, guid: 9bd20867ea937cd4c9821ca91ae13ae6, type: 2}
     stackableMinAmount: 1
     stackableMaxAmount: 1
-  - item: {fileID: 11400000, guid: bca3ff7a5647d6546a0654b3a4b85c22, type: 2}
+  - item: {fileID: 11400000, guid: b7da6eaaf07eeed4391ac2bb7c3ed085, type: 2}
     stackableMinAmount: 1
     stackableMaxAmount: 1
-  - item: {fileID: 11400000, guid: 8b025f889144c954b85317acd3bcb2f1, type: 2}
+  - item: {fileID: 11400000, guid: 6236b266cb98a3a478c54f08308b00ab, type: 2}
     stackableMinAmount: 1
     stackableMaxAmount: 1
-  - item: {fileID: 11400000, guid: c86b71dd944af1c4080525b03d6c09bd, type: 2}
+  - item: {fileID: 11400000, guid: 6f4cf12bf65cedd4c9e3eaaa1778cf81, type: 2}
+    stackableMinAmount: 1
+    stackableMaxAmount: 1
+  - item: {fileID: 11400000, guid: c9d7ee1d526d54345b4312440a8a0e52, type: 2}
+    stackableMinAmount: 1
+    stackableMaxAmount: 1
+  - item: {fileID: 11400000, guid: 39e4a0ef85dd6f4418fcbc7bcd507238, type: 2}
+    stackableMinAmount: 1
+    stackableMaxAmount: 1
+  - item: {fileID: 11400000, guid: 3b6d1ad5e0003d8428c083fe99e42350, type: 2}
     stackableMinAmount: 1
     stackableMaxAmount: 1
   - item: {fileID: 11400000, guid: 24a4e316a5465fa47ab844f19397a049, type: 2}
+    stackableMinAmount: 1
+    stackableMaxAmount: 1
+  - item: {fileID: 11400000, guid: 45e29ff8bd9f5bd47aa7d14d6309bdb5, type: 2}
+    stackableMinAmount: 1
+    stackableMaxAmount: 1
+  - item: {fileID: 11400000, guid: ce88e2f7b84fa974f8c11712156b35ff, type: 2}
+    stackableMinAmount: 1
+    stackableMaxAmount: 1
+  - item: {fileID: 11400000, guid: 999ecc8adcae24c4da4e84b30dfd403f, type: 2}
+    stackableMinAmount: 1
+    stackableMaxAmount: 1
+  - item: {fileID: 11400000, guid: 698a78ae764e9bf4abf81596733bebde, type: 2}
+    stackableMinAmount: 1
+    stackableMaxAmount: 1
+  - item: {fileID: 11400000, guid: c1a926a3a2fa8124c836f695c9a831a8, type: 2}
     stackableMinAmount: 1
     stackableMaxAmount: 1
   - item: {fileID: 11400000, guid: f5a670d7dfbe7b34ba642619b62eb617, type: 2}
     stackableMinAmount: 1
     stackableMaxAmount: 1
   - item: {fileID: 11400000, guid: 6b44c25fe01f08e46b65cbe835ed10f6, type: 2}
+    stackableMinAmount: 1
+    stackableMaxAmount: 1
+  - item: {fileID: 11400000, guid: 77b5ef3835859eb48851f5590cec25b0, type: 2}
     stackableMinAmount: 1
     stackableMaxAmount: 1
   - item: {fileID: 11400000, guid: 3b2c83cc3a36b47449ec8f2deeca924f, type: 2}
