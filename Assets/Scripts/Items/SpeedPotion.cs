@@ -13,11 +13,16 @@ public class SpeedPotion : Item
     } 
 
 
-    public override void Use()
+    public override bool Use()
     {
         if (player.TryGetComponent<PlayerStats>(out PlayerStats stats))
         {
             stats.StartCoroutine(stats.TempSpeedChange(speedBoost, duration));
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

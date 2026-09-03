@@ -13,11 +13,24 @@ public class HealthPotion : Item
     } 
 
 
-    public override void Use()
+    public override bool Use()
     {
         if (player.TryGetComponent<PlayerStats>(out PlayerStats stats))
         {
-            stats.Heal(healAmount);
+            if (stats.currentHealth < stats.maxHealth)
+            {
+                stats.Heal(healAmount);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+        else
+        {
+            return false;
         }
     }
 }

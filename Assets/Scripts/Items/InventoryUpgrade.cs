@@ -13,12 +13,24 @@ public class InventoryUpgrade : Item
     } 
 
 
-    public override void Use()
+    public override bool Use()
     {
         if (player.TryGetComponent<PlayerInventory>(out PlayerInventory inventory))
         {
-            inventory.space += slotUpgrade;
-            inventory.onItemChangedCallback?.Invoke();
+            if (inventory.space < 20)
+            {
+                inventory.space = Mathf.Min(inventory.space + slotUpgrade, 20);
+                inventory.onItemChangedCallback?.Invoke();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
         }
     }
 }
