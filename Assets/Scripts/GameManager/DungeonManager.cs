@@ -13,7 +13,18 @@ public class DungeonManager : GameManagerComponent
 
     public Vector3 GetPlayerSpawn()
     {
+        if (dungeon == null) return new Vector3();
         return dungeon.playerSpawn.GetPlayerSpawn();
+    }
+
+    /// <summary>
+    /// Gets all OFFSCREEN explorer spawn coordinates for this Dungeon
+    /// </summary>
+    /// <returns>Returns an Array of Vector 3 Coordinates</returns>
+    public Vector3[] GetExplorerSpawns()
+    {
+        if (dungeon == null) return new Vector3[0];
+        return dungeon.explorer.GetSpawnPoints();
     }
 
     public int chestSpawnPointCount { get { return dungeon.chests.chestSpawnPointCount; } }
