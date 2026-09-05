@@ -10,15 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d25fe018ca61cf04aa68018e10085928, type: 3}
-  m_Name: Shift1
+  m_Name: ShiftData
   m_EditorClassIdentifier: Assembly-CSharp::ShiftData
-  chestCount: 3
-  chestAmountTargets: 020000000200000002000000
-  chestValueTargets: 040000000400000004000000
+  chestCount: 5
+  chestValueTargets: 
   lootablesCount: 5
-  lootablesItemCount: 0300000003000000030000000300000003000000
-  explorerCount: 1
-  passingGrade: 50
+  lootablesItemCount: 
+  explorerCount: 5
   preGameTime: 5
   duskRoundTime: 30
   preDawnTime: 5

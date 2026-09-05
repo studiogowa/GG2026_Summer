@@ -50,13 +50,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   player: {fileID: 0}
-  <preGameTime>k__BackingField: 5
-  <duskRoundTime>k__BackingField: 2
-  <preDawnTime>k__BackingField: 3
-  <dawnRoundTime>k__BackingField: 5
-  <preDayTime>k__BackingField: 3
-  <dayRoundTime>k__BackingField: 2
-  <dayEndPause>k__BackingField: 3
+  shiftData:
+  - {fileID: 11400000, guid: 6fd299a6f8886364993caa47e03b98b9, type: 2}
+  - {fileID: 11400000, guid: 63cee6eaa6cb3a443b856803f5808979, type: 2}
+  - {fileID: 11400000, guid: d7da79cafd681d242ac26f3ce5ca2d48, type: 2}
+  currShift: 0
   gameState: 0
   playerManager: {fileID: 0}
   resourceGenerator: {fileID: 0}
@@ -105,7 +103,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   chestPrefab: {fileID: 1214321361374289206, guid: f6aa0ed69c21b534f82e82af4dd7e335, type: 3}
-  <chestSpawnCount>k__BackingField: 2
 --- !u!114 &523195440910688511
 MonoBehaviour:
   m_ObjectHideFlags: 0

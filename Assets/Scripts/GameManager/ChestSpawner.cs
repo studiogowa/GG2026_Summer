@@ -5,7 +5,7 @@ public class ChestSpawner : GameManagerComponent
     [SerializeField] private GameObject chestPrefab;
     public GameObject chestCollection { get; private set; }
     public int chestsSpawned { get { return chestCollection.transform.childCount; } }
-    [field: SerializeField, Range(1, 12)] public int chestSpawnCount { get; private set; } = 6;
+    public int chestSpawnCount { get; private set; }
 
     protected override void Awake()
     {
@@ -50,6 +50,7 @@ public class ChestSpawner : GameManagerComponent
             Debug.LogWarning("No Chests Spawn Points were set! No Chests will spawn!");
             return;
         }
+        chestSpawnCount = gameManager.currShiftData.chestCount;
         // Clamp chest spawn count if too many chests will spawn
         if (chestSpawnCount > gameManager.dungeonManager.chestSpawnPointCount)
         {
@@ -61,6 +62,7 @@ public class ChestSpawner : GameManagerComponent
         Vector3[] spawnPoints = gameManager.dungeonManager.GetChestSpawns(chestSpawnCount);
 
         // Spawn chests
+        int currChestCount = 0;
         foreach (Vector3 spawnCoords in spawnPoints)
         {
             GameObject chest = Instantiate(chestPrefab);
@@ -70,9 +72,11 @@ public class ChestSpawner : GameManagerComponent
             // Set chest value target
             if (chest.TryGetComponent<ChestInventory>(out ChestInventory currChestInventory))
             {
-                currChestInventory.SetValueTarget(Random.Range(3, 7));
-                currChestInventory.SetAmountTarget(Random.Range(1, 4));
+                currChestInventory.SetValueTarget(gameManager.currShiftData.chestValueTargets[currChestCount]);
+                currChestInventory.SetAmountTarget(gameManager.currShiftData.chestAmountTargets[currChestCount]);
             }
+
+            currChestCount++;
         }
     }
 }

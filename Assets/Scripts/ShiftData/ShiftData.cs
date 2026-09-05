@@ -5,12 +5,15 @@ public class ShiftData : ScriptableObject
 {
     [Header("Shift Interactables Variables")]
     [Range(1, 15)] public int chestCount = 5;
+    public int[] chestAmountTargets;
     public int[] chestValueTargets;
     [Space(10)]
     [Range(1, 15)] public int lootablesCount = 5;
     public int[] lootablesItemCount;
     [Space(10)]
     [Range(1, 15)] public int explorerCount = 5;
+    [Space(10)]
+    [Range(0, 100)] public int passingGrade = 50;
 
     [Header("Shift Timing Variables (in seconds)")]
     [Range(0.0f, 30.0f)] public float preGameTime = 5.0f;

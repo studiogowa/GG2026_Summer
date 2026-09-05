@@ -2,19 +2,19 @@ using UnityEngine;
 
 public class ExplorerSpawner : GameManagerComponent
 {
+    [SerializeField] private GameObject explorerPrefab;
     private GameObject explorerCollection;
+    [field: SerializeField, Range(1, 12)] public int explorerSpawnCount { get; private set; } = 6;
     protected override void Awake()
     {
         base.Awake();
-        if (explorerCollection == null) Debug.LogError("Reference the Explorer Prefab to the ExplorerSpawner Component!");
+        if (explorerPrefab == null) Debug.LogError("Reference the Explorer Prefab to the ExplorerSpawner Component!");
         if (explorerCollection == null)
         {
             explorerCollection = new GameObject("EXPLORER COLLECTION");
             explorerCollection.transform.parent = this.transform;
         }
     }
-    [SerializeField] private GameObject explorerPrefab;
-    [field: SerializeField, Range(1, 12)] public int explorerSpawnCount { get; private set; } = 6;
     protected void OnEnable()
     {
         gameManager.gameEvents.dawnStarts += SpawnExplorers;

@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Game Progression Variables")]
     [SerializeField] private List<ShiftData> shiftData;
-    [SerializeField] private int currShift = 0;
+    [SerializeField, Range(0, 8)] private int currShift= 0;
+    public ShiftData currShiftData { get { return shiftData[currShift]; } }
 
     [field: SerializeField] public GameState gameState = GameState.Dusk;
 
@@ -55,7 +56,7 @@ public class GameManager : MonoBehaviour
         gameState = GameState.PreGame;
 
         gameStartTime = Time.time;
-        gameEndTime = gameStartTime + shiftData[currShift].duskRoundTime;
+        gameEndTime = gameStartTime + shiftData[currShift].preGameTime;
 
         gameEvents.preGameStarts?.Invoke();
         trackRoundProgressCoroutine = StartCoroutine(TrackRoundProgress());

@@ -37,7 +37,6 @@ public class ChestInventory : Inventory
         float differenceRatio = Mathf.Clamp(Mathf.Abs(amountTarget - items.Count) / (float)amountTarget, 0.0f, 100.0f);
         float ret = 1 - differenceRatio;
 
-        Debug.Log($"This chest has {items.Count} with a rating of {ret}");
         return ret * 100;
     }
     private float CalculateValueQuality()
@@ -48,7 +47,6 @@ public class ChestInventory : Inventory
         float differenceRatio = Mathf.Clamp(Mathf.Abs(valueTarget - valueSum) / (float)valueTarget, 0.0f, 100.0f);
         float ret = 1 - differenceRatio;
 
-        Debug.Log($"This chest has {valueSum} with a rating of {ret}");
         return ret * 100;
     }
     public bool IsEmpty()
