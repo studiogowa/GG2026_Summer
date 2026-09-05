@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d25fe018ca61cf04aa68018e10085928, type: 3}
+  m_Name: Shift3
+  m_EditorClassIdentifier: Assembly-CSharp::ShiftData
+  chestCount: 5
+  chestValueTargets: 0400000004000000040000000600000006000000
+  lootablesCount: 5
+  lootablesItemCount: 0300000002000000020000000500000002000000
+  explorerCount: 2
+  preGameTime: 5
+  duskRoundTime: 30
+  preDawnTime: 5
+  dawnRoundTime: 60
+  preDayTime: 5
+  dayRoundTime: 30
+  dayEndPause: 5

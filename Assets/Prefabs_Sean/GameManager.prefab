@@ -118,6 +118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd3e61abb51ca9742adc963991518617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  explorerPrefab: {fileID: 6034929124121714946, guid: 91ac8dd27d4e8bf459515a3a2f087ba6, type: 3}
+  <explorerSpawnCount>k__BackingField: 6
 --- !u!114 &4948255547315645493
 MonoBehaviour:
   m_ObjectHideFlags: 0

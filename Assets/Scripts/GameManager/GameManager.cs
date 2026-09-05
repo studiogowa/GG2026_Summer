@@ -7,13 +7,8 @@ public class GameManager : MonoBehaviour
     public GameObject player;
 
     [Header("Game Progression Variables")]
-    [field: SerializeField, Range(0.0f, 30.0f)] public float preGameTime { get; private set; } = 5.0f;
-    [field: SerializeField, Range(0.0f, 360.0f)] public float duskRoundTime { get; private set; } = 120.0f;
-    [field: SerializeField, Range(0.0f, 30.0f)] public float preDawnTime { get; private set; } = 5.0f;
-    [field: SerializeField, Range(0.0f, 360.0f)] public float dawnRoundTime { get; private set; } = 120.0f;
-    [field: SerializeField, Range(0.0f, 30.0f)] public float preDayTime { get; private set; } = 5.0f;
-    [field: SerializeField, Range(0.0f, 360.0f)] public float dayRoundTime { get; private set; } = 120.0f;
-    [field: SerializeField, Range(0.0f, 30.0f)] public float dayEndPause { get; private set; } = 5.0f;
+    [SerializeField] private List<ShiftData> shiftData;
+    [SerializeField] private int currShift = 0;
 
     [field: SerializeField] public GameState gameState = GameState.Dusk;
 
@@ -60,7 +55,7 @@ public class GameManager : MonoBehaviour
         gameState = GameState.PreGame;
 
         gameStartTime = Time.time;
-        gameEndTime = gameStartTime + duskRoundTime;
+        gameEndTime = gameStartTime + shiftData[currShift].duskRoundTime;
 
         gameEvents.preGameStarts?.Invoke();
         trackRoundProgressCoroutine = StartCoroutine(TrackRoundProgress());
@@ -70,7 +65,7 @@ public class GameManager : MonoBehaviour
         gameState = GameState.Dusk;
 
         gameStartTime = Time.time;
-        gameEndTime = gameStartTime + duskRoundTime;
+        gameEndTime = gameStartTime + shiftData[currShift].duskRoundTime;
 
         gameEvents.duskStarts?.Invoke();
         trackRoundProgressCoroutine = StartCoroutine(TrackRoundProgress());
@@ -80,7 +75,7 @@ public class GameManager : MonoBehaviour
         gameState = GameState.Dawn;
 
         gameStartTime = Time.time;
-        gameEndTime = gameStartTime + dawnRoundTime;
+        gameEndTime = gameStartTime + shiftData[currShift].dawnRoundTime;
 
         gameEvents.dawnStarts?.Invoke();
         trackRoundProgressCoroutine = StartCoroutine(TrackRoundProgress());
@@ -90,7 +85,7 @@ public class GameManager : MonoBehaviour
         gameState = GameState.Day;
 
         gameStartTime = Time.time;
-        gameEndTime = gameStartTime + dayRoundTime;
+        gameEndTime = gameStartTime + shiftData[currShift].dayRoundTime;
 
         gameEvents.dayStarts?.Invoke();
         trackRoundProgressCoroutine = StartCoroutine(TrackRoundProgress());
@@ -124,17 +119,17 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.Dusk:
                 gameEvents.duskEnds?.Invoke();
-                yield return new WaitForSeconds(preDawnTime);
+                yield return new WaitForSeconds(shiftData[currShift].preDawnTime);
                 StartDawnRound();
                 break;
             case GameState.Dawn:
                 gameEvents.dawnEnds?.Invoke();
-                yield return new WaitForSeconds(preDayTime);
+                yield return new WaitForSeconds(shiftData[currShift].preDayTime);
                 StartDayRound();
                 break;
             case GameState.Day:
                 DayEnd();
-                yield return new WaitForSeconds(dayEndPause);
+                yield return new WaitForSeconds(shiftData[currShift].dayEndPause);
                 gameEvents.performanceReviewStarts?.Invoke();
                 break;
         }
