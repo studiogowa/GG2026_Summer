@@ -19,13 +19,13 @@ public class ResourceGenerator : GameManagerComponent
     }
     private void OnEnable()
     {
-        gameManager.gameEvents.duskStarts += DuskSetup;
+        gameManager.gameEvents.preGameStarts += SetupResources;
     }
     private void OnDisable()
     {
-        gameManager.gameEvents.duskStarts -= DuskSetup;
+        gameManager.gameEvents.preGameStarts -= SetupResources;
     }
-    private void DuskSetup()
+    private void SetupResources()
     {
         ClearResources();
         GenerateResources();

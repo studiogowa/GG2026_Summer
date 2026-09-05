@@ -121,7 +121,8 @@ public class PerformanceReview : GameUIComponent
             chestQualityRatingText.text = $"Chest Quality: {Random.Range(0.0f, 100.0f):0}/ 100%";
             yield return null;
         }
-        chestQualityRatingText.text = $"Chest Quality: {Mathf.RoundToInt(CalculateChestQuality(strategy))}/ 100%";
+        int shiftScore = Mathf.RoundToInt(CalculateChestQuality(strategy));
+        chestQualityRatingText.text = $"Chest Quality: {shiftScore}/ 100%";
         yield return new WaitForSeconds(valueDisplayPause);
 
         // Determine Overall Rating
@@ -135,9 +136,12 @@ public class PerformanceReview : GameUIComponent
             finalRatingText.text += resultsText[i];
             RuntimeManager.PlayOneShot(TypingSFX);
         }
-
         yield return new WaitForSeconds(finalRatingPause);
-        finalRatingText.text = "Okay I guess";
+
+        // Display Shift Rating
+        if (GameManager.instance.DeterminePassOrFail(shiftScore)) finalRatingText.text = "Okay I guess";
+        else finalRatingText.text = "Disappointing";
+
         RuntimeManager.PlayOneShot(StampSFX);
         yield return new WaitForSeconds(continueButtonRevealDelay);
         continueButton.gameObject.SetActive(true);

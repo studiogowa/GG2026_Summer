@@ -1,13 +1,12 @@
 using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
     public GameObject player;
 
     [Header("Game Progression Variables")]
-    [SerializeField] private List<ShiftData> shiftData;
+    [SerializeField] private ShiftData[] shiftData;
     [SerializeField, Range(0, 8)] private int currShift= 0;
     public ShiftData currShiftData { get { return shiftData[currShift]; } }
 
@@ -49,7 +48,9 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         StopAllCoroutines();
-        StartPreGameSetup();
+        // If player is still Shift Climbing
+        if (currShift < shiftData.Length) StartPreGameSetup();
+        else Debug.Log("Player Wins!");
     }
     private void StartPreGameSetup()
     {
@@ -136,6 +137,16 @@ public class GameManager : MonoBehaviour
         }
 
         yield break;
+    }
+    public bool DeterminePassOrFail(int score)
+    {
+        if (score >= currShiftData.passingGrade)
+        {
+            // Progress to next day
+            currShift = Mathf.Clamp(currShift + 1, 0, shiftData.Length);
+            return true;
+        }
+        else return false;
     }
 }
 

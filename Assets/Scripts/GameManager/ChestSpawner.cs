@@ -19,11 +19,11 @@ public class ChestSpawner : GameManagerComponent
     }
     private void OnEnable()
     {
-        gameManager.gameEvents.duskStarts += SetupChests;
+        gameManager.gameEvents.preGameStarts += SetupChests;
     }
     private void OnDisable()
     {
-        gameManager.gameEvents.duskStarts -= SetupChests;
+        gameManager.gameEvents.preGameStarts -= SetupChests;
     }
     private void SetupChests()
     {
