@@ -72,8 +72,8 @@ public class ChestSpawner : GameManagerComponent
             // Set chest value target
             if (chest.TryGetComponent<ChestInventory>(out ChestInventory currChestInventory))
             {
-                currChestInventory.SetValueTarget(gameManager.currShiftData.chestValueTargets[currChestCount]);
-                currChestInventory.SetAmountTarget(gameManager.currShiftData.chestAmountTargets[currChestCount]);
+                currChestInventory.SetValueTarget(gameManager.currShiftData.chests[currChestCount].chestValueTarget);
+                currChestInventory.SetAmountTarget(gameManager.currShiftData.chests[currChestCount].chestAmountTarget);
             }
 
             currChestCount++;

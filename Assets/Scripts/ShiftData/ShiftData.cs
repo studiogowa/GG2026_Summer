@@ -4,12 +4,11 @@ using UnityEngine;
 public class ShiftData : ScriptableObject
 {
     [Header("Shift Interactables Variables")]
-    [Range(1, 15)] public int chestCount = 5;
-    public int[] chestAmountTargets;
-    public int[] chestValueTargets;
+    public ShiftChestData[] chests;
+    public int chestCount { get { return chests.Length; } }
     [Space(10)]
-    [Range(1, 15)] public int lootablesCount = 5;
-    public int[] lootablesItemCount;
+    public ShiftLootablesData[] lootables;
+    public int lootablesCount { get { return lootables.Length; } }
     [Space(10)]
     [Range(1, 15)] public int explorerCount = 5;
     [Space(10)]
@@ -23,4 +22,17 @@ public class ShiftData : ScriptableObject
     [Range(0.0f, 30.0f)] public float preDayTime = 5.0f;
     [Range(0.0f, 180.0f)] public float dayRoundTime = 30.0f;
     [Range(0.0f, 30.0f)] public float dayEndPause = 5.0f;
+}
+
+[System.Serializable]
+public struct ShiftChestData
+{
+    [Range(0, 6)] public int chestAmountTarget;
+    [Range(0, 12)] public int chestValueTarget;
+}
+
+[System.Serializable]
+public struct ShiftLootablesData
+{
+    [Range(1, 8)] public int itemCount;
 }

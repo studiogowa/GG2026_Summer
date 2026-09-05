@@ -12,11 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d25fe018ca61cf04aa68018e10085928, type: 3}
   m_Name: Shift3
   m_EditorClassIdentifier: Assembly-CSharp::ShiftData
-  chestCount: 5
-  chestAmountTargets: 0200000002000000020000000300000003000000
-  chestValueTargets: 0400000004000000040000000600000006000000
-  lootablesCount: 10
-  lootablesItemCount: 01000000020000000100000003000000020000000200000004000000020000000500000002000000
+  chests:
+  - chestAmountTarget: 2
+    chestValueTarget: 4
+  - chestAmountTarget: 2
+    chestValueTarget: 4
+  - chestAmountTarget: 2
+    chestValueTarget: 4
+  - chestAmountTarget: 2
+    chestValueTarget: 4
+  - chestAmountTarget: 2
+    chestValueTarget: 4
+  lootables:
+  - itemCount: 0
+  - itemCount: 2
+  - itemCount: 1
+  - itemCount: 3
+  - itemCount: 2
+  - itemCount: 2
+  - itemCount: 4
+  - itemCount: 2
+  - itemCount: 5
+  - itemCount: 2
   explorerCount: 3
   passingGrade: 50
   preGameTime: 5

@@ -4,11 +4,8 @@ public class ResourceGenerator : GameManagerComponent
 {
     [SerializeField] private GameObject bodyPrefab;
     [SerializeField] private ItemPool bodyItemPool;
-    [SerializeField, Range(1, 5)] private int bodyItemCountMin = 1;
-    [SerializeField, Range(1, 5)] private int bodyItemCountMax = 1;
     public GameObject resourceCollection { get; private set; }
-
-    [field: SerializeField, Range(1, 20)] public int resourceSpawnCount { get; private set; } = 6;
+    private int resourceSpawnCount = 6;
     protected override void Awake()
     {
         base.Awake();
@@ -50,6 +47,7 @@ public class ResourceGenerator : GameManagerComponent
             Debug.LogWarning("No Resource Spawn Points were set! No Resources will spawn!");
             return;
         }
+        resourceSpawnCount = gameManager.currShiftData.lootablesCount;
         // Clamp resource spawn count if too many resources will spawn
         if (resourceSpawnCount > gameManager.dungeonManager.resourceSpawnPointCount)
         {
@@ -61,6 +59,7 @@ public class ResourceGenerator : GameManagerComponent
         Vector3[] spawnPoints = gameManager.dungeonManager.GetResourceSpawns(resourceSpawnCount);
 
         // Spawn Resources
+        int currResourceCount = 0;
         foreach (Vector3 spawnCoords in spawnPoints)
         {
             GameObject body = Instantiate(bodyPrefab);
@@ -70,9 +69,11 @@ public class ResourceGenerator : GameManagerComponent
             if (!body.TryGetComponent<LootInventory>(out LootInventory inventory)) Debug.LogWarning($"Spawned {body.name} DOES NOT have a LootInventory Component!");
             else
             {
-                ItemPoolItem[] itemArray = ChooseItem(bodyItemPool, Random.Range(bodyItemCountMin, bodyItemCountMax+1));
+                ItemPoolItem[] itemArray = ChooseItem(bodyItemPool, gameManager.currShiftData.lootables[currResourceCount].itemCount);
                 foreach (ItemPoolItem item in itemArray) inventory.Add(item.item, Random.Range(item.stackableMinAmount, item.stackableMaxAmount+1));
             }
+
+            currResourceCount++;
         }
     }
     /// <summary>
