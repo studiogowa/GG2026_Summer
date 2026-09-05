@@ -66,6 +66,13 @@ public class ChestSpawner : GameManagerComponent
             GameObject chest = Instantiate(chestPrefab);
             chest.transform.parent = chestCollection.transform;
             chest.transform.position = spawnCoords;
+
+            // Set chest value target
+            if (chest.TryGetComponent<ChestInventory>(out ChestInventory currChestInventory))
+            {
+                currChestInventory.SetValueTarget(Random.Range(3, 7));
+                currChestInventory.SetAmountTarget(Random.Range(1, 4));
+            }
         }
     }
 }

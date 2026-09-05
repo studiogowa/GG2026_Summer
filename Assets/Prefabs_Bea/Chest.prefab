@@ -262,6 +262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ChestInventory
   space: 20
   items: []
+  valueTarget: 1
 --- !u!1 &5384036432526751753
 GameObject:
   m_ObjectHideFlags: 0

@@ -88,6 +88,10 @@ public class PerformanceReview : GameUIComponent
     [SerializeField, Range(0.0f, 2.0f)] private float finalRatingPause = 1.5f;
     [SerializeField, Range(0.0f, 2.0f)] private float continueButtonRevealDelay = 2.0f;
     private Coroutine calcualtePerformanceCoroutine;
+
+    [Header("Chest Quality Strategy")]
+    [Tooltip("0 for item amount quality, 1 for value quality")]
+    [SerializeField, Range(0, 1)] private int strategy = 0;
     private IEnumerator CalculatePerformance()
     {
         ComponentsSetAllActive(false);
@@ -105,7 +109,7 @@ public class PerformanceReview : GameUIComponent
             chestsFilledText.text = $"Chests Filled: {Random.Range(0, GameManager.instance.chestSpawner.chestsSpawned)}/ {GameManager.instance.chestSpawner.chestsSpawned}";
             yield return null;
         }
-        chestsFilledText.text = $"Chests Filled: ?/ {GetChestsFilledCount()}";
+        chestsFilledText.text = $"Chests Filled: {GetChestsFilledCount()}/ {GameManager.instance.chestSpawner.chestsSpawned}";
         yield return new WaitForSeconds(valueDisplayPause);
 
         // Determine Chest Quality
@@ -114,10 +118,10 @@ public class PerformanceReview : GameUIComponent
         RuntimeManager.PlayOneShot(ChestQualitySFX);
         while (Time.time < timeStart + chestQualityTime)
         {
-            chestQualityRatingText.text = $"Chest Quality: {Random.Range(50.0f, 100.0f):0}/ 100%";
+            chestQualityRatingText.text = $"Chest Quality: {Random.Range(0.0f, 100.0f):0}/ 100%";
             yield return null;
         }
-        chestQualityRatingText.text = $"Chest Quality: {CalculateChestQuality():0}/ 100%";
+        chestQualityRatingText.text = $"Chest Quality: {Mathf.RoundToInt(CalculateChestQuality(strategy))}/ 100%";
         yield return new WaitForSeconds(valueDisplayPause);
 
         // Determine Overall Rating
@@ -148,25 +152,35 @@ public class PerformanceReview : GameUIComponent
 
         continueButton.gameObject.SetActive(isActive);
     }
-
+    /// <summary>
+    /// Tallies the number of Chests that are filled by the Player
+    /// </summary>
+    /// <returns>The number of non-empty Chests</returns>
     public int GetChestsFilledCount()
     {
         int count = 0;
         foreach (Transform currTransform in GameManager.instance.chestSpawner.chestCollection.transform)
         {
-            if (currTransform) count++;
+            if (currTransform.TryGetComponent<ChestInventory>(out ChestInventory currChestInventory) && !currChestInventory.IsEmpty()) count++;
         }
 
         return count;
     }
-    public float CalculateChestQuality()
+    /// <summary>
+    /// Calculates the mean average of the chest quality of all chests
+    /// </summary>
+    /// <returns>A percentage representing overall chest quality</returns>
+    public float CalculateChestQuality(int strategy)
     {
-        float quality = 0;
+        float qualitySum = 0;
         foreach (Transform currTransform in GameManager.instance.chestSpawner.chestCollection.transform)
         {
-            if (currTransform) quality = Random.Range(50.0f, 100.0f);
+            if (currTransform.TryGetComponent<ChestInventory>(out ChestInventory currChestInventory))
+            {
+                qualitySum += currChestInventory.CalculateChestQuality(strategy);
+            }
         }
 
-        return quality;
+        return qualitySum/ GameManager.instance.chestSpawner.chestSpawnCount;
     }
 }
