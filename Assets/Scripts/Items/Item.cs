@@ -1,3 +1,5 @@
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
@@ -11,10 +13,17 @@ public class Item : ScriptableObject
     public bool isStackable = false;
     public bool isDefaultItem = false;
     public GameObject prefab;
+    public EventReference useSFX;
+    public int soundtype;
+    private EventInstance useSFXInstance;
 
     public virtual bool Use()
     {
         // Use the item
+        useSFXInstance = RuntimeManager.CreateInstance(useSFX);
+        useSFXInstance.setParameterByName("ItemType", soundtype);
+        useSFXInstance.start();
+        useSFXInstance.release();
         Debug.Log("Using " + name);
         return true;
     }

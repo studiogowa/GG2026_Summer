@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{16bccca7-35bc-4de4-8bc9-a291e793987e}">
+		<property name="name">
+			<value>ItemType</value>
+		</property>
+		<relationship name="folder">
+			<destination>{2884a36b-a558-4c4b-b9ca-9beb66b91749}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{95e0deda-4a41-4c01-b920-db0e771c9437}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{95e0deda-4a41-4c01-b920-db0e771c9437}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>8</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>Jewelery</value>
+			<value>Weapon</value>
+			<value>Leather</value>
+			<value>Metal</value>
+			<value>Magic</value>
+			<value>Wood</value>
+			<value>Money</value>
+			<value>Value A</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

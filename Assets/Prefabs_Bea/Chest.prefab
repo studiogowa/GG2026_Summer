@@ -247,6 +247,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   radius: 1.5
   interactionTransform: {fileID: 1551257804863911340}
+  openSFX:
+    Guid:
+      Data1: -153528798
+      Data2: 1268225369
+      Data3: -928866369
+      Data4: -841186447
+    Path: event:/SFX/ChestOpen
+  closeSFX:
+    Guid:
+      Data1: 1765258824
+      Data2: 1127597535
+      Data3: 1836549817
+      Data4: 900541123
+    Path: event:/SFX/ChestClose
   hasInteracted: 0
 --- !u!114 &1986229896402187038
 MonoBehaviour:
@@ -262,6 +276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ChestInventory
   space: 20
   items: []
+  amountTarget: 1
   valueTarget: 1
 --- !u!1 &5384036432526751753
 GameObject:

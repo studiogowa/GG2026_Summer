@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine;
+using FMODUnity;
 
 public class Loot : Interactable
 {
@@ -29,6 +30,7 @@ public class Loot : Interactable
 
     private void OpenLoot()
     {
+        RuntimeManager.PlayOneShot(openSFX);
         hasInteracted = true;
         LootUI.instance.OpenLootUI(lootInventory);
 
@@ -37,6 +39,7 @@ public class Loot : Interactable
 
     private void CloseLoot()
     {
+        RuntimeManager.PlayOneShot(closeSFX);
         hasInteracted = false;
         LootUI.instance.CloseLootUI();
 

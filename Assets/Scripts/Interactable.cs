@@ -1,9 +1,12 @@
+using FMODUnity;
 using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
     public float radius = 3f; // how close a player needs to get to interact with an object
     public Transform interactionTransform; // where a player needs to be to interact with an object
+    public EventReference openSFX;
+    public EventReference closeSFX;
 
     bool isFocus = false;
     Transform player;

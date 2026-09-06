@@ -1,8 +1,11 @@
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class PauseMenu : GameUIComponent
 {
     private Animator animator;
+    public EventReference pauseOn;
+    public EventReference pauseExit;
     protected override void Awake()
     {
         base.Awake();
@@ -28,7 +31,7 @@ public class PauseMenu : GameUIComponent
         // 
         //  PUT PAUSING SOUND EFFECT HERE
         //
-
+        RuntimeManager.PlayOneShot(pauseOn);
         isPaused = true;
         Time.timeScale = 0.0f;
         ui.hud.SetChildrenActive(false);
@@ -41,7 +44,7 @@ public class PauseMenu : GameUIComponent
         // 
         //  PUT UNPAUSING SOUND EFFECT HERE
         //
-
+        RuntimeManager.PlayOneShot(pauseExit);
         isPaused = false;
         Time.timeScale = 1.0f;
         ui.hud.SetChildrenActive(true);

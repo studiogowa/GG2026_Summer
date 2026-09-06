@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{7fb69085-73c8-4ee4-ad20-4becd40f4d4e}">
+		<property name="assetPath">
+			<value>PauseClose.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.68157291666666664</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{36c722dd-3b21-47bf-af19-8f8460ee62b0}</destination>
+		</relationship>
+	</object>
+</objects>

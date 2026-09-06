@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine;
+using FMODUnity;
 
 public class Chest : Interactable
 {
@@ -29,6 +30,7 @@ public class Chest : Interactable
 
     private void OpenChest()
     {
+        RuntimeManager.PlayOneShot(openSFX);
         hasInteracted = true;
         ChestUI.instance.OpenChestUI(chestInventory);
 
@@ -37,6 +39,7 @@ public class Chest : Interactable
 
     private void CloseChest()
     {
+        RuntimeManager.PlayOneShot(closeSFX);
         hasInteracted = false;
         ChestUI.instance.CloseChestUI();
 

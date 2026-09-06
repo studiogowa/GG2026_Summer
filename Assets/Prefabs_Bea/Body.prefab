@@ -186,6 +186,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Loot
   radius: 2
   interactionTransform: {fileID: 3124140882089303466}
+  openSFX:
+    Guid:
+      Data1: 1368687188
+      Data2: 1082029762
+      Data3: 1534787991
+      Data4: 1825466798
+    Path: event:/SFX/BodyOpen
+  closeSFX:
+    Guid:
+      Data1: -305433627
+      Data2: 1251351393
+      Data3: 1690469253
+      Data4: 1698922019
+    Path: event:/SFX/BodyClose
   hasInteracted: 0
 --- !u!114 &1291013944822784276
 MonoBehaviour:

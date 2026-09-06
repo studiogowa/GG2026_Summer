@@ -1550,6 +1550,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d74a08cce591b894297923729e5dbd53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
+  pauseOn:
+    Guid:
+      Data1: -333323823
+      Data2: 1106602498
+      Data3: -1014283598
+      Data4: -140561386
+    Path: event:/SFX/PauseOpen
+  pauseExit:
+    Guid:
+      Data1: 1070276637
+      Data2: 1289082630
+      Data3: 830554783
+      Data4: -1997476585
+    Path: event:/SFX/PauseClose
 --- !u!95 &6974934017731097883
 Animator:
   serializedVersion: 7
