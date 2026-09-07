@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: Sword
   m_EditorClassIdentifier: Assembly-CSharp::Item
   name: Sword
+  description: 
   icon: {fileID: 712035800519618848, guid: 79ffc571ac922114c955215e24fed3a5, type: 3}
   amount: 1
+  value: 0
   isStackable: 0
   isDefaultItem: 0
   prefab: {fileID: 5923591575856138997, guid: e3fe495bd7ffefe45bf3dc76c785fa33, type: 3}
+  useSFX:
+    Guid:
+      Data1: -1795340051
+      Data2: 1267196300
+      Data3: -18370898
+      Data4: 474816720
+    Path: event:/SFX/MoveItem
+  soundtype: 0

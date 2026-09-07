@@ -13,7 +13,18 @@ MonoBehaviour:
   m_Name: Goob
   m_EditorClassIdentifier: Assembly-CSharp::Item
   name: Goob
+  description: 
   icon: {fileID: -1323105111429834079, guid: 041877ba99a98f04ca90b39f673f00e7, type: 3}
   amount: 1
+  value: 0
   isStackable: 0
   isDefaultItem: 0
+  prefab: {fileID: 0}
+  useSFX:
+    Guid:
+      Data1: -1795340051
+      Data2: 1267196300
+      Data3: -18370898
+      Data4: 474816720
+    Path: event:/SFX/MoveItem
+  soundtype: 0

@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: Amulet
   m_EditorClassIdentifier: Assembly-CSharp::Item
   name: Amulet
+  description: 
   icon: {fileID: 9090724530243979454, guid: 8f9336994d7537b4fba3422f0e4b7588, type: 3}
   amount: 1
+  value: 0
   isStackable: 0
   isDefaultItem: 0
   prefab: {fileID: 7542875042707200676, guid: d14774148e8ef234da74f14c8875b2fa, type: 3}
+  useSFX:
+    Guid:
+      Data1: -1795340051
+      Data2: 1267196300
+      Data3: -18370898
+      Data4: 474816720
+    Path: event:/SFX/MoveItem
+  soundtype: 0

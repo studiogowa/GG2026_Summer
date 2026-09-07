@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: Bucket
   m_EditorClassIdentifier: Assembly-CSharp::Item
   name: Bucket
+  description: 
   icon: {fileID: 7578331518214074657, guid: 4e10b838364e021499b1e3657fbfdf39, type: 3}
   amount: 1
+  value: 0
   isStackable: 0
   isDefaultItem: 0
   prefab: {fileID: 5923591575856138997, guid: 9f7dbc676f5e19941bd9271ccfa896cb, type: 3}
+  useSFX:
+    Guid:
+      Data1: -1795340051
+      Data2: 1267196300
+      Data3: -18370898
+      Data4: 474816720
+    Path: event:/SFX/MoveItem
+  soundtype: 0

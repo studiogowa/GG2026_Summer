@@ -20,3 +20,11 @@ MonoBehaviour:
   isStackable: 1
   isDefaultItem: 0
   prefab: {fileID: 5923591575856138997, guid: b77e64bdda569994eb450558538acd61, type: 3}
+  useSFX:
+    Guid:
+      Data1: -1795340051
+      Data2: 1267196300
+      Data3: -18370898
+      Data4: 474816720
+    Path: event:/SFX/MoveItem
+  soundtype: 0

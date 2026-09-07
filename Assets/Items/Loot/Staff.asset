@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: Staff
   m_EditorClassIdentifier: Assembly-CSharp::Item
   name: Staff
+  description: 
   icon: {fileID: -5940781818166149764, guid: b9a70bdb57638de4b9382d8987746edf, type: 3}
   amount: 1
+  value: 0
   isStackable: 0
   isDefaultItem: 0
   prefab: {fileID: 5923591575856138997, guid: b5f512382717d3c4bb6202c122621fde, type: 3}
+  useSFX:
+    Guid:
+      Data1: -1795340051
+      Data2: 1267196300
+      Data3: -18370898
+      Data4: 474816720
+    Path: event:/SFX/MoveItem
+  soundtype: 0

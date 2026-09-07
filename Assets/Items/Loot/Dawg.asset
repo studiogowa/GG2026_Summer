@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: Dawg
   m_EditorClassIdentifier: Assembly-CSharp::Item
   name: Dawg
+  description: 
   icon: {fileID: 8584303646342281188, guid: 974bc3972ebf33346b784b9ea84970c3, type: 3}
   amount: 1
+  value: 0
   isStackable: 0
   isDefaultItem: 0
   prefab: {fileID: 7805704305909740712, guid: 84c6e89c7f2c4744ca3233ce00c79e09, type: 3}
+  useSFX:
+    Guid:
+      Data1: -1795340051
+      Data2: 1267196300
+      Data3: -18370898
+      Data4: 474816720
+    Path: event:/SFX/MoveItem
+  soundtype: 0
