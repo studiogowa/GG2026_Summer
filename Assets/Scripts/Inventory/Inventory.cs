@@ -52,6 +52,22 @@ public class Inventory : MonoBehaviour
         if (onItemChangedCallback != null)
             onItemChangedCallback.Invoke();
     }
+    /// <summary>
+    /// Removes [amount] amount of [item] from inventory
+    /// </summary>
+    /// <param name="item">The item to remove</param>
+    /// <param name="amount">The number to remove</param>
+    public virtual void Remove(Item item, int amount)
+    {
+        Item removeItem = items.Find(x => x == item);
+        // Cannot find the Item to remove
+        if (removeItem == null) return;
+
+        removeItem.amount -= amount;
+        if (removeItem.amount <= 0) Remove(removeItem);
+
+        onItemChangedCallback?.Invoke();
+    }
 
     public virtual void Drop(Item item)
     {
