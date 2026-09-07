@@ -63,6 +63,7 @@ public class InventorySlot : MonoBehaviour
             if (openChest != null)
             {
                 Debug.Log("Transferring " + item.name);
+                item.PlayTransferSFX();
                 TransferItem(openChest);
             }
         } 
@@ -73,6 +74,7 @@ public class InventorySlot : MonoBehaviour
             if (openLoot != null)
             {
                 Debug.Log("Transferring " + item.name);
+                item.PlayTransferSFX();
                 TransferItem(openLoot);
             }
         }

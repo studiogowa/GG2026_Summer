@@ -20,11 +20,15 @@ public class Item : ScriptableObject
     public virtual bool Use()
     {
         // Use the item
+        Debug.Log("Using " + name);
+        return true;
+    }
+
+    public void PlayTransferSFX()
+    {
         useSFXInstance = RuntimeManager.CreateInstance(useSFX);
         useSFXInstance.setParameterByName("ItemType", soundtype);
         useSFXInstance.start();
         useSFXInstance.release();
-        Debug.Log("Using " + name);
-        return true;
     }
 }
