@@ -32,7 +32,7 @@ public class DungeonResources : DungeonComponent
     {
         CompileSpawnRects();
 
-        Vector3[] ret = new Vector3[spawnCount];
+        Vector3[] ret = new Vector3[resourceSpawnRects.Count];
         for (int i = 0; i < resourceSpawnRects.Count; i++)
         {
             // Pick a point within the spawn Rect
