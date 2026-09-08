@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7d88eb64ac5a2064d8ae6eec89706d2c
+guid: 55d60910edaec4b47bf75355036fdbb8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1919360586898348367
-    second: diagonal fill_0
+      213: 4630630106382765265
+    second: door left tile_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 254
+  spritePixelsToUnits: 256
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: diagonal fill_0
+      name: door left tile_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 256
-        height: 256
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1b6e90627bf0d55e0800000000000000
-      internalID: -1919360586898348367
+      spriteID: 1dc8c213c8d434040800000000000000
+      internalID: 4630630106382765265
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      diagonal fill_0: -1919360586898348367
+      door left tile_0: 4630630106382765265
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
