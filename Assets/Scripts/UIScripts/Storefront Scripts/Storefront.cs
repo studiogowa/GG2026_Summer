@@ -16,18 +16,22 @@ public class Storefront : MonoBehaviour
 
     [SerializeField] StorefrontItemDescription description;
 
-    [SerializeField] private bool isOpen = false;
+    private bool isOpen = false;
+
+    [SerializeField] private Button exitButton;
     private void OnEnable()
     {
         buyButton.onClick.AddListener(BuyItem);
+        exitButton.onClick.AddListener(CloseShop);
     }
     private void OnDisable()
     {
         buyButton.onClick.RemoveListener(BuyItem);
+        exitButton.onClick.RemoveListener(CloseShop);
     }
     private void Update()
     {
-        if (Keyboard.current.backquoteKey.wasPressedThisFrame) ToggleShop();
+        if (Keyboard.current.backquoteKey.wasPressedThisFrame) OpenShop();
     }
     private void ToggleShop()
     {
@@ -36,12 +40,22 @@ public class Storefront : MonoBehaviour
     }
     private void OpenShop()
     {
+        if (isOpen) return;
         SetUpShop();
         storeAnimator.SetTrigger("Open");
+        StartCoroutine(StoreManagerCoroutine());
         isOpen = true;
     }
     private void CloseShop()
     {
+        if (!isOpen) return;
+        StopAllCoroutines();
+        StartCoroutine(CloseShopCoroutine());
+    }
+    private IEnumerator CloseShopCoroutine()
+    {
+        storeManagerAnimator.SetTrigger("Bow");
+        yield return new WaitForSeconds(1.5f);
         storeAnimator.SetTrigger("Close");
         isOpen = false;
     }
@@ -51,6 +65,26 @@ public class Storefront : MonoBehaviour
         buyButton.gameObject.SetActive(false);
 
         description.ClearDescription();
+    }
+    private IEnumerator StoreManagerCoroutine()
+    {
+        yield return new WaitForSeconds(0.25f);
+        storeManagerAnimator.SetTrigger("FlipPage");
+        yield return new WaitForSeconds(0.1f);
+        storeManagerAnimator.SetTrigger("FlipPage");
+        yield return new WaitForSeconds(1.0f);
+        storeManagerAnimator.SetTrigger("RaiseHead");
+        yield return new WaitForSeconds(5.0f);
+        storeManagerAnimator.SetTrigger("LowerHead");
+        yield return new WaitForSeconds(0.25f);
+        storeManagerAnimator.SetTrigger("FlipPage");
+        yield return new WaitForSeconds(0.1f);
+        storeManagerAnimator.SetTrigger("FlipPage");
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(6, 8));
+            storeManagerAnimator.SetTrigger("FlipPage");
+        }
     }
     private void GenerateShopItems()
     {
