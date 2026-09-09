@@ -116,12 +116,12 @@ TextureImporter:
       name: STOREMANAGER_DOWN_2_0
       rect:
         serializedVersion: 2
-        x: 1163
-        y: 435
-        width: 552
-        height: 355
+        x: 0
+        y: 0
+        width: 1920
+        height: 1080
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: c67328274d85138478004a9fa681df9a
     internalID: 0
     vertices: []
     indices: 
