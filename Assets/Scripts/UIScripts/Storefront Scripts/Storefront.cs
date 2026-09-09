@@ -1,9 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
+using System.Collections;
 using System.Collections.Generic;
 public class Storefront : MonoBehaviour
 {
     [SerializeField] private ItemPool shopItemPool;
+    [SerializeField] private Animator storeAnimator;
     [SerializeField] private Animator storeManagerAnimator;
 
     public List<StorefrontItem> storefrontItems;
@@ -13,6 +16,7 @@ public class Storefront : MonoBehaviour
 
     [SerializeField] StorefrontItemDescription description;
 
+    [SerializeField] private bool isOpen = false;
     private void OnEnable()
     {
         buyButton.onClick.AddListener(BuyItem);
@@ -21,11 +25,26 @@ public class Storefront : MonoBehaviour
     {
         buyButton.onClick.RemoveListener(BuyItem);
     }
-    private void Start()
+    private void Update()
+    {
+        if (Keyboard.current.backquoteKey.wasPressedThisFrame) ToggleShop();
+    }
+    private void ToggleShop()
+    {
+        if (!isOpen) OpenShop();
+        else CloseShop();
+    }
+    private void OpenShop()
     {
         SetUpShop();
+        storeAnimator.SetTrigger("Open");
+        isOpen = true;
     }
-
+    private void CloseShop()
+    {
+        storeAnimator.SetTrigger("Close");
+        isOpen = false;
+    }
     private void SetUpShop()
     {
         GenerateShopItems();
