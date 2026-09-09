@@ -278,7 +278,7 @@ MonoBehaviour:
   fieldOfView: {fileID: 3445373244250072530}
   playerRef: {fileID: 0}
   target: {fileID: 0}
-  wanderRadius: 3
+  wanderRadius: 25
   rotationSpeed: 180
   randomPointGenerator: {fileID: 0}
   waypointIndex: 0
@@ -301,6 +301,6 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1
-  m_BaseOffset: 0
+  m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4

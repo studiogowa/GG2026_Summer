@@ -28,7 +28,7 @@ public class NavMeshDisplay : MonoBehaviour
 
         if (meshSignature != hash)
         {
-            Debug.Log("recomputing mesh to draw");
+            //Debug.Log("recomputing mesh to draw");
             meshSignature = hash;
 
             navigationMesh ??= new Mesh();

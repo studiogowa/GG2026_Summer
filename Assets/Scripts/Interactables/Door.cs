@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Door : Interactable
 {
@@ -6,6 +7,7 @@ public class Door : Interactable
     private Animator doorAnimator;
     [SerializeField] private Item doorKey;
     [SerializeField] private bool isOpened = false;
+    [SerializeField] private GameObject navMeshObstacle;
     private void Awake()
     {
         if (!TryGetComponent<Collider2D>(out doorCollider)) Debug.LogError("This Door DOES NOT have a Collider2D Component!");
@@ -30,6 +32,7 @@ public class Door : Interactable
         isOpened = true;
         doorAnimator.SetTrigger("Open");
         doorCollider.enabled = false;
+        navMeshObstacle.SetActive(false);
         Debug.Log("Unlocked Door!");
     }
     public void Lock()
