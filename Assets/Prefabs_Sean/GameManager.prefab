@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2149146473358403106}
   - component: {fileID: 523195440910688511}
   - component: {fileID: 4948255547315645493}
+  - component: {fileID: 8234527453907575426}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -61,6 +62,7 @@ MonoBehaviour:
   chestSpawner: {fileID: 0}
   explorerSpawner: {fileID: 0}
   dungeonManager: {fileID: 0}
+  playerMoney: {fileID: 0}
 --- !u!114 &935602274668897175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,9 +89,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   bodyPrefab: {fileID: 6563828711841948660, guid: 4514d0f4b56726747ba4135d3e08fe80, type: 3}
   bodyItemPool: {fileID: 11400000, guid: 54f05ae4d5f9f4241b858486bf307a43, type: 2}
-  bodyItemCountMin: 1
-  bodyItemCountMax: 3
-  <resourceSpawnCount>k__BackingField: 6
 --- !u!114 &2149146473358403106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,3 +129,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   dungeonGameObject: {fileID: 0}
+--- !u!114 &8234527453907575426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6026567985035445583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15af54b3aaec8924e950a04c31ec696e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  money: 0

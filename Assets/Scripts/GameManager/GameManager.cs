@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public ChestSpawner chestSpawner;
     [HideInInspector] public ExplorerSpawner explorerSpawner;
     [HideInInspector] public DungeonManager dungeonManager;
+    [HideInInspector] public PlayerFunds playerFunds;
     private void Awake()
     {   // Establish static reference
         if (GameManager.instance != null && GameManager.instance != this)
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
         if (!TryGetComponent<ChestSpawner>(out chestSpawner)) Debug.LogError("Game Manager is missing a Chest Spawner Component!");
         if (!TryGetComponent<ExplorerSpawner>(out explorerSpawner)) Debug.LogError("Game Manager is missing a Explorer Spawner Component!");
         if (!TryGetComponent<DungeonManager>(out dungeonManager)) Debug.LogError("Game Manager is missing a Dungeon Manager Component!");
+        if (!TryGetComponent<PlayerFunds>(out playerFunds)) Debug.LogError("Game Manager is missing a Player Funds Component!");
     }
     private void OnDestroy()
     {   // Remove static reference
@@ -140,6 +142,7 @@ public class GameManager : MonoBehaviour
     }
     public bool DeterminePassOrFail(int score)
     {
+
         if (score >= currShiftData.passingGrade)
         {
             // Progress to next day

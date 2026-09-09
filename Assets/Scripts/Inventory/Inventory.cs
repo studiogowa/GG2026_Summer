@@ -10,15 +10,30 @@ public class Inventory : MonoBehaviour
     public delegate void OnItemChanged();
     public OnItemChanged onItemChangedCallback;
 
+    /// <summary>
+    /// Determines whether [item] can be added to this Inventory
+    /// </summary>
+    /// <param name="item">The item to check</param>
+    /// <param name="amount">The number of [item]s to be added</param>
+    /// <returns>True if it can be added, False if it cannot</returns>
+    public virtual bool IsAddable(Item item, int amount)
+    {
+        if (item.isDefaultItem) return true;
+
+        // If Item is in inventory AND is stackable
+        Item itemInInventory = items.Find(x => x.name == item.name);
+        if (itemInInventory != null && itemInInventory.isStackable) return true;
+        // If Inventory has not reached maximum capacity
+        if (items.Count < space) return true;
+
+        Debug.Log("Not enough room.");
+        return false;
+    }
     public virtual bool Add(Item item, int amount)
     {
         if (!item.isDefaultItem)
         {
-            if (items.Count >= space)
-            {
-                Debug.Log("Not enough room.");
-                return false;
-            }
+            if (!IsAddable(item, amount)) return false;
 
             Item copyItem = Instantiate(item);
             copyItem.amount = amount;

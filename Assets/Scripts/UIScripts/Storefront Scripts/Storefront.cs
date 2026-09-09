@@ -9,7 +9,7 @@ public class Storefront : MonoBehaviour
     [SerializeField] private Animator storeAnimator;
     [SerializeField] private Animator storeManagerAnimator;
 
-    public List<StorefrontItem> storefrontItems;
+    [HideInInspector] public List<StorefrontItem> storefrontItems;
 
     [SerializeField] private Item focusedItem;
     [SerializeField] private Button buyButton;
@@ -19,6 +19,8 @@ public class Storefront : MonoBehaviour
     private bool isOpen = false;
 
     [SerializeField] private Button exitButton;
+
+    [SerializeField] StorefrontPlayerFunds playerFunds;
     private void OnEnable()
     {
         buyButton.onClick.AddListener(BuyItem);
@@ -41,6 +43,7 @@ public class Storefront : MonoBehaviour
     private void OpenShop()
     {
         if (isOpen) return;
+        StopAllCoroutines();
         SetUpShop();
         storeAnimator.SetTrigger("Open");
         StartCoroutine(StoreManagerCoroutine());
@@ -54,18 +57,23 @@ public class Storefront : MonoBehaviour
     }
     private IEnumerator CloseShopCoroutine()
     {
+        isOpen = false;
         storeManagerAnimator.SetTrigger("Bow");
         yield return new WaitForSeconds(1.5f);
         storeAnimator.SetTrigger("Close");
-        isOpen = false;
     }
+    
     private void SetUpShop()
     {
         GenerateShopItems();
         buyButton.gameObject.SetActive(false);
 
         description.ClearDescription();
+        playerFunds.UpdateFunds();
     }
+    /// <summary>
+    /// Performs the sequence the Store Manager animations while the player is shopping
+    /// </summary>
     private IEnumerator StoreManagerCoroutine()
     {
         yield return new WaitForSeconds(0.25f);
@@ -84,8 +92,16 @@ public class Storefront : MonoBehaviour
         {
             yield return new WaitForSeconds(Random.Range(6, 8));
             storeManagerAnimator.SetTrigger("FlipPage");
+            if (Random.Range(0, 3) == 0)
+            {
+                yield return new WaitForSeconds(0.1f);
+                storeManagerAnimator.SetTrigger("FlipPage");
+            }
         }
     }
+    /// <summary>
+    /// Chooses 5 randoms items in the shop item pool to sell, and puts them up for display
+    /// </summary>
     private void GenerateShopItems()
     {
         Item[] shopPoolItems = new Item[shopItemPool.itemPoolItems.Count];
@@ -97,16 +113,29 @@ public class Storefront : MonoBehaviour
         index = 0;
         foreach (StorefrontItem currDisplay in storefrontItems) currDisplay.DisplayItem(shopPoolItems[index++]);
     }
+    /// <summary>
+    /// Assigned the input Item as the item to be displayed in more detail
+    /// </summary>
+    /// <param name="input">The item to describe further</param>
     public void FocusItem(Item input)
     {
-        buyButton.gameObject.SetActive(true);
         focusedItem = input;
         description.DisplayItem(input);
+        buyButton.gameObject.SetActive(true);
+        // Enable button interactivity only if player can AND carry the focused item 
+        if (GameManager.instance.playerFunds.SubtractableBy(input.value) && PlayerInventory.instance.IsAddable(input, 1)) buyButton.interactable = true;
+        else buyButton.interactable = false;
     }
     private void BuyItem()
     {
         // Check if player has enough money
-
-        PlayerInventory.instance.Add(focusedItem, 1);
+        if (!GameManager.instance.playerFunds.SubtractableBy(focusedItem.value)) return;
+        // If player CAN'T add the item bought
+        if (!PlayerInventory.instance.Add(focusedItem, 1)) return;
+        
+        GameManager.instance.playerFunds.SubtractFunds(focusedItem.value);
+        // Update item description
+        FocusItem(focusedItem);
+        playerFunds.UpdateFunds();
     }
 }
