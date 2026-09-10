@@ -22,6 +22,10 @@ public class ShiftData : ScriptableObject
     [Range(0.0f, 30.0f)] public float preDayTime = 5.0f;
     [Range(0.0f, 180.0f)] public float dayRoundTime = 30.0f;
     [Range(0.0f, 30.0f)] public float dayEndPause = 5.0f;
+
+    [Header("Shift Payout Variables")]
+    [Range(0, 100)] public int basePayout = 20;
+    [Range(0, 100)] public int bonusPayout = 20;
 }
 
 [System.Serializable]

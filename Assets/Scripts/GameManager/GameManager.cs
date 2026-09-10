@@ -10,8 +10,13 @@ public class GameManager : MonoBehaviour
     [SerializeField, Range(0, 8)] private int currShift= 0;
     public ShiftData currShiftData { get { return shiftData[currShift]; } }
 
-    [field: SerializeField] public GameState gameState = GameState.Dusk;
+    [SerializeField] private int strikes = 1;
+    public bool isFired { get { if (strikes < 0) return true; else return false; } }
+    public bool goToNextShift { get { if (currShift < shiftData.Length) return true; else return false; } }
+    public bool hasClearedAllShifts { get { if (currShift >= shiftData.Length) return true; else return false; } }
 
+    [Header("Game State Variables")]
+    [field: SerializeField] public GameState gameState = GameState.Dusk;
     public float gameStartTime { get; private set; } = 0.0f;
     public float gameEndTime { get; private set; } = 0.0f;
     public float gameRoundTime { get { return Time.time - gameStartTime; } }
@@ -25,6 +30,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public ChestSpawner chestSpawner;
     [HideInInspector] public ExplorerSpawner explorerSpawner;
     [HideInInspector] public DungeonManager dungeonManager;
+    [HideInInspector] public PlayerFunds playerFunds;
+
     private void Awake()
     {   // Establish static reference
         if (GameManager.instance != null && GameManager.instance != this)
@@ -39,6 +46,7 @@ public class GameManager : MonoBehaviour
         if (!TryGetComponent<ChestSpawner>(out chestSpawner)) Debug.LogError("Game Manager is missing a Chest Spawner Component!");
         if (!TryGetComponent<ExplorerSpawner>(out explorerSpawner)) Debug.LogError("Game Manager is missing a Explorer Spawner Component!");
         if (!TryGetComponent<DungeonManager>(out dungeonManager)) Debug.LogError("Game Manager is missing a Dungeon Manager Component!");
+        if (!TryGetComponent<PlayerFunds>(out playerFunds)) Debug.LogError("Game Manager is missing a Player Funds Component!");
     }
     private void OnDestroy()
     {   // Remove static reference
@@ -48,9 +56,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         StopAllCoroutines();
-        // If player is still Shift Climbing
-        if (currShift < shiftData.Length) StartPreGameSetup();
-        else Debug.Log("Player Wins!");
+        StartPreGameSetup();
     }
     private void StartPreGameSetup()
     {
@@ -140,13 +146,25 @@ public class GameManager : MonoBehaviour
     }
     public bool DeterminePassOrFail(int score)
     {
+        playerFunds.AddFunds(currShiftData.basePayout);
         if (score >= currShiftData.passingGrade)
         {
+            // Maybe add bonus funds if player performs better?
+            float percentageBonus = (score - currShiftData.passingGrade) / (float)(1 - currShiftData.passingGrade);
+            int bonusFunds = Mathf.RoundToInt(Mathf.Lerp(0.0f, currShiftData.bonusPayout, percentageBonus));
+            playerFunds.AddFunds(bonusFunds);
             // Progress to next day
             currShift = Mathf.Clamp(currShift + 1, 0, shiftData.Length);
+
+            // Recover Strikes
+            strikes = 1;
             return true;
         }
-        else return false;
+        else
+        {
+            strikes--;
+            return false;
+        }
     }
 }
 

@@ -15,6 +15,10 @@ public class PerformanceReview : GameUIComponent
 
     [SerializeField] private Button continueButton;
 
+    [SerializeField] private Storefront storefront;
+    [SerializeField] private GameObject failureScreen;
+    [SerializeField] private GameObject successScreen;
+
     [Header("Audio")]
     [SerializeField] private EventReference ShowPerfReviewSFX;
     [SerializeField] private EventReference ChestCountSFX;
@@ -27,23 +31,25 @@ public class PerformanceReview : GameUIComponent
         base.Awake();
         if (!TryGetComponent<Animator>(out animator)) Debug.LogError($"{this.name} DOES NOT have an animator component!");
     }
+    private void OnEnable()
+    {
+        SubscribeFunctions();
+    }
     private void OnDisable()
     {
         UnsubscribeFunctions();
     }
     private void SubscribeFunctions()
     {
+        continueButton.onClick.AddListener(ContinueGame);
         if (GameManager.instance == null) return;
-        GameManager.instance.gameEvents.preGameStarts += CloseMenu;
         GameManager.instance.gameEvents.performanceReviewStarts += OpenMenu;
-        continueButton.onClick.AddListener(GameManager.instance.StartGame);
     }
     private void UnsubscribeFunctions()
     {
+        continueButton.onClick.RemoveListener(ContinueGame);
         if (GameManager.instance == null) return;
-        GameManager.instance.gameEvents.preGameStarts -= CloseMenu;
         GameManager.instance.gameEvents.performanceReviewStarts -= OpenMenu;
-        continueButton.onClick.RemoveAllListeners();
     }
     private void Start()
     {
@@ -75,7 +81,14 @@ public class PerformanceReview : GameUIComponent
         if (!menuOpened) return;
         menuOpened = false;
         UnsubscribeFunctions();
+        StartCoroutine(CloseMenuCoroutine());
+    }
+
+    private IEnumerator CloseMenuCoroutine()
+    {
+        yield return new WaitForSeconds(1.0f);
         animator.SetTrigger("Close");
+        yield break;
     }
 
     [Header("Timing Variables for Performance Review")]
@@ -186,5 +199,15 @@ public class PerformanceReview : GameUIComponent
         }
 
         return qualitySum/ GameManager.instance.chestSpawner.chestSpawnCount;
+    }
+
+    private void ContinueGame()
+    {
+        CloseMenu();
+
+        if (GameManager.instance.isFired) Debug.Log("Player is Fired Boowhomp :(");
+        else if (GameManager.instance.hasClearedAllShifts) Debug.Log("Player wins yippee");
+        // Player continues to next shift
+        else storefront.OpenShop();
     }
 }
