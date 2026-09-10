@@ -15,6 +15,10 @@ public class PerformanceReview : GameUIComponent
 
     [SerializeField] private Button continueButton;
 
+    [SerializeField] private Storefront storefront;
+    [SerializeField] private GameObject failureScreen;
+    [SerializeField] private GameObject successScreen;
+
     [Header("Audio")]
     [SerializeField] private EventReference ShowPerfReviewSFX;
     [SerializeField] private EventReference ChestCountSFX;
@@ -37,13 +41,13 @@ public class PerformanceReview : GameUIComponent
     }
     private void SubscribeFunctions()
     {
-        continueButton.onClick.AddListener(CloseMenu);
+        continueButton.onClick.AddListener(ContinueGame);
         if (GameManager.instance == null) return;
         GameManager.instance.gameEvents.performanceReviewStarts += OpenMenu;
     }
     private void UnsubscribeFunctions()
     {
-        continueButton.onClick.RemoveListener(CloseMenu);
+        continueButton.onClick.RemoveListener(ContinueGame);
         if (GameManager.instance == null) return;
         GameManager.instance.gameEvents.performanceReviewStarts -= OpenMenu;
     }
@@ -195,5 +199,15 @@ public class PerformanceReview : GameUIComponent
         }
 
         return qualitySum/ GameManager.instance.chestSpawner.chestSpawnCount;
+    }
+
+    private void ContinueGame()
+    {
+        CloseMenu();
+
+        if (GameManager.instance.isFired) Debug.Log("Player is Fired Boowhomp :(");
+        else if (GameManager.instance.hasClearedAllShifts) Debug.Log("Player wins yippee");
+        // Player continues to next shift
+        else storefront.OpenShop();
     }
 }
