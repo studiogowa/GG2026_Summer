@@ -23,13 +23,29 @@ public class Storefront : MonoBehaviour
     [SerializeField] StorefrontPlayerFunds playerFunds;
     private void OnEnable()
     {
-        buyButton.onClick.AddListener(BuyItem);
-        exitButton.onClick.AddListener(CloseShop);
+        SubscribeFunctions();
     }
     private void OnDisable()
     {
+        UnsubscribeFunctions();
+    }
+    private void SubscribeFunctions()
+    {
+        buyButton.onClick.AddListener(BuyItem);
+        exitButton.onClick.AddListener(CloseShop);
+
+        if (GameManager.instance != null) exitButton.onClick.AddListener(GameManager.instance.StartGame);
+    }
+    private void UnsubscribeFunctions()
+    {
         buyButton.onClick.RemoveListener(BuyItem);
         exitButton.onClick.RemoveListener(CloseShop);
+
+        if (GameManager.instance != null) exitButton.onClick.RemoveListener(GameManager.instance.StartGame);
+    }
+    private void Start()
+    {
+        SubscribeFunctions();
     }
     private void Update()
     {
@@ -40,7 +56,7 @@ public class Storefront : MonoBehaviour
         if (!isOpen) OpenShop();
         else CloseShop();
     }
-    private void OpenShop()
+    public void OpenShop()
     {
         if (isOpen) return;
         StopAllCoroutines();
@@ -61,6 +77,8 @@ public class Storefront : MonoBehaviour
         storeManagerAnimator.SetTrigger("Bow");
         yield return new WaitForSeconds(1.5f);
         storeAnimator.SetTrigger("Close");
+
+        GameManager.instance.StartGame();
     }
     
     private void SetUpShop()

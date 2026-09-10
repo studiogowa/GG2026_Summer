@@ -142,9 +142,13 @@ public class GameManager : MonoBehaviour
     }
     public bool DeterminePassOrFail(int score)
     {
-
+        playerFunds.AddFunds(currShiftData.basePayout);
         if (score >= currShiftData.passingGrade)
         {
+            // Maybe add bonus funds if player performs better?
+            float percentageBonus = (score - currShiftData.passingGrade) / (float)(1 - currShiftData.passingGrade);
+            int bonusFunds = Mathf.RoundToInt(Mathf.Lerp(0.0f, currShiftData.bonusPayout, percentageBonus));
+            playerFunds.AddFunds(bonusFunds);
             // Progress to next day
             currShift = Mathf.Clamp(currShift + 1, 0, shiftData.Length);
             return true;

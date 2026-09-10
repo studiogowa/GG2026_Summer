@@ -27,23 +27,25 @@ public class PerformanceReview : GameUIComponent
         base.Awake();
         if (!TryGetComponent<Animator>(out animator)) Debug.LogError($"{this.name} DOES NOT have an animator component!");
     }
+    private void OnEnable()
+    {
+        SubscribeFunctions();
+    }
     private void OnDisable()
     {
         UnsubscribeFunctions();
     }
     private void SubscribeFunctions()
     {
+        continueButton.onClick.AddListener(CloseMenu);
         if (GameManager.instance == null) return;
-        GameManager.instance.gameEvents.preGameStarts += CloseMenu;
         GameManager.instance.gameEvents.performanceReviewStarts += OpenMenu;
-        continueButton.onClick.AddListener(GameManager.instance.StartGame);
     }
     private void UnsubscribeFunctions()
     {
+        continueButton.onClick.RemoveListener(CloseMenu);
         if (GameManager.instance == null) return;
-        GameManager.instance.gameEvents.preGameStarts -= CloseMenu;
         GameManager.instance.gameEvents.performanceReviewStarts -= OpenMenu;
-        continueButton.onClick.RemoveAllListeners();
     }
     private void Start()
     {
@@ -75,7 +77,14 @@ public class PerformanceReview : GameUIComponent
         if (!menuOpened) return;
         menuOpened = false;
         UnsubscribeFunctions();
+        StartCoroutine(CloseMenuCoroutine());
+    }
+
+    private IEnumerator CloseMenuCoroutine()
+    {
+        yield return new WaitForSeconds(1.0f);
         animator.SetTrigger("Close");
+        yield break;
     }
 
     [Header("Timing Variables for Performance Review")]
