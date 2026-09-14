@@ -19,4 +19,4 @@ MonoBehaviour:
   value: 0
   isStackable: 0
   isDefaultItem: 0
-  prefab: {fileID: 0}
+  prefab: {fileID: 3655831145332173535, guid: 37e03c30611b29b40b65ea3178ae88f7, type: 3}

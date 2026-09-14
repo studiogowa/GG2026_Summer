@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Dawg
   m_EditorClassIdentifier: Assembly-CSharp::Item
   name: Dawg
+  description: 
   icon: {fileID: 8584303646342281188, guid: 974bc3972ebf33346b784b9ea84970c3, type: 3}
   amount: 1
+  value: 1
   isStackable: 0
   isDefaultItem: 0
   prefab: {fileID: 7805704305909740712, guid: 84c6e89c7f2c4744ca3233ce00c79e09, type: 3}

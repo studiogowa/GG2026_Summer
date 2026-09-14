@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Bow
   m_EditorClassIdentifier: Assembly-CSharp::Item
   name: Bow
+  description: 
   icon: {fileID: -7856493677412862020, guid: 6ed1e0f97054c9141b26a803a61c986f, type: 3}
   amount: 1
+  value: 1
   isStackable: 0
   isDefaultItem: 0
   prefab: {fileID: 5923591575856138997, guid: a5185cd1a8901bf48be889da2df18b6e, type: 3}

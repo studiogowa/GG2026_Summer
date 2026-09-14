@@ -19,5 +19,5 @@ MonoBehaviour:
   value: 5
   isStackable: 1
   isDefaultItem: 0
-  prefab: {fileID: 0}
+  prefab: {fileID: 2557721817367356906, guid: 61619d4f0a0fba345bfb7973b603e2c6, type: 3}
   slotUpgrade: 1

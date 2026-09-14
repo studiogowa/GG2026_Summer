@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c9f9aaba2d4e774c875d6daf12ac017, type: 3}
   m_Name: Silver Key
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  name: New Item
+  name: Silver Key
   description: 
-  icon: {fileID: 0}
+  icon: {fileID: 1694913177206695654, guid: 6c3b309f28edc0a47b0343838e0ffbe2, type: 3}
   amount: 0
   value: 0
   isStackable: 0
   isDefaultItem: 0
-  prefab: {fileID: 0}
+  prefab: {fileID: 4519166391130913615, guid: 6a562a0c44ac3e042a0142b87fd231a1, type: 3}

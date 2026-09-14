@@ -15,9 +15,9 @@ MonoBehaviour:
   name: Meat
   description: 
   icon: {fileID: 8984754096541894249, guid: c243346afff945445834b2facce1fa18, type: 3}
-  amount: 1
+  amount: -3
   value: 20
   isStackable: 1
   isDefaultItem: 0
-  prefab: {fileID: 0}
+  prefab: {fileID: 2557721817367356906, guid: 2bbe73dfc548c3c4ab65eb9e681b0e5b, type: 3}
   slotUpgrade: 3

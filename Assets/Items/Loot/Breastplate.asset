@@ -16,7 +16,7 @@ MonoBehaviour:
   description: 
   icon: {fileID: 4752369627228079557, guid: 586a3bfa7a7130c4a938d5866481d116, type: 3}
   amount: 1
-  value: 0
+  value: 1
   isStackable: 0
   isDefaultItem: 0
-  prefab: {fileID: 0}
+  prefab: {fileID: 7870869117566377595, guid: ee256d1d93f2f664da91a6a87ac3680f, type: 3}

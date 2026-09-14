@@ -40,5 +40,6 @@ public class Door : Interactable
         isOpened = false;
         doorAnimator.SetTrigger("Close");
         doorCollider.enabled = true;
+        navMeshObstacle.SetActive(true);
     }
 }
