@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class ChestUI : InventoryUI
 {
     public static ChestUI instance;
     public InventoryUI playerUI;
+    [SerializeField] private TextMeshProUGUI valueCounter;
 
     private void Awake()
     {
@@ -58,5 +60,15 @@ public class ChestUI : InventoryUI
         {
             playerUI.inventoryUI.SetActive(false);
         }
+    }
+
+    protected override void UpdateUI()
+    {
+        base.UpdateUI();
+
+        // Update Value Target Counter
+        string valueTarget = "??";
+        if (inventory is ChestInventory currChestInventory) valueTarget = $"{currChestInventory.valueTarget}";
+        valueCounter.text = $"{inventory.GetTotalValue()} / {valueTarget}";
     }
 }

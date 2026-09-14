@@ -106,7 +106,17 @@ public class Inventory : MonoBehaviour
             onItemChangedCallback?.Invoke();
         }
     }
+    /// <summary>
+    /// Determines the sum of all item values in this inventory
+    /// </summary>
+    /// <returns>Returns the total value as an Integer</returns>
+    public int GetTotalValue()
+    {
+        int totalValue = 0;
+        foreach (Item currItem in items) totalValue += currItem.value;
 
+        return totalValue;
+    }
     public virtual void Clear()
     {
         items.Clear();
