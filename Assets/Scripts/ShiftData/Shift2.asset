@@ -13,21 +13,27 @@ MonoBehaviour:
   m_Name: Shift2
   m_EditorClassIdentifier: Assembly-CSharp::ShiftData
   chests:
-  - chestAmountTarget: 2
-    chestValueTarget: 4
-  - chestAmountTarget: 2
-    chestValueTarget: 4
-  - chestAmountTarget: 2
-    chestValueTarget: 4
+  - chestAmountTarget: 4
+    chestValueTarget: 10
+  - chestAmountTarget: 4
+    chestValueTarget: 10
+  - chestAmountTarget: 4
+    chestValueTarget: 10
   - chestAmountTarget: 3
     chestValueTarget: 6
-  - chestAmountTarget: 3
-    chestValueTarget: 6
+  - chestAmountTarget: 4
+    chestValueTarget: 10
   lootables:
+  - itemCount: 2
   - itemCount: 3
+  - itemCount: 1
+  - itemCount: 3
+  - itemCount: 1
   - itemCount: 2
+  - itemCount: 3
+  - itemCount: 3
+  - itemCount: 1
   - itemCount: 2
-  - itemCount: 5
   - itemCount: 2
   explorerCount: 2
   passingGrade: 50
@@ -38,3 +44,5 @@ MonoBehaviour:
   preDayTime: 5
   dayRoundTime: 30
   dayEndPause: 5
+  basePayout: 7
+  bonusPayout: 5

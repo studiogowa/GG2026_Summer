@@ -32,7 +32,7 @@ public class ShiftData : ScriptableObject
 public struct ShiftChestData
 {
     [Range(0, 6)] public int chestAmountTarget;
-    [Range(0, 12)] public int chestValueTarget;
+    [Range(0, 20)] public int chestValueTarget;
 }
 
 [System.Serializable]
