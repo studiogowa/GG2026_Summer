@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 523195440910688511}
   - component: {fileID: 4948255547315645493}
   - component: {fileID: 8234527453907575426}
+  - component: {fileID: 5127886866471028580}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -56,13 +57,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 63cee6eaa6cb3a443b856803f5808979, type: 2}
   - {fileID: 11400000, guid: d7da79cafd681d242ac26f3ce5ca2d48, type: 2}
   currShift: 0
+  strikes: 1
   gameState: 0
   playerManager: {fileID: 0}
   resourceGenerator: {fileID: 0}
   chestSpawner: {fileID: 0}
   explorerSpawner: {fileID: 0}
   dungeonManager: {fileID: 0}
-  playerMoney: {fileID: 0}
+  playerFunds: {fileID: 0}
+  droppedItems: {fileID: 0}
 --- !u!114 &935602274668897175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,4 +144,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15af54b3aaec8924e950a04c31ec696e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  money: 0
+  <funds>k__BackingField: 0
+--- !u!114 &5127886866471028580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6026567985035445583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e1299f86e03e104ba138e6c55b8d195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
