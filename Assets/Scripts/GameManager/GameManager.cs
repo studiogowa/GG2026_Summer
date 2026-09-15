@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public ExplorerSpawner explorerSpawner;
     [HideInInspector] public DungeonManager dungeonManager;
     [HideInInspector] public PlayerFunds playerFunds;
+    [HideInInspector] public DroppedItems droppedItems;
 
     private void Awake()
     {   // Establish static reference
@@ -47,6 +48,7 @@ public class GameManager : MonoBehaviour
         if (!TryGetComponent<ExplorerSpawner>(out explorerSpawner)) Debug.LogError("Game Manager is missing a Explorer Spawner Component!");
         if (!TryGetComponent<DungeonManager>(out dungeonManager)) Debug.LogError("Game Manager is missing a Dungeon Manager Component!");
         if (!TryGetComponent<PlayerFunds>(out playerFunds)) Debug.LogError("Game Manager is missing a Player Funds Component!");
+        if (!TryGetComponent<DroppedItems>(out droppedItems)) Debug.LogError("Game Manager is missing a Dropped Items Component!");
     }
     private void OnDestroy()
     {   // Remove static reference

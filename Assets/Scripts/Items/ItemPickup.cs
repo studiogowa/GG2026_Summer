@@ -4,6 +4,10 @@ public class ItemPickup : Interactable
 {
     public Item item;
     public int amount = 1;
+    private void Start()
+    {
+        if (GameManager.instance != null) this.transform.parent = GameManager.instance.droppedItems.container.transform;
+    }
     public override void Interact()
     {
         base.Interact();
