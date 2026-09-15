@@ -47,10 +47,6 @@ public class Storefront : MonoBehaviour
     {
         SubscribeFunctions();
     }
-    private void Update()
-    {
-        if (Keyboard.current.backquoteKey.wasPressedThisFrame) OpenShop();
-    }
     private void ToggleShop()
     {
         if (!isOpen) OpenShop();

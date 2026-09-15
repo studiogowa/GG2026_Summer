@@ -14,7 +14,10 @@ public class Loot : Interactable
 
         moveAction = InputSystem.actions.FindAction("Move");
     }
-
+    private void Update()
+    {
+        if (PlayerLeavesInteractionRadius()) CloseLoot();
+    }
     public override void Interact()
     {
         if (LootUI.instance != null && LootUI.instance.inventory == lootInventory)

@@ -11,7 +11,7 @@ public class Interactable : MonoBehaviour
 
     public virtual void Interact() // meant to be overridden
     {
-        Debug.Log("Interacting with " + transform.name);
+        Debug.Log($"Interacting with " + transform.name);
     }
 
 /*
@@ -41,6 +41,16 @@ public class Interactable : MonoBehaviour
         isFocus = false;
         player = null;
         //hasInteracted = false;
+    }
+    /// <summary>
+    /// Check whether Player has left the interaction radius
+    /// </summary>
+    /// <returns>True if they have left the radius, False otherwise</returns>
+    protected bool PlayerLeavesInteractionRadius()
+    {
+        if (player == null) return false;
+        if (hasInteracted && Vector3.Distance(transform.position, player.position) >= radius) return true;
+        else return false;
     }
 
     void OnDrawGizmosSelected () // visualizing the radius in the editor

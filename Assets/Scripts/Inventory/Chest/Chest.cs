@@ -14,7 +14,10 @@ public class Chest : Interactable
 
         moveAction = InputSystem.actions.FindAction("Move");
     }
-
+    private void Update()
+    {
+        if (PlayerLeavesInteractionRadius()) CloseChest();
+    }
     public override void Interact()
     {
         if (ChestUI.instance != null && ChestUI.instance.inventory == chestInventory)
