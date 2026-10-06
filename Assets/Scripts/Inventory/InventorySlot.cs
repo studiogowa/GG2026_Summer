@@ -109,7 +109,7 @@ public class InventorySlot : MonoBehaviour
                 return;
             }
 
-    }
+        }
         else
         {
             Debug.Log("Item is null!");
