@@ -166,7 +166,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.98828125, y: 0.7734375}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -221,9 +221,9 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -6834524911116659543, guid: 2a3cbe43221565845bf716c1398dbb87, type: 3}
+  m_Sprite: {fileID: -6207919236307093242, guid: 96bbdf3c3fa78854b92ebd17b1cb8502, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -248,6 +248,8 @@ MonoBehaviour:
   radius: 2
   interactionTransform: {fileID: 1551257804863911340}
   hasInteracted: 0
+  chestClosed: {fileID: -6207919236307093242, guid: 96bbdf3c3fa78854b92ebd17b1cb8502, type: 3}
+  chestOpened: {fileID: -7420185212081706498, guid: c0bed62438c7a844689806ba81957ad1, type: 3}
 --- !u!114 &1986229896402187038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,7 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 562c0edd6b733b643b81786c7aa36d57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChestInventory
-  space: 20
+  space: 18
   items: []
   amountTarget: 1
   valueTarget: 1

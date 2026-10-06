@@ -67,8 +67,8 @@ public class ChestUI : InventoryUI
         base.UpdateUI();
 
         // Update Value Target Counter
-        string valueTarget = "??";
+        string valueTarget = "?";
         if (inventory is ChestInventory currChestInventory) valueTarget = $"{currChestInventory.valueTarget}";
-        valueCounter.text = $"{inventory.GetTotalValue()} / {valueTarget}";
+        valueCounter.text = $"{inventory.GetTotalValue()}$ / {valueTarget}$";
     }
 }
